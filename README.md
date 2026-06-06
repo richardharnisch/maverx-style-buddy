@@ -2,6 +2,9 @@
 
 AI-powered CLI for building Maverx-branded training programmes and presentation artifacts. Runs an agent loop against any OpenRouter-compatible model to guide you through intake, generate schema-validated lesson plans, and produce ready-to-deliver PPTX decks and DOCX documents.
 
+<img width="1600" height="1000" alt="image" src="https://github.com/user-attachments/assets/576817ea-e894-44e7-b029-a70e756ac1cd" />
+
+
 ## Prerequisites
 
 - Python 3.12+
