@@ -1,0 +1,49 @@
+key: foto_slide_grijs_2
+source_slide_index: 39
+layout_name: Foto Slide Grijs
+description: Slide with a large background photo. Standard content slide with a title
+  and body text area. Use for most informational slides.
+text_areas:
+- role: title
+  shape_name: Tekstvak 5
+  left: 674178
+  top: 433400
+  width: 7954748
+  height: 577081
+  font_name: Space Grotesk
+  font_size_pt: 33.0
+  bold: true
+  italic: null
+  underline: null
+  color: null
+  alignment: null
+  shape_preset: null
+  bg_color: null
+  corner_radius: null
+- role: body
+  shape_name: Tekstvak 7
+  left: 628650
+  top: 1657068
+  width: 4328208
+  height: 2033634
+  font_name: Aptos
+  font_size_pt: 15.0
+  bold: null
+  italic: null
+  underline: null
+  color: null
+  alignment: null
+  shape_preset: null
+  bg_color: null
+  corner_radius: null
+image_areas:
+- role: background
+  shape_name: Picture 7
+  left: 2792756
+  top: -1
+  width: 6351244
+  height: 5143501
+  image_key: img_a187a34cd140
+decorative_shapes: []
+table_areas: []
+non_text_shapes: 0

@@ -2,6 +2,7 @@
 
 import json
 import logging
+from pathlib import Path
 
 from src.agent.client import OpenRouterClient
 from src.skills.registry import SkillRegistry
@@ -32,12 +33,21 @@ SYSTEM_PROMPT = (
     "Never skip list_layouts — layout keys vary per style guide and must be discovered at runtime."
 )
 
+_SKILL_MD = Path(__file__).parents[1] / "style_guides" / "PRESENTATION_CREATION_GUIDE.md"
+
+
+def _load_skill_guide() -> str:
+    if _SKILL_MD.exists():
+        return "\n\n---\n\n" + _SKILL_MD.read_text()
+    log.warning("PRESENTATION_CREATION_GUIDE.md not found at %s — proceeding without it", _SKILL_MD)
+    return ""
+
 
 class AgentLoop:
     def __init__(self, client: OpenRouterClient, registry: SkillRegistry) -> None:
         self.client = client
         self.registry = registry
-        self._messages: list[dict] = [{"role": "system", "content": SYSTEM_PROMPT}]
+        self._messages: list[dict] = [{"role": "system", "content": SYSTEM_PROMPT + _load_skill_guide()}]
 
     def run(self, user_prompt: str) -> str:
         tools = self.registry.tool_specs()
@@ -95,5 +105,5 @@ class AgentLoop:
 
     def reset(self) -> None:
         """Clear conversation history, keeping only the system prompt."""
-        self._messages = [{"role": "system", "content": SYSTEM_PROMPT}]
+        self._messages = [{"role": "system", "content": SYSTEM_PROMPT + _load_skill_guide()}]
         log.debug("Conversation history cleared")

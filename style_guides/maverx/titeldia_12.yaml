@@ -1,0 +1,395 @@
+key: titeldia_12
+source_slide_index: 24
+layout_name: Titeldia
+description: 'Dark-background slide with light/white text. Two-column layout with
+  a title, suited for side-by-side comparisons or split content. Includes decorative
+  icons. Has 5 directional arrow(s) indicating flow or sequence. Has 2 colored circle/oval
+  element(s) (#F3E0ED). Has 3 accent rectangle/block(s) (#5400AD, #D3116E).'
+text_areas:
+- role: title
+  shape_name: Tekstvak 5
+  left: 635212
+  top: 185185
+  width: 8012297
+  height: 577081
+  font_name: Space Grotesk
+  font_size_pt: 33.0
+  bold: true
+  italic: null
+  underline: null
+  color: '#0D006A'
+  alignment: null
+  shape_preset: null
+  bg_color: null
+  corner_radius: null
+- role: caption
+  shape_name: TextBox 7
+  left: 4171293
+  top: 1000137
+  width: 2574408
+  height: 369332
+  font_name: Space Grotesk
+  font_size_pt: 18.0
+  bold: true
+  italic: null
+  underline: null
+  color: '#5400AD'
+  alignment: null
+  shape_preset: null
+  bg_color: null
+  corner_radius: null
+- role: left_column
+  shape_name: Tekstvak 33
+  left: 4154301
+  top: 1219826
+  width: 3043868
+  height: 260521
+  font_name: Raleway
+  font_size_pt: 8.2
+  bold: true
+  italic: null
+  underline: null
+  color: '#5400AD'
+  alignment: null
+  shape_preset: null
+  bg_color: null
+  corner_radius: null
+- role: right_column
+  shape_name: TextBox 6
+  left: 760388
+  top: 1330451
+  width: 2580031
+  height: 1448538
+  font_name: Raleway
+  font_size_pt: 12.0
+  bold: true
+  italic: null
+  underline: null
+  color: null
+  alignment: null
+  shape_preset: null
+  bg_color: null
+  corner_radius: null
+- role: caption
+  shape_name: TextBox 7
+  left: 4171293
+  top: 1823370
+  width: 3187909
+  height: 323164
+  font_name: Space Grotesk
+  font_size_pt: 15.0
+  bold: true
+  italic: null
+  underline: null
+  color: '#D3116E'
+  alignment: null
+  shape_preset: null
+  bg_color: null
+  corner_radius: null
+- role: caption
+  shape_name: Tekstvak 45
+  left: 4154301
+  top: 2043058
+  width: 3043868
+  height: 260521
+  font_name: Raleway
+  font_size_pt: 8.2
+  bold: true
+  italic: null
+  underline: null
+  color: '#D3116E'
+  alignment: null
+  shape_preset: null
+  bg_color: null
+  corner_radius: null
+- role: caption
+  shape_name: Tekstvak 13
+  left: 7678739
+  top: 2520044
+  width: 1316679
+  height: 559961
+  font_name: Raleway
+  font_size_pt: 10.1
+  bold: true
+  italic: null
+  underline: null
+  color: '#0D006A'
+  alignment: null
+  shape_preset: null
+  bg_color: null
+  corner_radius: null
+- role: caption
+  shape_name: TextBox 7
+  left: 4171293
+  top: 2646603
+  width: 2574408
+  height: 369332
+  font_name: Space Grotesk
+  font_size_pt: 18.0
+  bold: true
+  italic: null
+  underline: null
+  color: null
+  alignment: null
+  shape_preset: null
+  bg_color: null
+  corner_radius: null
+- role: caption
+  shape_name: Tekstvak 52
+  left: 4154301
+  top: 2866292
+  width: 3043868
+  height: 260521
+  font_name: Raleway
+  font_size_pt: 8.2
+  bold: true
+  italic: null
+  underline: null
+  color: null
+  alignment: null
+  shape_preset: null
+  bg_color: null
+  corner_radius: null
+- role: caption
+  shape_name: TextBox 103
+  left: 2086300
+  top: 3371713
+  width: 1305695
+  height: 548292
+  font_name: Raleway
+  font_size_pt: 10.1
+  bold: true
+  italic: null
+  underline: null
+  color: null
+  alignment: null
+  shape_preset: null
+  bg_color: null
+  corner_radius: null
+- role: caption
+  shape_name: TextBox 7
+  left: 700927
+  top: 3383666
+  width: 1305695
+  height: 409792
+  font_name: Raleway
+  font_size_pt: 10.1
+  bold: true
+  italic: null
+  underline: null
+  color: null
+  alignment: null
+  shape_preset: null
+  bg_color: null
+  corner_radius: null
+- role: caption
+  shape_name: TextBox 7
+  left: 4171293
+  top: 3469836
+  width: 3026875
+  height: 369332
+  font_name: Space Grotesk
+  font_size_pt: 18.0
+  bold: true
+  italic: null
+  underline: null
+  color: '#F79421'
+  alignment: null
+  shape_preset: null
+  bg_color: null
+  corner_radius: null
+- role: caption
+  shape_name: Tekstvak 58
+  left: 4154301
+  top: 3689525
+  width: 3043868
+  height: 260521
+  font_name: Raleway
+  font_size_pt: 8.2
+  bold: true
+  italic: null
+  underline: null
+  color: '#F79421'
+  alignment: null
+  shape_preset: null
+  bg_color: null
+  corner_radius: null
+- role: caption
+  shape_name: Tekstvak 3
+  left: 632361
+  top: 4245016
+  width: 2556375
+  height: 248209
+  font_name: Raleway
+  font_size_pt: 10.1
+  bold: true
+  italic: null
+  underline: null
+  color: '#0D006A'
+  alignment: null
+  shape_preset: null
+  bg_color: null
+  corner_radius: null
+- role: caption
+  shape_name: TextBox 7
+  left: 4164851
+  top: 4292786
+  width: 2574408
+  height: 369332
+  font_name: Space Grotesk
+  font_size_pt: 18.0
+  bold: true
+  italic: null
+  underline: null
+  color: null
+  alignment: null
+  shape_preset: null
+  bg_color: null
+  corner_radius: null
+- role: caption
+  shape_name: Tekstvak 64
+  left: 4147859
+  top: 4504508
+  width: 3043868
+  height: 260521
+  font_name: Raleway
+  font_size_pt: 8.2
+  bold: true
+  italic: null
+  underline: null
+  color: null
+  alignment: null
+  shape_preset: null
+  bg_color: null
+  corner_radius: null
+image_areas:
+- role: icon
+  shape_name: Graphic 12
+  left: 875481
+  top: 2206120
+  width: 218517
+  height: 218517
+  image_key: null
+decorative_shapes:
+- shape_name: 'Rectangle: Rounded Corners 2'
+  shape_type: auto_shape
+  shape_preset: roundRect
+  left: 622482
+  top: 1258363
+  width: 2580031
+  height: 1506062
+  fill_color: '#5400AD'
+  border_color: null
+  border_pt: null
+  corner_radius: 0.108
+  has_arrowhead: false
+- shape_name: 'Rectangle: Rounded Corners 8'
+  shape_type: auto_shape
+  shape_preset: roundRect
+  left: 552023
+  top: 2907271
+  width: 996722
+  height: 1180880
+  fill_color: '#D3116E'
+  border_color: null
+  border_pt: null
+  corner_radius: 0.167
+  has_arrowhead: false
+- shape_name: Oval 83
+  shape_type: auto_shape
+  shape_preset: ellipse
+  left: 756065
+  top: 2930530
+  width: 417839
+  height: 403947
+  fill_color: '#F3E0ED'
+  border_color: null
+  border_pt: null
+  corner_radius: null
+  has_arrowhead: false
+- shape_name: 'Rectangle: Rounded Corners 97'
+  shape_type: auto_shape
+  shape_preset: roundRect
+  left: 1931277
+  top: 2901346
+  width: 996722
+  height: 1168768
+  fill_color: '#D3116E'
+  border_color: null
+  border_pt: null
+  corner_radius: 0.167
+  has_arrowhead: false
+- shape_name: Oval 104
+  shape_type: auto_shape
+  shape_preset: ellipse
+  left: 2141438
+  top: 2918577
+  width: 417839
+  height: 403947
+  fill_color: '#F3E0ED'
+  border_color: null
+  border_pt: null
+  corner_radius: null
+  has_arrowhead: false
+- shape_name: Straight Arrow Connector 55
+  shape_type: line
+  shape_preset: straightConnector1
+  left: 5609167
+  top: 1524457
+  width: 0
+  height: 213435
+  fill_color: null
+  border_color: null
+  border_pt: null
+  corner_radius: null
+  has_arrowhead: true
+- shape_name: Straight Arrow Connector 55
+  shape_type: line
+  shape_preset: straightConnector1
+  left: 5609167
+  top: 2347690
+  width: 0
+  height: 213435
+  fill_color: null
+  border_color: null
+  border_pt: null
+  corner_radius: null
+  has_arrowhead: true
+- shape_name: Straight Arrow Connector 55
+  shape_type: line
+  shape_preset: straightConnector1
+  left: 5609167
+  top: 3170923
+  width: 0
+  height: 213435
+  fill_color: null
+  border_color: null
+  border_pt: null
+  corner_radius: null
+  has_arrowhead: true
+- shape_name: Straight Arrow Connector 55
+  shape_type: line
+  shape_preset: straightConnector1
+  left: 5596148
+  top: 3994156
+  width: 0
+  height: 213435
+  fill_color: null
+  border_color: null
+  border_pt: null
+  corner_radius: null
+  has_arrowhead: true
+- shape_name: Rechte verbindingslijn met pijl 1
+  shape_type: line
+  shape_preset: straightConnector1
+  left: 7515423
+  top: 1001444
+  width: 7097
+  height: 3809172
+  fill_color: null
+  border_color: null
+  border_pt: null
+  corner_radius: null
+  has_arrowhead: true
+table_areas: []
+non_text_shapes: 9

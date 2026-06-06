@@ -1,0 +1,122 @@
+key: titeldia_3
+source_slide_index: 5
+layout_name: Titeldia
+description: Slide with a content photo. Cover/title slide (33.0pt heading) with a
+  large heading and subtitle. Use for opening slides or major section dividers. Has
+  1 accent rectangle/block(s). Has 1 decorative line(s).
+text_areas:
+- role: title
+  shape_name: Tekstvak 5
+  left: 0
+  top: 185764
+  width: 9144000
+  height: 577081
+  font_name: Space Grotesk
+  font_size_pt: 33.0
+  bold: true
+  italic: null
+  underline: null
+  color: '#0D006A'
+  alignment: null
+  shape_preset: null
+  bg_color: null
+  corner_radius: null
+- role: subtitle
+  shape_name: Tekstvak 5
+  left: 0
+  top: 533102
+  width: 9144000
+  height: 577081
+  font_name: Space Grotesk
+  font_size_pt: 33.0
+  bold: true
+  italic: null
+  underline: null
+  color: '#F04E5B'
+  alignment: null
+  shape_preset: null
+  bg_color: null
+  corner_radius: null
+- role: body
+  shape_name: TextBox 86
+  left: 405765
+  top: 1320015
+  width: 7261860
+  height: 1159805
+  font_name: Raleway
+  font_size_pt: 18.0
+  bold: true
+  italic: null
+  underline: null
+  color: '#0D006A'
+  alignment: null
+  shape_preset: null
+  bg_color: null
+  corner_radius: null
+- role: body
+  shape_name: TextBox 11
+  left: 405765
+  top: 2600702
+  width: 5890260
+  height: 874663
+  font_name: Raleway
+  font_size_pt: 18.0
+  bold: true
+  italic: null
+  underline: null
+  color: '#00668A'
+  alignment: null
+  shape_preset: null
+  bg_color: null
+  corner_radius: null
+- role: body
+  shape_name: TextBox 23
+  left: 405765
+  top: 3736299
+  width: 5890260
+  height: 851580
+  font_name: Raleway
+  font_size_pt: 18.0
+  bold: true
+  italic: null
+  underline: null
+  color: '#0D006A'
+  alignment: null
+  shape_preset: null
+  bg_color: null
+  corner_radius: null
+image_areas:
+- role: photo
+  shape_name: Picture 21
+  left: 6624242
+  top: 1888368
+  width: 2300684
+  height: 2541004
+  image_key: img_6184a2c4acb2
+decorative_shapes:
+- shape_name: Rechthoek 7
+  shape_type: auto_shape
+  shape_preset: rect
+  left: 6534238
+  top: 1816323
+  width: 2454586
+  height: 2685612
+  fill_color: null
+  border_color: '#00668A'
+  border_pt: 3.0
+  corner_radius: null
+  has_arrowhead: false
+- shape_name: Rechte verbindingslijn 14
+  shape_type: line
+  shape_preset: line
+  left: 5000626
+  top: 3310508
+  width: 1505037
+  height: 0
+  fill_color: null
+  border_color: '#00668A'
+  border_pt: 3.0
+  corner_radius: null
+  has_arrowhead: false
+table_areas: []
+non_text_shapes: 1

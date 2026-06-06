@@ -1,0 +1,281 @@
+key: titeldia_16
+source_slide_index: 29
+layout_name: Titeldia
+description: 'Dark-background slide with light/white text. Two-column layout with
+  a title, suited for side-by-side comparisons or split content. Includes decorative
+  icons. Has 5 accent rectangle/block(s) (#1F0531, #FBE5D6, #5400AD). Has 1 decorative
+  line(s).'
+text_areas:
+- role: title
+  shape_name: Tekstvak 5
+  left: 639244
+  top: 467727
+  width: 6640835
+  height: 577081
+  font_name: Space Grotesk
+  font_size_pt: 33.0
+  bold: true
+  italic: null
+  underline: null
+  color: '#0D006A'
+  alignment: null
+  shape_preset: null
+  bg_color: null
+  corner_radius: null
+- role: left_column
+  shape_name: Tekstvak 7
+  left: 637698
+  top: 1007125
+  width: 7867059
+  height: 278987
+  font_name: null
+  font_size_pt: 10.1
+  bold: null
+  italic: null
+  underline: null
+  color: '#0D006A'
+  alignment: null
+  shape_preset: null
+  bg_color: null
+  corner_radius: null
+- role: right_column
+  shape_name: Afgeronde rechthoek 55
+  left: 6935789
+  top: 1397360
+  width: 1491505
+  height: 250831
+  font_name: Space Grotesk
+  font_size_pt: 10.5
+  bold: null
+  italic: null
+  underline: null
+  color: null
+  alignment: null
+  shape_preset: roundRect
+  bg_color: '#F79421'
+  corner_radius: 0.167
+- role: caption
+  shape_name: Oval 20
+  left: 5990552
+  top: 2584047
+  width: 791743
+  height: 540000
+  font_name: Space Grotesk
+  font_size_pt: 9.8
+  bold: true
+  italic: null
+  underline: null
+  color: '#F79421'
+  alignment: null
+  shape_preset: ellipse
+  bg_color: null
+  corner_radius: null
+- role: caption
+  shape_name: Oval 20
+  left: 708763
+  top: 2609052
+  width: 791743
+  height: 540000
+  font_name: Space Grotesk
+  font_size_pt: 9.8
+  bold: true
+  italic: null
+  underline: null
+  color: '#F79421'
+  alignment: null
+  shape_preset: ellipse
+  bg_color: null
+  corner_radius: null
+- role: caption
+  shape_name: Oval 20
+  left: 3355383
+  top: 2614539
+  width: 791743
+  height: 540000
+  font_name: Space Grotesk
+  font_size_pt: 9.8
+  bold: true
+  italic: null
+  underline: null
+  color: '#F79421'
+  alignment: null
+  shape_preset: ellipse
+  bg_color: null
+  corner_radius: null
+- role: caption
+  shape_name: TextBox 23
+  left: 6782296
+  top: 2708308
+  width: 1511357
+  height: 346249
+  font_name: Space Grotesk
+  font_size_pt: 8.2
+  bold: null
+  italic: null
+  underline: null
+  color: null
+  alignment: null
+  shape_preset: null
+  bg_color: null
+  corner_radius: null
+- role: caption
+  shape_name: TextBox 23
+  left: 4147127
+  top: 2729005
+  width: 1511357
+  height: 346249
+  font_name: Space Grotesk
+  font_size_pt: 8.2
+  bold: null
+  italic: null
+  underline: null
+  color: null
+  alignment: null
+  shape_preset: null
+  bg_color: null
+  corner_radius: null
+- role: caption
+  shape_name: TextBox 23
+  left: 1500507
+  top: 2741104
+  width: 1511357
+  height: 346249
+  font_name: Space Grotesk
+  font_size_pt: 8.2
+  bold: null
+  italic: null
+  underline: null
+  color: null
+  alignment: null
+  shape_preset: null
+  bg_color: null
+  corner_radius: null
+- role: caption
+  shape_name: TextBox 139
+  left: 1315955
+  top: 3528479
+  width: 6969741
+  height: 611706
+  font_name: Space Grotesk
+  font_size_pt: 10.5
+  bold: true
+  italic: null
+  underline: null
+  color: '#F79421'
+  alignment: null
+  shape_preset: null
+  bg_color: null
+  corner_radius: null
+- role: caption
+  shape_name: TextBox 140
+  left: 723661
+  top: 4388160
+  width: 7102951
+  height: 577080
+  font_name: Space Grotesk
+  font_size_pt: 10.5
+  bold: true
+  italic: null
+  underline: null
+  color: '#F79421'
+  alignment: null
+  shape_preset: null
+  bg_color: null
+  corner_radius: null
+image_areas:
+- role: icon
+  shape_name: Graphic 52
+  left: 840095
+  top: 3653167
+  width: 248840
+  height: 248840
+  image_key: null
+- role: icon
+  shape_name: Graphic 53
+  left: 3433039
+  top: 1894249
+  width: 248840
+  height: 248840
+  image_key: null
+- role: icon
+  shape_name: Graphic 54
+  left: 6068632
+  top: 1865036
+  width: 248840
+  height: 248840
+  image_key: null
+decorative_shapes:
+- shape_name: Straight Connector 4
+  shape_type: line
+  shape_preset: line
+  left: 0
+  top: 0
+  width: 685800
+  height: 0
+  fill_color: null
+  border_color: '#FBFFFF'
+  border_pt: null
+  corner_radius: null
+  has_arrowhead: false
+- shape_name: 'Rectangle: Rounded Corners 15'
+  shape_type: auto_shape
+  shape_preset: roundRect
+  left: 708763
+  top: 2598076
+  width: 2303101
+  height: 543634
+  fill_color: '#FBE5D6'
+  border_color: null
+  border_pt: null
+  corner_radius: 0.167
+  has_arrowhead: false
+- shape_name: 'Rectangle: Rounded Corners 15'
+  shape_type: auto_shape
+  shape_preset: roundRect
+  left: 5990552
+  top: 2573071
+  width: 2303101
+  height: 543634
+  fill_color: '#FBE5D6'
+  border_color: null
+  border_pt: null
+  corner_radius: 0.167
+  has_arrowhead: false
+- shape_name: 'Rectangle: Rounded Corners 15'
+  shape_type: auto_shape
+  shape_preset: roundRect
+  left: 3355383
+  top: 2603563
+  width: 2303101
+  height: 543634
+  fill_color: '#FBE5D6'
+  border_color: null
+  border_pt: null
+  corner_radius: 0.167
+  has_arrowhead: false
+- shape_name: 'Rectangle: Rounded Corners 92'
+  shape_type: auto_shape
+  shape_preset: roundRect
+  left: 624181
+  top: 3441843
+  width: 7816028
+  height: 660277
+  fill_color: '#5400AD'
+  border_color: null
+  border_pt: null
+  corner_radius: 0.167
+  has_arrowhead: false
+- shape_name: 'Rectangle: Rounded Corners 137'
+  shape_type: auto_shape
+  shape_preset: roundRect
+  left: 624181
+  top: 4299748
+  width: 7816028
+  height: 538120
+  fill_color: '#1F0531'
+  border_color: null
+  border_pt: null
+  corner_radius: 0.167
+  has_arrowhead: false
+table_areas: []
+non_text_shapes: 8

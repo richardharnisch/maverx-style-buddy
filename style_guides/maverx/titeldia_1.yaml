@@ -1,0 +1,63 @@
+key: titeldia_1
+source_slide_index: 1
+layout_name: Titeldia
+description: Slide with a large background photo. Standard content slide with a title
+  and body text area. Use for most informational slides. Includes decorative icons.
+text_areas:
+- role: title
+  shape_name: Tekstvak 5
+  left: 4686300
+  top: 174468
+  width: 1814009
+  height: 577081
+  font_name: Space Grotesk
+  font_size_pt: 33.0
+  bold: true
+  italic: null
+  underline: null
+  color: '#002060'
+  alignment: null
+  shape_preset: null
+  bg_color: null
+  corner_radius: null
+- role: body
+  shape_name: Tekstvak 7
+  left: 4761527
+  top: 377879
+  width: 3890310
+  height: 4167488
+  font_name: DM Sans
+  font_size_pt: 21.0
+  bold: null
+  italic: null
+  underline: null
+  color: null
+  alignment: null
+  shape_preset: null
+  bg_color: null
+  corner_radius: null
+image_areas:
+- role: background
+  shape_name: Google Shape;1222;p55
+  left: 0
+  top: 0
+  width: 3890310
+  height: 5143500
+  image_key: img_b069d5ce3119
+- role: photo
+  shape_name: Google Shape;1007;p37
+  left: 4408360
+  top: 949252
+  width: 4316498
+  height: 798700
+  image_key: img_9569ebccfa87
+- role: icon
+  shape_name: Picture 6
+  left: 71272
+  top: 42507
+  width: 841782
+  height: 841003
+  image_key: img_123683611dc1
+decorative_shapes: []
+table_areas: []
+non_text_shapes: 0

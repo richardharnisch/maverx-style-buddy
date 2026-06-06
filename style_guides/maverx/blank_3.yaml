@@ -1,0 +1,65 @@
+key: blank_3
+source_slide_index: 13
+layout_name: Blank
+description: Slide with a large background photo. Cover/title slide (33.0pt heading)
+  with a large heading and subtitle. Use for opening slides or major section dividers.
+text_areas:
+- role: title
+  shape_name: TextBox 3
+  left: 649613
+  top: 188610
+  width: 7146528
+  height: 600164
+  font_name: Space Grotesk
+  font_size_pt: 33.0
+  bold: true
+  italic: null
+  underline: null
+  color: '#0D006A'
+  alignment: null
+  shape_preset: null
+  bg_color: null
+  corner_radius: null
+- role: subtitle
+  shape_name: TextBox 4
+  left: 646968
+  top: 1089907
+  width: 7850064
+  height: 830997
+  font_name: Raleway
+  font_size_pt: 24.0
+  bold: true
+  italic: null
+  underline: null
+  color: '#0D006A'
+  alignment: null
+  shape_preset: null
+  bg_color: null
+  corner_radius: null
+- role: body
+  shape_name: Tekstvak 5
+  left: 807485
+  top: 2159031
+  width: 7558915
+  height: 2654573
+  font_name: Raleway
+  font_size_pt: 24.0
+  bold: true
+  italic: null
+  underline: null
+  color: '#0D006A'
+  alignment: null
+  shape_preset: null
+  bg_color: null
+  corner_radius: null
+image_areas:
+- role: background
+  shape_name: Graphic 6
+  left: 4132800
+  top: 384307
+  width: 4233600
+  height: 4233600
+  image_key: null
+decorative_shapes: []
+table_areas: []
+non_text_shapes: 0

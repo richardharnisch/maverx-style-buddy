@@ -1,0 +1,723 @@
+key: default
+source_slide_index: 4
+layout_name: DEFAULT
+description: 'Dark-background slide with light/white text. Two-column layout with
+  a title, suited for side-by-side comparisons or split content. Has 10 accent rectangle/block(s)
+  (#3F0576, #BCB3FF, #0D006A).'
+text_areas:
+- role: title
+  shape_name: Text 0
+  left: 712872
+  top: 297919
+  width: 6949440
+  height: 347472
+  font_name: Space Grotesk
+  font_size_pt: 32.0
+  bold: true
+  italic: null
+  underline: null
+  color: '#0D006A'
+  alignment: null
+  shape_preset: rect
+  bg_color: null
+  corner_radius: null
+- role: caption
+  shape_name: TextBox 93
+  left: 1974910
+  top: 1208168
+  width: 764893
+  height: 215443
+  font_name: Space Grotesk
+  font_size_pt: 8.0
+  bold: true
+  italic: null
+  underline: null
+  color: '#FFFFFF'
+  alignment: null
+  shape_preset: null
+  bg_color: null
+  corner_radius: null
+- role: left_column
+  shape_name: Text 2
+  left: 290444
+  top: 1235945
+  width: 1348353
+  height: 168544
+  font_name: Space Grotesk
+  font_size_pt: 8.0
+  bold: true
+  italic: null
+  underline: null
+  color: '#FFFFFF'
+  alignment: null
+  shape_preset: rect
+  bg_color: null
+  corner_radius: null
+- role: right_column
+  shape_name: Text 14
+  left: 4611301
+  top: 1235945
+  width: 1348353
+  height: 168544
+  font_name: Space Grotesk
+  font_size_pt: 8.0
+  bold: true
+  italic: null
+  underline: null
+  color: '#FFFFFF'
+  alignment: null
+  shape_preset: rect
+  bg_color: null
+  corner_radius: null
+- role: caption
+  shape_name: Text 18
+  left: 6051587
+  top: 1235945
+  width: 1348353
+  height: 168544
+  font_name: Space Grotesk
+  font_size_pt: 8.0
+  bold: true
+  italic: null
+  underline: null
+  color: '#FFFFFF'
+  alignment: null
+  shape_preset: rect
+  bg_color: null
+  corner_radius: null
+- role: caption
+  shape_name: Text 18
+  left: 7572619
+  top: 1235945
+  width: 1348353
+  height: 168544
+  font_name: Space Grotesk
+  font_size_pt: 8.0
+  bold: true
+  italic: null
+  underline: null
+  color: '#FFFFFF'
+  alignment: null
+  shape_preset: rect
+  bg_color: null
+  corner_radius: null
+- role: caption
+  shape_name: Text 6
+  left: 3176608
+  top: 1238813
+  width: 1348353
+  height: 168544
+  font_name: Space Grotesk
+  font_size_pt: 8.0
+  bold: true
+  italic: null
+  underline: null
+  color: '#FFFFFF'
+  alignment: null
+  shape_preset: rect
+  bg_color: null
+  corner_radius: null
+- role: caption
+  shape_name: Text 3
+  left: 290444
+  top: 1710933
+  width: 1348353
+  height: 137899
+  font_name: Space Grotesk
+  font_size_pt: 8.0
+  bold: true
+  italic: null
+  underline: null
+  color: '#0D006A'
+  alignment: null
+  shape_preset: rect
+  bg_color: null
+  corner_radius: null
+- role: caption
+  shape_name: Text 15
+  left: 4611301
+  top: 1710933
+  width: 1348353
+  height: 137899
+  font_name: Space Grotesk
+  font_size_pt: 8.0
+  bold: true
+  italic: null
+  underline: null
+  color: '#0D006A'
+  alignment: null
+  shape_preset: rect
+  bg_color: null
+  corner_radius: null
+- role: caption
+  shape_name: Text 19
+  left: 6051587
+  top: 1710933
+  width: 1348353
+  height: 137899
+  font_name: Space Grotesk
+  font_size_pt: 8.0
+  bold: true
+  italic: null
+  underline: null
+  color: '#0D006A'
+  alignment: null
+  shape_preset: rect
+  bg_color: null
+  corner_radius: null
+- role: caption
+  shape_name: Text 19
+  left: 7572619
+  top: 1710933
+  width: 1348353
+  height: 137899
+  font_name: Space Grotesk
+  font_size_pt: 8.0
+  bold: true
+  italic: null
+  underline: null
+  color: '#0D006A'
+  alignment: null
+  shape_preset: rect
+  bg_color: null
+  corner_radius: null
+- role: caption
+  shape_name: Text 7
+  left: 3176608
+  top: 1713801
+  width: 1348353
+  height: 137899
+  font_name: Space Grotesk
+  font_size_pt: 8.0
+  bold: true
+  italic: null
+  underline: null
+  color: '#0D006A'
+  alignment: null
+  shape_preset: rect
+  bg_color: null
+  corner_radius: null
+- role: caption
+  shape_name: Text 4
+  left: 290444
+  top: 1833510
+  width: 1348353
+  height: 122577
+  font_name: Space Grotesk
+  font_size_pt: 6.0
+  bold: null
+  italic: null
+  underline: null
+  color: '#536379'
+  alignment: null
+  shape_preset: rect
+  bg_color: null
+  corner_radius: null
+- role: caption
+  shape_name: Text 16
+  left: 4611301
+  top: 1833510
+  width: 1348353
+  height: 122577
+  font_name: Space Grotesk
+  font_size_pt: 6.0
+  bold: null
+  italic: null
+  underline: null
+  color: '#536379'
+  alignment: null
+  shape_preset: rect
+  bg_color: null
+  corner_radius: null
+- role: caption
+  shape_name: Text 20
+  left: 6051587
+  top: 1833510
+  width: 1348353
+  height: 122577
+  font_name: Space Grotesk
+  font_size_pt: 6.0
+  bold: null
+  italic: null
+  underline: null
+  color: '#536379'
+  alignment: null
+  shape_preset: rect
+  bg_color: null
+  corner_radius: null
+- role: caption
+  shape_name: Text 20
+  left: 7572619
+  top: 1833510
+  width: 1348353
+  height: 122577
+  font_name: Space Grotesk
+  font_size_pt: 6.0
+  bold: null
+  italic: null
+  underline: null
+  color: '#536379'
+  alignment: null
+  shape_preset: rect
+  bg_color: null
+  corner_radius: null
+- role: caption
+  shape_name: Text 8
+  left: 3176608
+  top: 1836378
+  width: 1348353
+  height: 122577
+  font_name: Space Grotesk
+  font_size_pt: 6.0
+  bold: null
+  italic: null
+  underline: null
+  color: '#536379'
+  alignment: null
+  shape_preset: rect
+  bg_color: null
+  corner_radius: null
+- role: caption
+  shape_name: Text 38
+  left: 1713948
+  top: 2335221
+  width: 1348353
+  height: 168544
+  font_name: Space Grotesk
+  font_size_pt: 8.0
+  bold: true
+  italic: null
+  underline: null
+  color: '#FFFFFF'
+  alignment: null
+  shape_preset: rect
+  bg_color: null
+  corner_radius: null
+- role: caption
+  shape_name: Text 34
+  left: 6051587
+  top: 2335221
+  width: 1348353
+  height: 168544
+  font_name: Space Grotesk
+  font_size_pt: 8.0
+  bold: true
+  italic: null
+  underline: null
+  color: '#FFFFFF'
+  alignment: null
+  shape_preset: rect
+  bg_color: null
+  corner_radius: null
+- role: caption
+  shape_name: Text 34
+  left: 7572619
+  top: 2335221
+  width: 1348353
+  height: 168544
+  font_name: Space Grotesk
+  font_size_pt: 8.0
+  bold: true
+  italic: null
+  underline: null
+  color: '#FFFFFF'
+  alignment: null
+  shape_preset: rect
+  bg_color: null
+  corner_radius: null
+- role: caption
+  shape_name: Text 22
+  left: 3148640
+  top: 2339143
+  width: 1348353
+  height: 168544
+  font_name: Space Grotesk
+  font_size_pt: 8.0
+  bold: true
+  italic: null
+  underline: null
+  color: '#FFFFFF'
+  alignment: null
+  shape_preset: rect
+  bg_color: null
+  corner_radius: null
+- role: caption
+  shape_name: Text 30
+  left: 4600114
+  top: 2339143
+  width: 1348353
+  height: 168544
+  font_name: Space Grotesk
+  font_size_pt: 8.0
+  bold: true
+  italic: null
+  underline: null
+  color: '#FFFFFF'
+  alignment: null
+  shape_preset: rect
+  bg_color: null
+  corner_radius: null
+- role: caption
+  shape_name: Text 39
+  left: 1713948
+  top: 2810209
+  width: 1348353
+  height: 137899
+  font_name: Space Grotesk
+  font_size_pt: 8.0
+  bold: true
+  italic: null
+  underline: null
+  color: '#0D006A'
+  alignment: null
+  shape_preset: rect
+  bg_color: null
+  corner_radius: null
+- role: caption
+  shape_name: Text 35
+  left: 6051587
+  top: 2810209
+  width: 1348353
+  height: 137899
+  font_name: Space Grotesk
+  font_size_pt: 8.0
+  bold: true
+  italic: null
+  underline: null
+  color: '#0D006A'
+  alignment: null
+  shape_preset: rect
+  bg_color: null
+  corner_radius: null
+- role: caption
+  shape_name: Text 35
+  left: 7572619
+  top: 2810209
+  width: 1348353
+  height: 137899
+  font_name: Space Grotesk
+  font_size_pt: 8.0
+  bold: true
+  italic: null
+  underline: null
+  color: '#0D006A'
+  alignment: null
+  shape_preset: rect
+  bg_color: null
+  corner_radius: null
+- role: caption
+  shape_name: Text 23
+  left: 3148640
+  top: 2814131
+  width: 1348353
+  height: 137899
+  font_name: Space Grotesk
+  font_size_pt: 8.0
+  bold: true
+  italic: null
+  underline: null
+  color: '#0D006A'
+  alignment: null
+  shape_preset: rect
+  bg_color: null
+  corner_radius: null
+- role: caption
+  shape_name: Text 31
+  left: 4600114
+  top: 2814131
+  width: 1348353
+  height: 137899
+  font_name: Space Grotesk
+  font_size_pt: 8.0
+  bold: true
+  italic: null
+  underline: null
+  color: '#0D006A'
+  alignment: null
+  shape_preset: rect
+  bg_color: null
+  corner_radius: null
+- role: caption
+  shape_name: Text 40
+  left: 1713948
+  top: 2932786
+  width: 1348353
+  height: 122577
+  font_name: Space Grotesk
+  font_size_pt: 6.0
+  bold: null
+  italic: null
+  underline: null
+  color: '#536379'
+  alignment: null
+  shape_preset: rect
+  bg_color: null
+  corner_radius: null
+- role: caption
+  shape_name: Text 36
+  left: 6051587
+  top: 2932786
+  width: 1348353
+  height: 122577
+  font_name: Space Grotesk
+  font_size_pt: 6.0
+  bold: null
+  italic: null
+  underline: null
+  color: '#536379'
+  alignment: null
+  shape_preset: rect
+  bg_color: null
+  corner_radius: null
+- role: caption
+  shape_name: Text 36
+  left: 7572619
+  top: 2932786
+  width: 1348353
+  height: 122577
+  font_name: Space Grotesk
+  font_size_pt: 6.0
+  bold: null
+  italic: null
+  underline: null
+  color: '#536379'
+  alignment: null
+  shape_preset: rect
+  bg_color: null
+  corner_radius: null
+- role: caption
+  shape_name: Text 24
+  left: 3148640
+  top: 2936708
+  width: 1348353
+  height: 122577
+  font_name: Space Grotesk
+  font_size_pt: 6.0
+  bold: null
+  italic: null
+  underline: null
+  color: '#536379'
+  alignment: null
+  shape_preset: rect
+  bg_color: null
+  corner_radius: null
+- role: caption
+  shape_name: Text 32
+  left: 4600114
+  top: 2936708
+  width: 1348353
+  height: 122577
+  font_name: Space Grotesk
+  font_size_pt: 6.0
+  bold: null
+  italic: null
+  underline: null
+  color: '#536379'
+  alignment: null
+  shape_preset: rect
+  bg_color: null
+  corner_radius: null
+- role: caption
+  shape_name: TextBox 77
+  left: 5002016
+  top: 3496738
+  width: 654643
+  height: 215444
+  font_name: Space Grotesk
+  font_size_pt: 8.0
+  bold: true
+  italic: null
+  underline: null
+  color: '#0D006A'
+  alignment: null
+  shape_preset: null
+  bg_color: null
+  corner_radius: null
+- role: caption
+  shape_name: Text 46
+  left: 1673511
+  top: 3497389
+  width: 1348353
+  height: 168544
+  font_name: Space Grotesk
+  font_size_pt: 8.0
+  bold: true
+  italic: null
+  underline: null
+  color: null
+  alignment: null
+  shape_preset: rect
+  bg_color: null
+  corner_radius: null
+- role: caption
+  shape_name: Text 46
+  left: 3148640
+  top: 3502556
+  width: 1348353
+  height: 168544
+  font_name: Space Grotesk
+  font_size_pt: 8.0
+  bold: true
+  italic: null
+  underline: null
+  color: '#0D006A'
+  alignment: null
+  shape_preset: rect
+  bg_color: null
+  corner_radius: null
+- role: caption
+  shape_name: TextBox 80
+  left: 6419319
+  top: 3505008
+  width: 668826
+  height: 215443
+  font_name: Space Grotesk
+  font_size_pt: 8.0
+  bold: true
+  italic: null
+  underline: null
+  color: '#0D006A'
+  alignment: null
+  shape_preset: null
+  bg_color: null
+  corner_radius: null
+- role: caption
+  shape_name: TextBox 97
+  left: 7940351
+  top: 3505008
+  width: 668826
+  height: 215443
+  font_name: Space Grotesk
+  font_size_pt: 8.0
+  bold: true
+  italic: null
+  underline: null
+  color: '#0D006A'
+  alignment: null
+  shape_preset: null
+  bg_color: null
+  corner_radius: null
+image_areas: []
+decorative_shapes:
+- shape_name: Shape 1
+  shape_type: auto_shape
+  shape_preset: roundRect
+  left: 290444
+  top: 1205301
+  width: 1348353
+  height: 474987
+  fill_color: '#0D006A'
+  border_color: '#0D006A'
+  border_pt: 1.0
+  corner_radius: 0.097
+  has_arrowhead: false
+- shape_name: Shape 5
+  shape_type: auto_shape
+  shape_preset: roundRect
+  left: 3176608
+  top: 1208169
+  width: 1348353
+  height: 474987
+  fill_color: '#3F0576'
+  border_color: '#3F0576'
+  border_pt: 1.0
+  corner_radius: 0.097
+  has_arrowhead: false
+- shape_name: Shape 13
+  shape_type: auto_shape
+  shape_preset: roundRect
+  left: 4611301
+  top: 1205301
+  width: 1348353
+  height: 474987
+  fill_color: '#EF4453'
+  border_color: '#EF4453'
+  border_pt: 1.0
+  corner_radius: 0.097
+  has_arrowhead: false
+- shape_name: Shape 17
+  shape_type: auto_shape
+  shape_preset: roundRect
+  left: 6051587
+  top: 1205301
+  width: 1348353
+  height: 474987
+  fill_color: '#F48A28'
+  border_color: '#F48A28'
+  border_pt: 1.0
+  corner_radius: 0.097
+  has_arrowhead: false
+- shape_name: Shape 21
+  shape_type: auto_shape
+  shape_preset: roundRect
+  left: 3148640
+  top: 2308499
+  width: 1348353
+  height: 474987
+  fill_color: '#BCB3FF'
+  border_color: '#BCB3FF'
+  border_pt: 1.0
+  corner_radius: 0.097
+  has_arrowhead: false
+- shape_name: Shape 29
+  shape_type: auto_shape
+  shape_preset: roundRect
+  left: 4600114
+  top: 2308499
+  width: 1348353
+  height: 474987
+  fill_color: '#F7B8C0'
+  border_color: '#F7B8C0'
+  border_pt: 1.0
+  corner_radius: 0.097
+  has_arrowhead: false
+- shape_name: Shape 33
+  shape_type: auto_shape
+  shape_preset: roundRect
+  left: 6051587
+  top: 2304577
+  width: 1348353
+  height: 474987
+  fill_color: '#FAD0A8'
+  border_color: '#FAD0A8'
+  border_pt: 1.0
+  corner_radius: 0.097
+  has_arrowhead: false
+- shape_name: Shape 37
+  shape_type: auto_shape
+  shape_preset: roundRect
+  left: 1713948
+  top: 2304577
+  width: 1348353
+  height: 474987
+  fill_color: '#262626'
+  border_color: '#536379'
+  border_pt: 1.0
+  corner_radius: 0.097
+  has_arrowhead: false
+- shape_name: Shape 17
+  shape_type: auto_shape
+  shape_preset: roundRect
+  left: 7572619
+  top: 1205301
+  width: 1348353
+  height: 474987
+  fill_color: '#00B0F0'
+  border_color: '#00B0F0'
+  border_pt: 1.0
+  corner_radius: 0.097
+  has_arrowhead: false
+- shape_name: Shape 33
+  shape_type: auto_shape
+  shape_preset: roundRect
+  left: 7572619
+  top: 2304577
+  width: 1348353
+  height: 474987
+  fill_color: '#9FE6FF'
+  border_color: '#9FE6FF'
+  border_pt: 1.0
+  corner_radius: 0.097
+  has_arrowhead: false
+table_areas: []
+non_text_shapes: 16

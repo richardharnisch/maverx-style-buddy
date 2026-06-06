@@ -1,0 +1,211 @@
+key: titeldia_9
+source_slide_index: 17
+layout_name: Titeldia
+description: 'Dark-background slide with light/white text. Content slide with title
+  and 9 body text areas. Suited for multi-point or structured information. Contains
+  a 11×4 table (headers: TIME, MODULE, ACTIVITIES – NOTES & INSTRUCTI).'
+text_areas:
+- role: title
+  shape_name: TextBox 6
+  left: 649613
+  top: 188610
+  width: 7146528
+  height: 600164
+  font_name: Space Grotesk
+  font_size_pt: 33.0
+  bold: true
+  italic: null
+  underline: null
+  color: '#0D006A'
+  alignment: null
+  shape_preset: null
+  bg_color: null
+  corner_radius: null
+- role: body
+  shape_name: 'Rectangle: Rounded Corners 8'
+  left: 3805244
+  top: 1297840
+  width: 602673
+  height: 259415
+  font_name: Space Grotesk
+  font_size_pt: 6.8
+  bold: true
+  italic: null
+  underline: null
+  color: '#5400AD'
+  alignment: null
+  shape_preset: roundRect
+  bg_color: '#F1EDF9'
+  corner_radius: 0.427
+- role: body
+  shape_name: 'Rectangle: Rounded Corners 11'
+  left: 3805244
+  top: 1741885
+  width: 602673
+  height: 259415
+  font_name: Space Grotesk
+  font_size_pt: 6.8
+  bold: true
+  italic: null
+  underline: null
+  color: '#5400AD'
+  alignment: null
+  shape_preset: roundRect
+  bg_color: '#F1EDF9'
+  corner_radius: 0.427
+- role: body
+  shape_name: 'Rectangle: Rounded Corners 21'
+  left: 3805244
+  top: 2180417
+  width: 602673
+  height: 259415
+  font_name: Space Grotesk
+  font_size_pt: 6.8
+  bold: true
+  italic: null
+  underline: null
+  color: '#D31972'
+  alignment: null
+  shape_preset: roundRect
+  bg_color: '#F6E5F0'
+  corner_radius: 0.427
+- role: body
+  shape_name: 'Rectangle: Rounded Corners 22'
+  left: 3805244
+  top: 2594305
+  width: 602673
+  height: 259415
+  font_name: Space Grotesk
+  font_size_pt: 6.8
+  bold: true
+  italic: null
+  underline: null
+  color: '#D31972'
+  alignment: null
+  shape_preset: roundRect
+  bg_color: '#F6E5F0'
+  corner_radius: 0.427
+- role: body
+  shape_name: 'Rectangle: Rounded Corners 24'
+  left: 3805244
+  top: 2952939
+  width: 602673
+  height: 259415
+  font_name: Space Grotesk
+  font_size_pt: 6.8
+  bold: true
+  italic: null
+  underline: null
+  color: '#FFC000'
+  alignment: null
+  shape_preset: roundRect
+  bg_color: '#FBF2E2'
+  corner_radius: 0.427
+- role: body
+  shape_name: 'Rectangle: Rounded Corners 25'
+  left: 3805244
+  top: 3250488
+  width: 602673
+  height: 259415
+  font_name: Space Grotesk
+  font_size_pt: 6.8
+  bold: true
+  italic: null
+  underline: null
+  color: '#FFC000'
+  alignment: null
+  shape_preset: roundRect
+  bg_color: '#FBF2E2'
+  corner_radius: 0.427
+- role: body
+  shape_name: 'Rectangle: Rounded Corners 26'
+  left: 3805244
+  top: 3545467
+  width: 602673
+  height: 259415
+  font_name: Space Grotesk
+  font_size_pt: 6.8
+  bold: true
+  italic: null
+  underline: null
+  color: '#FFC000'
+  alignment: null
+  shape_preset: roundRect
+  bg_color: '#FBF2E2'
+  corner_radius: 0.427
+- role: body
+  shape_name: 'Rectangle: Rounded Corners 26'
+  left: 3805244
+  top: 3839302
+  width: 602673
+  height: 259415
+  font_name: Space Grotesk
+  font_size_pt: 6.8
+  bold: true
+  italic: null
+  underline: null
+  color: '#FFC000'
+  alignment: null
+  shape_preset: roundRect
+  bg_color: '#FBF2E2'
+  corner_radius: 0.427
+- role: body
+  shape_name: 'Rectangle: Rounded Corners 26'
+  left: 3805244
+  top: 4133137
+  width: 602673
+  height: 259415
+  font_name: Space Grotesk
+  font_size_pt: 6.8
+  bold: true
+  italic: null
+  underline: null
+  color: '#FFC000'
+  alignment: null
+  shape_preset: roundRect
+  bg_color: '#FBF2E2'
+  corner_radius: 0.427
+- role: caption
+  shape_name: 'Rectangle: Rounded Corners 24'
+  left: 3805244
+  top: 4426972
+  width: 602673
+  height: 259415
+  font_name: Space Grotesk
+  font_size_pt: 6.8
+  bold: true
+  italic: null
+  underline: null
+  color: '#FFC000'
+  alignment: null
+  shape_preset: roundRect
+  bg_color: '#FBF2E2'
+  corner_radius: 0.427
+image_areas: []
+decorative_shapes:
+- shape_name: 'Freeform: Shape 5'
+  shape_type: freeform
+  shape_preset: null
+  left: 628648
+  top: 829620
+  width: 7938620
+  height: 458571
+  fill_color: '#1F0531'
+  border_color: null
+  border_pt: null
+  corner_radius: null
+  has_arrowhead: false
+table_areas:
+- shape_name: Table 7
+  left: 755187
+  top: 934598
+  width: 7760164
+  height: 3807034
+  rows: 11
+  columns: 4
+  header_row:
+  - TIME
+  - MODULE
+  - ACTIVITIES – NOTES & INSTRUCTI
+  - ''
+non_text_shapes: 4

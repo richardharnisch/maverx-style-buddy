@@ -1,0 +1,374 @@
+key: titeldia_19
+source_slide_index: 35
+layout_name: Titeldia
+description: 'Dark-background slide with light/white text. Two-column layout with
+  a title, suited for side-by-side comparisons or split content. Includes decorative
+  icons. Has 10 accent rectangle/block(s) (#F79421, #5400AD, #D3116E).'
+text_areas:
+- role: title
+  shape_name: Tekstvak 5
+  left: 614934
+  top: 464058
+  width: 7919466
+  height: 530915
+  font_name: Space Grotesk
+  font_size_pt: 30.0
+  bold: true
+  italic: null
+  underline: null
+  color: '#0D006A'
+  alignment: null
+  shape_preset: null
+  bg_color: null
+  corner_radius: null
+- role: left_column
+  shape_name: Tekstvak 29
+  left: 614934
+  top: 1256997
+  width: 8038113
+  height: 248209
+  font_name: Raleway
+  font_size_pt: 10.1
+  bold: true
+  italic: null
+  underline: null
+  color: '#0D006A'
+  alignment: null
+  shape_preset: null
+  bg_color: null
+  corner_radius: null
+- role: right_column
+  shape_name: TextBox 110
+  left: 3900313
+  top: 1731366
+  width: 1932245
+  height: 323165
+  font_name: Space Grotesk
+  font_size_pt: 15.0
+  bold: true
+  italic: null
+  underline: null
+  color: '#F79421'
+  alignment: null
+  shape_preset: null
+  bg_color: null
+  corner_radius: null
+- role: caption
+  shape_name: TextBox 7
+  left: 1189038
+  top: 1759341
+  width: 1919930
+  height: 323165
+  font_name: Space Grotesk
+  font_size_pt: 15.0
+  bold: true
+  italic: null
+  underline: null
+  color: '#5400AD'
+  alignment: null
+  shape_preset: null
+  bg_color: null
+  corner_radius: null
+- role: caption
+  shape_name: TextBox 111
+  left: 6645336
+  top: 1783643
+  width: 1926834
+  height: 323165
+  font_name: Space Grotesk
+  font_size_pt: 15.0
+  bold: true
+  italic: null
+  underline: null
+  color: '#D3116E'
+  alignment: null
+  shape_preset: null
+  bg_color: null
+  corner_radius: null
+- role: caption
+  shape_name: Tekstvak 16
+  left: 3462033
+  top: 2134451
+  width: 2448239
+  height: 890885
+  font_name: Raleway
+  font_size_pt: 12.0
+  bold: true
+  italic: null
+  underline: null
+  color: '#F79421'
+  alignment: null
+  shape_preset: null
+  bg_color: null
+  corner_radius: null
+- role: caption
+  shape_name: Tekstvak 9
+  left: 6195513
+  top: 2135028
+  width: 2376657
+  height: 613886
+  font_name: Raleway
+  font_size_pt: 12.0
+  bold: true
+  italic: null
+  underline: null
+  color: '#D3116E'
+  alignment: null
+  shape_preset: null
+  bg_color: null
+  corner_radius: null
+- role: caption
+  shape_name: Tekstvak 24
+  left: 716547
+  top: 2135617
+  width: 2461282
+  height: 613886
+  font_name: Raleway
+  font_size_pt: 12.0
+  bold: true
+  italic: null
+  underline: null
+  color: '#5400AD'
+  alignment: null
+  shape_preset: null
+  bg_color: null
+  corner_radius: null
+- role: caption
+  shape_name: Tekstvak 51
+  left: 614934
+  top: 3002286
+  width: 8038113
+  height: 225126
+  font_name: Raleway
+  font_size_pt: 10.1
+  bold: true
+  italic: null
+  underline: null
+  color: '#0D006A'
+  alignment: null
+  shape_preset: null
+  bg_color: null
+  corner_radius: null
+- role: caption
+  shape_name: TextBox 110
+  left: 3900313
+  top: 3476655
+  width: 1932245
+  height: 323165
+  font_name: Space Grotesk
+  font_size_pt: 15.0
+  bold: true
+  italic: null
+  underline: null
+  color: '#F79421'
+  alignment: null
+  shape_preset: null
+  bg_color: null
+  corner_radius: null
+- role: caption
+  shape_name: TextBox 7
+  left: 1189038
+  top: 3504630
+  width: 1919930
+  height: 323165
+  font_name: Space Grotesk
+  font_size_pt: 15.0
+  bold: true
+  italic: null
+  underline: null
+  color: '#5400AD'
+  alignment: null
+  shape_preset: null
+  bg_color: null
+  corner_radius: null
+- role: caption
+  shape_name: Tekstvak 42
+  left: 3462033
+  top: 3879739
+  width: 2448239
+  height: 613886
+  font_name: Raleway
+  font_size_pt: 12.0
+  bold: true
+  italic: null
+  underline: null
+  color: '#F79421'
+  alignment: null
+  shape_preset: null
+  bg_color: null
+  corner_radius: null
+- role: caption
+  shape_name: Tekstvak 49
+  left: 716547
+  top: 3880905
+  width: 2461282
+  height: 613886
+  font_name: Raleway
+  font_size_pt: 12.0
+  bold: true
+  italic: null
+  underline: null
+  color: '#5400AD'
+  alignment: null
+  shape_preset: null
+  bg_color: null
+  corner_radius: null
+image_areas:
+- role: icon
+  shape_name: Graphic 4
+  left: 6302436
+  top: 1809566
+  width: 218700
+  height: 218700
+  image_key: null
+- role: icon
+  shape_name: Graphic 17
+  left: 3588043
+  top: 1810117
+  width: 218700
+  height: 218700
+  image_key: null
+- role: icon
+  shape_name: Graphic 28
+  left: 914865
+  top: 1820989
+  width: 218700
+  height: 218700
+  image_key: null
+- role: icon
+  shape_name: Graphic 43
+  left: 3588043
+  top: 3555405
+  width: 218700
+  height: 218700
+  image_key: null
+- role: icon
+  shape_name: Graphic 50
+  left: 914865
+  top: 3566277
+  width: 218700
+  height: 218700
+  image_key: null
+decorative_shapes:
+- shape_name: 'Rectangle: Rounded Corners 76'
+  shape_type: auto_shape
+  shape_preset: roundRect
+  left: 6062952
+  top: 1632092
+  width: 885280
+  height: 1087569
+  fill_color: '#D3116E'
+  border_color: null
+  border_pt: null
+  corner_radius: 0.167
+  has_arrowhead: false
+- shape_name: 'Rectangle: Rounded Corners 77'
+  shape_type: auto_shape
+  shape_preset: roundRect
+  left: 6080316
+  top: 1631206
+  width: 2572730
+  height: 1098842
+  fill_color: '#D6C9D7'
+  border_color: null
+  border_pt: null
+  corner_radius: 0.087
+  has_arrowhead: false
+- shape_name: 'Rectangle: Rounded Corners 71'
+  shape_type: auto_shape
+  shape_preset: roundRect
+  left: 3320177
+  top: 1627318
+  width: 885280
+  height: 1087569
+  fill_color: '#F79421'
+  border_color: null
+  border_pt: null
+  corner_radius: 0.167
+  has_arrowhead: false
+- shape_name: 'Rectangle: Rounded Corners 72'
+  shape_type: auto_shape
+  shape_preset: roundRect
+  left: 3337541
+  top: 1626432
+  width: 2572730
+  height: 1098842
+  fill_color: '#FBE5D6'
+  border_color: null
+  border_pt: null
+  corner_radius: 0.084
+  has_arrowhead: false
+- shape_name: 'Rectangle: Rounded Corners 8'
+  shape_type: auto_shape
+  shape_preset: roundRect
+  left: 614934
+  top: 1636999
+  width: 891256
+  height: 1082842
+  fill_color: '#5400AD'
+  border_color: null
+  border_pt: null
+  corner_radius: 0.167
+  has_arrowhead: false
+- shape_name: 'Rectangle: Rounded Corners 11'
+  shape_type: auto_shape
+  shape_preset: roundRect
+  left: 632415
+  top: 1631208
+  width: 2590095
+  height: 1094066
+  fill_color: '#C6C6DE'
+  border_color: null
+  border_pt: null
+  corner_radius: 0.095
+  has_arrowhead: false
+- shape_name: 'Rectangle: Rounded Corners 71'
+  shape_type: auto_shape
+  shape_preset: roundRect
+  left: 3320177
+  top: 3372606
+  width: 885280
+  height: 1087569
+  fill_color: '#F79421'
+  border_color: null
+  border_pt: null
+  corner_radius: 0.167
+  has_arrowhead: false
+- shape_name: 'Rectangle: Rounded Corners 72'
+  shape_type: auto_shape
+  shape_preset: roundRect
+  left: 3337541
+  top: 3371720
+  width: 2572730
+  height: 1098842
+  fill_color: '#FBE5D6'
+  border_color: null
+  border_pt: null
+  corner_radius: 0.084
+  has_arrowhead: false
+- shape_name: 'Rectangle: Rounded Corners 8'
+  shape_type: auto_shape
+  shape_preset: roundRect
+  left: 614934
+  top: 3382287
+  width: 891256
+  height: 1082842
+  fill_color: '#5400AD'
+  border_color: null
+  border_pt: null
+  corner_radius: 0.167
+  has_arrowhead: false
+- shape_name: 'Rectangle: Rounded Corners 11'
+  shape_type: auto_shape
+  shape_preset: roundRect
+  left: 632415
+  top: 3376496
+  width: 2590095
+  height: 1094066
+  fill_color: '#C6C6DE'
+  border_color: null
+  border_pt: null
+  corner_radius: 0.095
+  has_arrowhead: false
+table_areas: []
+non_text_shapes: 10

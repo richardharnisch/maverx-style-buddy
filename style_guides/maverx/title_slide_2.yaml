@@ -1,0 +1,65 @@
+key: title_slide_2
+source_slide_index: 18
+layout_name: Title Slide
+description: Slide with a content photo. Cover/title slide (40.5pt heading) with a
+  large heading and subtitle. Use for opening slides or major section dividers.
+text_areas:
+- role: title
+  shape_name: Tekstvak 5
+  left: 380465
+  top: 1662908
+  width: 8702236
+  height: 692497
+  font_name: Space Grotesk
+  font_size_pt: 40.5
+  bold: true
+  italic: null
+  underline: null
+  color: null
+  alignment: null
+  shape_preset: null
+  bg_color: null
+  corner_radius: null
+- role: subtitle
+  shape_name: Tekstvak 5
+  left: 867453
+  top: 2211016
+  width: 4695147
+  height: 507831
+  font_name: Space Grotesk
+  font_size_pt: 28.5
+  bold: null
+  italic: null
+  underline: null
+  color: null
+  alignment: null
+  shape_preset: null
+  bg_color: null
+  corner_radius: null
+- role: caption
+  shape_name: Tekstvak 23
+  left: 510361
+  top: 4424401
+  width: 906725
+  height: 276999
+  font_name: Space Grotesk
+  font_size_pt: 12.0
+  bold: true
+  italic: null
+  underline: null
+  color: null
+  alignment: null
+  shape_preset: null
+  bg_color: null
+  corner_radius: null
+image_areas:
+- role: photo
+  shape_name: Afbeelding 15
+  left: 213810
+  top: -610401
+  width: 2386515
+  height: 2388725
+  image_key: img_8875898f9904
+decorative_shapes: []
+table_areas: []
+non_text_shapes: 2

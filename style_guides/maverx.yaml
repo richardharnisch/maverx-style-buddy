@@ -1,0 +1,28 @@
+name: maverx
+template_pptx: maverx.pptx
+colors:
+  primary: '#4472C4'
+  secondary: '#ED7D31'
+  accent: '#A5A5A5'
+  background: '#FFFFFF'
+  text: '#000000'
+fonts:
+  heading: Calibri Light
+  body: Calibri
+  heading_size: 32
+  body_size: 18
+slide_size:
+  width_emu: 9144000
+  height_emu: 5143500
+logo:
+  path: null
+  position: bottom_right
+layouts:
+  title:
+    title_top: null
+    title_left: null
+    body_top: null
+  content:
+    title_top: null
+    title_left: null
+    body_top: null

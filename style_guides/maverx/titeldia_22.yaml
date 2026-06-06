@@ -1,0 +1,189 @@
+key: titeldia_22
+source_slide_index: 38
+layout_name: Titeldia
+description: 'Light slide with branded accent color on title text (#0D006A). Two-column
+  layout with a title, suited for side-by-side comparisons or split content. Includes
+  decorative icons. Has 3 accent rectangle/block(s) (#002060, #593993, #F79421).'
+text_areas:
+- role: title
+  shape_name: Tekstvak 5
+  left: 635212
+  top: 470003
+  width: 8508788
+  height: 577081
+  font_name: Space Grotesk
+  font_size_pt: 33.0
+  bold: true
+  italic: null
+  underline: null
+  color: '#0D006A'
+  alignment: null
+  shape_preset: null
+  bg_color: null
+  corner_radius: null
+- role: caption
+  shape_name: Tekstvak 7
+  left: 637698
+  top: 1348521
+  width: 8373193
+  height: 441788
+  font_name: null
+  font_size_pt: 18.0
+  bold: null
+  italic: null
+  underline: null
+  color: '#0D006A'
+  alignment: null
+  shape_preset: null
+  bg_color: null
+  corner_radius: null
+- role: left_column
+  shape_name: Google Shape;1269;p60
+  left: 591358
+  top: 1703371
+  width: 2445337
+  height: 230832
+  font_name: Arial
+  font_size_pt: 15.0
+  bold: true
+  italic: null
+  underline: null
+  color: null
+  alignment: null
+  shape_preset: null
+  bg_color: null
+  corner_radius: null
+- role: right_column
+  shape_name: Google Shape;1269;p60
+  left: 3344138
+  top: 1703371
+  width: 2445337
+  height: 230832
+  font_name: Arial
+  font_size_pt: 15.0
+  bold: true
+  italic: null
+  underline: null
+  color: null
+  alignment: null
+  shape_preset: null
+  bg_color: null
+  corner_radius: null
+- role: caption
+  shape_name: Google Shape;1269;p60
+  left: 6096918
+  top: 1703371
+  width: 2445337
+  height: 230832
+  font_name: Arial
+  font_size_pt: 15.0
+  bold: true
+  italic: null
+  underline: null
+  color: null
+  alignment: null
+  shape_preset: null
+  bg_color: null
+  corner_radius: null
+- role: caption
+  shape_name: Google Shape;1270;p60
+  left: 591358
+  top: 2056085
+  width: 2445336
+  height: 830975
+  font_name: Arial
+  font_size_pt: 15.0
+  bold: null
+  italic: null
+  underline: null
+  color: null
+  alignment: null
+  shape_preset: null
+  bg_color: null
+  corner_radius: null
+- role: caption
+  shape_name: Google Shape;1270;p60
+  left: 3344138
+  top: 2056085
+  width: 2445336
+  height: 1061807
+  font_name: Arial
+  font_size_pt: 15.0
+  bold: null
+  italic: null
+  underline: null
+  color: null
+  alignment: null
+  shape_preset: null
+  bg_color: null
+  corner_radius: null
+- role: caption
+  shape_name: Google Shape;1270;p60
+  left: 6096917
+  top: 2056085
+  width: 2445336
+  height: 1061807
+  font_name: Arial
+  font_size_pt: 15.0
+  bold: null
+  italic: null
+  underline: null
+  color: null
+  alignment: null
+  shape_preset: null
+  bg_color: null
+  corner_radius: null
+image_areas:
+- role: icon
+  shape_name: Graphic 7
+  left: 1151006
+  top: 3239994
+  width: 1336430
+  height: 1336430
+  image_key: null
+- role: icon
+  shape_name: Graphic 18
+  left: 6772536
+  top: 3337368
+  width: 1104488
+  height: 1104488
+  image_key: null
+decorative_shapes:
+- shape_name: Google Shape;1266;p60
+  shape_type: auto_shape
+  shape_preset: roundRect
+  left: 526163
+  top: 1401240
+  width: 2586114
+  height: 3245791
+  fill_color: '#002060'
+  border_color: '#F2F2F2'
+  border_pt: 1.5
+  corner_radius: 0.074
+  has_arrowhead: false
+- shape_name: Google Shape;1266;p60
+  shape_type: auto_shape
+  shape_preset: roundRect
+  left: 3278943
+  top: 1401240
+  width: 2586114
+  height: 3245791
+  fill_color: '#F79421'
+  border_color: '#F2F2F2'
+  border_pt: 1.5
+  corner_radius: 0.074
+  has_arrowhead: false
+- shape_name: Google Shape;1266;p60
+  shape_type: auto_shape
+  shape_preset: roundRect
+  left: 6031723
+  top: 1401240
+  width: 2586114
+  height: 3245791
+  fill_color: '#593993'
+  border_color: '#F2F2F2'
+  border_pt: 1.5
+  corner_radius: 0.074
+  has_arrowhead: false
+table_areas: []
+non_text_shapes: 1

@@ -1,0 +1,222 @@
+key: titeldia_24
+source_slide_index: 42
+layout_name: Titeldia
+description: 'Dark-background slide with light/white text. Two-column layout with
+  a title, suited for side-by-side comparisons or split content. Includes decorative
+  icons. Has 5 accent rectangle/block(s) (#FBE5D6, #5400AD).'
+text_areas:
+- role: title
+  shape_name: Tekstvak 5
+  left: 665693
+  top: 205843
+  width: 6640835
+  height: 577081
+  font_name: Space Grotesk
+  font_size_pt: 33.0
+  bold: true
+  italic: null
+  underline: null
+  color: '#0D006A'
+  alignment: null
+  shape_preset: null
+  bg_color: null
+  corner_radius: null
+- role: left_column
+  shape_name: TextBox 6
+  left: 475552
+  top: 1487692
+  width: 3557427
+  height: 1094595
+  font_name: Space Grotesk
+  font_size_pt: 12.0
+  bold: true
+  italic: null
+  underline: null
+  color: '#F2F2F2'
+  alignment: null
+  shape_preset: null
+  bg_color: null
+  corner_radius: null
+- role: right_column
+  shape_name: TextBox 23
+  left: 4964785
+  top: 2115290
+  width: 922271
+  height: 369332
+  font_name: Space Grotesk
+  font_size_pt: 9.0
+  bold: null
+  italic: null
+  underline: null
+  color: null
+  alignment: null
+  shape_preset: null
+  bg_color: null
+  corner_radius: null
+- role: caption
+  shape_name: TextBox 24
+  left: 6362665
+  top: 2115290
+  width: 922271
+  height: 369332
+  font_name: Space Grotesk
+  font_size_pt: 9.0
+  bold: null
+  italic: null
+  underline: null
+  color: null
+  alignment: null
+  shape_preset: null
+  bg_color: null
+  corner_radius: null
+- role: caption
+  shape_name: TextBox 25
+  left: 7752115
+  top: 2115290
+  width: 922271
+  height: 369332
+  font_name: Space Grotesk
+  font_size_pt: 9.0
+  bold: null
+  italic: null
+  underline: null
+  color: null
+  alignment: null
+  shape_preset: null
+  bg_color: null
+  corner_radius: null
+- role: caption
+  shape_name: Oval 20
+  left: 4658940
+  top: 2145276
+  width: 285390
+  height: 275901
+  font_name: Space Grotesk
+  font_size_pt: 15.0
+  bold: true
+  italic: null
+  underline: null
+  color: null
+  alignment: null
+  shape_preset: ellipse
+  bg_color: '#F79421'
+  corner_radius: null
+- role: caption
+  shape_name: Oval 21
+  left: 6052490
+  top: 2145276
+  width: 285390
+  height: 275901
+  font_name: Space Grotesk
+  font_size_pt: 15.0
+  bold: true
+  italic: null
+  underline: null
+  color: null
+  alignment: null
+  shape_preset: ellipse
+  bg_color: '#F79421'
+  corner_radius: null
+- role: caption
+  shape_name: Oval 22
+  left: 7466725
+  top: 2145276
+  width: 285390
+  height: 275901
+  font_name: Space Grotesk
+  font_size_pt: 15.0
+  bold: true
+  italic: null
+  underline: null
+  color: null
+  alignment: null
+  shape_preset: ellipse
+  bg_color: '#F79421'
+  corner_radius: null
+- role: caption
+  shape_name: TextBox 17
+  left: 723353
+  top: 3649250
+  width: 7739873
+  height: 878564
+  font_name: Space Grotesk
+  font_size_pt: 12.0
+  bold: true
+  italic: null
+  underline: null
+  color: '#F2F2F2'
+  alignment: null
+  shape_preset: null
+  bg_color: null
+  corner_radius: null
+image_areas:
+- role: icon
+  shape_name: Graphic 27
+  left: 354254
+  top: 3877479
+  width: 422105
+  height: 422105
+  image_key: null
+decorative_shapes:
+- shape_name: 'Rectangle: Rounded Corners 2'
+  shape_type: auto_shape
+  shape_preset: roundRect
+  left: 271549
+  top: 1346196
+  width: 3949519
+  height: 1313387
+  fill_color: '#5400AD'
+  border_color: null
+  border_pt: null
+  corner_radius: 0.167
+  has_arrowhead: false
+- shape_name: 'Rectangle: Rounded Corners 15'
+  shape_type: auto_shape
+  shape_preset: roundRect
+  left: 4551452
+  top: 2031530
+  width: 1345216
+  height: 489201
+  fill_color: '#FBE5D6'
+  border_color: null
+  border_pt: null
+  corner_radius: 0.167
+  has_arrowhead: false
+- shape_name: 'Rectangle: Rounded Corners 18'
+  shape_type: auto_shape
+  shape_preset: roundRect
+  left: 5965053
+  top: 2021133
+  width: 1345216
+  height: 509994
+  fill_color: '#FBE5D6'
+  border_color: null
+  border_pt: null
+  corner_radius: 0.167
+  has_arrowhead: false
+- shape_name: 'Rectangle: Rounded Corners 19'
+  shape_type: auto_shape
+  shape_preset: roundRect
+  left: 7378741
+  top: 2021133
+  width: 1345216
+  height: 509994
+  fill_color: '#FBE5D6'
+  border_color: null
+  border_pt: null
+  corner_radius: 0.167
+  has_arrowhead: false
+- shape_name: 'Rectangle: Rounded Corners 16'
+  shape_type: auto_shape
+  shape_preset: roundRect
+  left: 279505
+  top: 3535680
+  width: 8592946
+  height: 1054175
+  fill_color: '#5400AD'
+  border_color: null
+  border_pt: null
+  corner_radius: 0.167
+  has_arrowhead: false
+table_areas: []
+non_text_shapes: 3

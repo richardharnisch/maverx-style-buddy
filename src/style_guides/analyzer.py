@@ -21,7 +21,7 @@ import yaml
 from pptx import Presentation
 from pptx.enum.shapes import MSO_SHAPE_TYPE
 
-from src.style_guides.schema import DecorativeShape, ImageArea, SlideTemplate, TextArea
+from src.style_guides.schema import DecorativeShape, ImageArea, SlideTemplate, TableArea, TextArea
 
 log = logging.getLogger(__name__)
 
@@ -80,6 +80,95 @@ def _alignment_name(para) -> str | None:
     return None
 
 
+def _apply_group_transform(shape, group) -> tuple[int, int, int, int]:
+    """Convert a shape's position from its parent group's internal space to slide space.
+
+    PPTX groups use a separate coordinate system: grpSpPr.xfrm defines the mapping
+    between the group's internal child coordinates (chOff/chExt) and the slide-space
+    bounding box (off/ext). Formula:
+        slide_x = off_x + (child_x - chOff_x) * (ext_cx / chExt_cx)
+    """
+    from pptx.oxml.ns import qn as _qn
+    try:
+        g_left = int(group.left or 0)
+        g_top = int(group.top or 0)
+        g_width = int(group.width or 1)
+        g_height = int(group.height or 1)
+
+        grpSpPr = group._element.find(_qn("p:grpSpPr"))
+        xfrm = grpSpPr.find(_qn("a:xfrm")) if grpSpPr is not None else None
+        if xfrm is None:
+            return int(shape.left or 0), int(shape.top or 0), int(shape.width or 0), int(shape.height or 0)
+
+        chOff = xfrm.find(_qn("a:chOff"))
+        chExt = xfrm.find(_qn("a:chExt"))
+        ch_x = int(chOff.get("x", g_left)) if chOff is not None else g_left
+        ch_y = int(chOff.get("y", g_top)) if chOff is not None else g_top
+        ch_cx = int(chExt.get("cx", g_width)) if chExt is not None else g_width
+        ch_cy = int(chExt.get("cy", g_height)) if chExt is not None else g_height
+
+        sx = g_width / ch_cx if ch_cx else 1.0
+        sy = g_height / ch_cy if ch_cy else 1.0
+
+        s_left = int(shape.left or 0)
+        s_top = int(shape.top or 0)
+        s_width = int(shape.width or 0)
+        s_height = int(shape.height or 0)
+
+        return (
+            int(g_left + (s_left - ch_x) * sx),
+            int(g_top + (s_top - ch_y) * sy),
+            int(s_width * sx),
+            int(s_height * sy),
+        )
+    except Exception:
+        return int(shape.left or 0), int(shape.top or 0), int(shape.width or 0), int(shape.height or 0)
+
+
+def _iter_shapes(slide):
+    """Yield (shape, parent_group_or_None) for all shapes, recursing one level into groups."""
+    for shape in slide.shapes:
+        if int(shape.shape_type) == 6:  # GROUP
+            for child in shape.shapes:
+                if int(child.shape_type) != 6:  # don't recurse into nested groups
+                    yield child, shape
+        else:
+            yield shape, None
+
+
+def _detect_arrowhead(shape) -> bool:
+    """Return True if the shape is an arrow — either via arrowhead XML markers or a preset arrow shape."""
+    from pptx.oxml.ns import qn as _qn
+
+    # Arrow via preset geometry name
+    try:
+        spPr = shape._element.find(_qn("p:spPr"))
+        if spPr is not None:
+            pg = spPr.find(_qn("a:prstGeom"))
+            if pg is not None:
+                prst = pg.get("prst", "")
+                if "Arrow" in prst or "arrow" in prst or "chevron" in prst.lower() or "swoosh" in prst.lower():
+                    return True
+    except Exception:
+        pass
+
+    # Arrow via headEnd/tailEnd markers on line/connector
+    try:
+        spPr = shape._element.find(_qn("p:spPr"))
+        ln_el = spPr.find(_qn("a:ln")) if spPr is not None else None
+        if ln_el is not None:
+            head = ln_el.find(_qn("a:headEnd"))
+            tail = ln_el.find(_qn("a:tailEnd"))
+            h_type = head.get("type", "none") if head is not None else "none"
+            t_type = tail.get("type", "none") if tail is not None else "none"
+            if h_type not in ("none", "") or t_type not in ("none", ""):
+                return True
+    except Exception:
+        pass
+
+    return False
+
+
 def _extract_auto_shape_style(shape) -> dict:
     """Extract preset geometry, fill color and corner radius from an auto shape."""
     from pptx.oxml.ns import qn as _qn
@@ -108,9 +197,13 @@ def _extract_auto_shape_style(shape) -> dict:
 
 
 def _extract_text_areas(slide) -> list[dict]:
-    """Return raw dicts for TEXT_BOX and text-bearing AUTO_SHAPE on the slide."""
+    """Return raw dicts for TEXT_BOX and text-bearing AUTO_SHAPE on the slide.
+
+    Recurses one level into GROUP shapes (via _iter_shapes), applying the correct
+    coordinate transform so positions are always in slide space.
+    """
     areas = []
-    for shape in slide.shapes:
+    for shape, parent_group in _iter_shapes(slide):
         is_textbox = shape.shape_type == MSO_SHAPE_TYPE.TEXT_BOX
         is_auto = shape.shape_type == MSO_SHAPE_TYPE.AUTO_SHAPE
         if not (is_textbox or is_auto):
@@ -145,15 +238,20 @@ def _extract_text_areas(slide) -> list[dict]:
         except Exception:
             pass
 
+        if parent_group is not None:
+            left, top, width, height = _apply_group_transform(shape, parent_group)
+        else:
+            left = int(shape.left or 0)
+            top = int(shape.top or 0)
+            width = int(shape.width or 0)
+            height = int(shape.height or 0)
+
         style = _extract_auto_shape_style(shape) if is_auto else {"shape_preset": None, "bg_color": None, "corner_radius": None}
 
         areas.append({
             "shape_name": shape.name,
-            "left": int(shape.left or 0),
-            "top": int(shape.top or 0),
-            "width": int(shape.width or 0),
-            "height": int(shape.height or 0),
-            "area": int((shape.width or 0) * (shape.height or 0)),
+            "left": left, "top": top, "width": width, "height": height,
+            "area": width * height,
             "font_name": font_name,
             "font_size_pt": font_size_pt,
             "bold": bold,
@@ -169,43 +267,44 @@ def _extract_text_areas(slide) -> list[dict]:
     return areas
 
 
-def _extract_decorative_shapes(slide, W: int, H: int, captured_names: set) -> tuple[list[dict], int]:
-    """Extract non-text, non-image decorative shapes. Returns (shapes, table_count)."""
-    from pptx.oxml.ns import qn as _qn
+def _extract_decorative_shapes(slide, W: int, H: int, captured_names: set) -> list[dict]:
+    """Extract non-text, non-image decorative shapes (incl. arrows), recursing into groups."""
     _DECO_TYPES = {MSO_SHAPE_TYPE.AUTO_SHAPE, MSO_SHAPE_TYPE.LINE, MSO_SHAPE_TYPE.FREEFORM}
     min_area = W * H * 0.003  # ignore shapes smaller than 0.3% of slide
 
     shapes = []
-    table_count = 0
-    for shape in slide.shapes:
+    for shape, parent_group in _iter_shapes(slide):
         st = shape.shape_type
-        if int(st) == 19:  # TABLE
-            table_count += 1
+        if int(st) == 19:  # TABLE — handled separately
             continue
         if st not in _DECO_TYPES:
             continue
         if shape.name in captured_names:
-            continue  # already recorded as a styled text area
+            continue
 
-        # Skip if has non-empty text (captured as text area)
+        # Skip if has non-empty text (already a text area)
         try:
             if shape.has_text_frame and shape.text_frame.text.strip():
                 continue
         except Exception:
             pass
 
-        left = int(shape.left or 0)
-        top = int(shape.top or 0)
-        width = int(shape.width or 0)
-        height = int(shape.height or 0)
+        # Resolve slide-space coordinates
+        if parent_group is not None:
+            left, top, width, height = _apply_group_transform(shape, parent_group)
+        else:
+            left = int(shape.left or 0)
+            top = int(shape.top or 0)
+            width = int(shape.width or 0)
+            height = int(shape.height or 0)
 
-        # Filter out invisible/hairline shapes
         if width * height < min_area and st != MSO_SHAPE_TYPE.LINE:
             continue
 
         # Preset geometry
         preset = None
         try:
+            from pptx.oxml.ns import qn as _qn
             spPr = shape._element.find(_qn("p:spPr"))
             if spPr is not None:
                 pg = spPr.find(_qn("a:prstGeom"))
@@ -233,8 +332,8 @@ def _extract_decorative_shapes(slide, W: int, H: int, captured_names: set) -> tu
         except Exception:
             pass
 
-        # Skip shapes with no fill and no border (invisible guides)
-        if fill_color is None and border_color is None:
+        # Skip invisible shapes (no fill, no visible border)
+        if fill_color is None and border_color is None and not _detect_arrowhead(shape):
             continue
 
         # Corner radius
@@ -246,6 +345,7 @@ def _extract_decorative_shapes(slide, W: int, H: int, captured_names: set) -> tu
         except Exception:
             pass
 
+        has_arrow = _detect_arrowhead(shape)
         type_name = "line" if st == MSO_SHAPE_TYPE.LINE else ("freeform" if st == MSO_SHAPE_TYPE.FREEFORM else "auto_shape")
         shapes.append({
             "shape_name": shape.name,
@@ -256,8 +356,38 @@ def _extract_decorative_shapes(slide, W: int, H: int, captured_names: set) -> tu
             "border_color": border_color,
             "border_pt": border_pt,
             "corner_radius": corner_radius,
+            "has_arrowhead": has_arrow,
         })
-    return shapes, table_count
+    return shapes
+
+
+def _extract_tables(slide) -> list[dict]:
+    """Extract TABLE shapes from a slide (top-level only — tables inside groups are rare)."""
+    tables = []
+    for shape in slide.shapes:
+        if int(shape.shape_type) != 19:
+            continue
+        rows = cols = 0
+        header: list[str] = []
+        try:
+            tbl = shape.table
+            rows = len(tbl.rows)
+            cols = len(tbl.columns)
+            if rows > 0:
+                header = [cell.text_frame.text.strip()[:30] for cell in tbl.rows[0].cells]
+        except Exception:
+            pass
+        tables.append({
+            "shape_name": shape.name,
+            "left": int(shape.left or 0),
+            "top": int(shape.top or 0),
+            "width": int(shape.width or 0),
+            "height": int(shape.height or 0),
+            "rows": rows,
+            "columns": cols,
+            "header_row": header,
+        })
+    return tables
 
 
 def _extract_image_areas(slide, W: int, H: int) -> list[dict]:
@@ -403,15 +533,18 @@ def _slide_all_text(slide) -> str:
     return "\n".join(parts)[:600]
 
 
-def _shape_summary(areas: list[dict], image_areas: list[dict], deco_shapes: list[dict], table_count: int, non_text: int) -> str:
+def _shape_summary(areas: list[dict], image_areas: list[dict], deco_shapes: list[dict], tables: list[dict], non_text: int) -> str:
     role_list = ", ".join(a["role"] for a in areas) if areas else "none"
     sizes = [f"{a['font_size_pt']}pt" for a in areas if a.get("font_size_pt")]
     size_str = f" (font sizes: {', '.join(sizes)})" if sizes else ""
     img_str = f"; {len(image_areas)} image(s): {', '.join(a['role'] for a in image_areas)}" if image_areas else ""
-    deco_presets = [d["shape_preset"] or d["shape_type"] for d in deco_shapes]
-    deco_str = f"; decorative shapes: {', '.join(deco_presets)}" if deco_shapes else ""
-    table_str = f"; {table_count} table(s)" if table_count else ""
-    return f"{len(areas)} text area(s) with roles [{role_list}]{size_str}{img_str}{deco_str}{table_str}; {non_text} other shape(s)"
+    arrows = [d for d in deco_shapes if d.get("has_arrowhead")]
+    non_arrow_deco = [d for d in deco_shapes if not d.get("has_arrowhead")]
+    deco_presets = [d["shape_preset"] or d["shape_type"] for d in non_arrow_deco]
+    deco_str = f"; decorative: {', '.join(deco_presets)}" if deco_presets else ""
+    arrow_str = f"; {len(arrows)} arrow(s)" if arrows else ""
+    table_str = f"; {len(tables)} table(s) ({tables[0]['rows']}x{tables[0]['columns']})" if tables else ""
+    return f"{len(areas)} text area(s) with roles [{role_list}]{size_str}{img_str}{deco_str}{arrow_str}{table_str}; {non_text} other shape(s)"
 
 
 def _is_light_color(hex_color: str) -> bool:
@@ -425,7 +558,7 @@ def _is_light_color(hex_color: str) -> bool:
         return False
 
 
-def _heuristic_description(areas: list[dict], image_areas: list[dict], deco_shapes: list[dict], table_count: int, non_text: int, layout_name: str) -> str:
+def _heuristic_description(areas: list[dict], image_areas: list[dict], deco_shapes: list[dict], tables: list[dict], non_text: int, layout_name: str) -> str:
     roles = {a["role"] for a in areas}
     img_roles = {a["role"] for a in image_areas}
 
@@ -468,11 +601,16 @@ def _heuristic_description(areas: list[dict], image_areas: list[dict], deco_shap
 
     # Decorative shape notes
     deco_notes = []
-    if table_count:
-        deco_notes.append(f"Contains a {'table' if table_count == 1 else f'{table_count} tables'}.")
-    ovals = [d for d in deco_shapes if d.get("shape_preset") == "ellipse"]
-    rects = [d for d in deco_shapes if d.get("shape_preset") in ("rect", "roundRect")]
-    lines = [d for d in deco_shapes if d.get("shape_type") == "line"]
+    arrows = [d for d in deco_shapes if d.get("has_arrowhead")]
+    ovals = [d for d in deco_shapes if d.get("shape_preset") == "ellipse" and not d.get("has_arrowhead")]
+    rects = [d for d in deco_shapes if d.get("shape_preset") in ("rect", "roundRect") and not d.get("has_arrowhead")]
+    lines = [d for d in deco_shapes if d.get("shape_type") == "line" and not d.get("has_arrowhead")]
+    if tables:
+        for tbl in tables:
+            header_hint = ", ".join(h for h in tbl["header_row"] if h)[:60]
+            deco_notes.append(f"Contains a {tbl['rows']}×{tbl['columns']} table (headers: {header_hint}).")
+    if arrows:
+        deco_notes.append(f"Has {len(arrows)} directional arrow(s) indicating flow or sequence.")
     if ovals:
         colors = list({d["fill_color"] for d in ovals if d.get("fill_color")})
         color_hint = f" ({', '.join(colors[:3])})" if colors else ""
@@ -631,17 +769,19 @@ def analyze(pptx_path: Path, output_dir: Path) -> list[SlideTemplate]:
         raw_areas = _extract_text_areas(slide)
         raw_image_areas = _extract_image_areas(slide, W, H)
         captured_names = {a["shape_name"] for a in raw_areas}
-        raw_deco, table_count = _extract_decorative_shapes(slide, W, H, captured_names)
+        raw_deco = _extract_decorative_shapes(slide, W, H, captured_names)
+        raw_tables = _extract_tables(slide)
         non_text = sum(
             1 for s in slide.shapes
             if s.shape_type not in (MSO_SHAPE_TYPE.TEXT_BOX, MSO_SHAPE_TYPE.PICTURE)
             and s.name not in captured_names
             and s.name not in {d["shape_name"] for d in raw_deco}
+            and int(s.shape_type) != 19  # tables are handled separately
         )
         areas = _assign_roles(raw_areas, W, H)
         image_areas = _save_images(raw_image_areas, images_dir, image_catalog)
         slide_text = _slide_all_text(slide)
-        summary = _shape_summary(areas, image_areas, raw_deco, table_count, non_text)
+        summary = _shape_summary(areas, image_areas, raw_deco, raw_tables, non_text)
 
         log.debug("Layout '%s' (key=%s): %s", layout_name, key, summary)
 
@@ -652,7 +792,7 @@ def analyze(pptx_path: Path, output_dir: Path) -> list[SlideTemplate]:
         if desc:
             log.debug("LLM description for '%s': %s", key, desc)
         else:
-            desc = _heuristic_description(areas, image_areas, raw_deco, table_count, non_text, layout_name)
+            desc = _heuristic_description(areas, image_areas, raw_deco, raw_tables, non_text, layout_name)
             log.debug("Heuristic description for '%s': %s", key, desc)
 
         text_area_models = [
@@ -700,8 +840,20 @@ def analyze(pptx_path: Path, output_dir: Path) -> list[SlideTemplate]:
                 border_color=d.get("border_color"),
                 border_pt=d.get("border_pt"),
                 corner_radius=d.get("corner_radius"),
+                has_arrowhead=d.get("has_arrowhead", False),
             )
             for d in raw_deco
+        ]
+
+        table_models = [
+            TableArea(
+                shape_name=t["shape_name"],
+                left=t["left"], top=t["top"], width=t["width"], height=t["height"],
+                rows=t["rows"],
+                columns=t["columns"],
+                header_row=t["header_row"],
+            )
+            for t in raw_tables
         ]
 
         template = SlideTemplate(
@@ -712,7 +864,7 @@ def analyze(pptx_path: Path, output_dir: Path) -> list[SlideTemplate]:
             text_areas=text_area_models,
             image_areas=image_area_models,
             decorative_shapes=deco_models,
-            table_count=table_count,
+            table_areas=table_models,
             non_text_shapes=non_text,
         )
         templates.append(template)
@@ -789,18 +941,26 @@ def _write_readme(output_dir: Path, templates: list[SlideTemplate], guide_name: 
             for ii in img_info:
                 lines.append(f"- {ii}\n")
         if t.decorative_shapes:
-            lines.append("**Decorative shapes:**\n")
-            for ds in t.decorative_shapes:
-                parts = [ds.shape_preset or ds.shape_type]
-                if ds.fill_color:
-                    parts.append(f"fill={ds.fill_color}")
-                if ds.corner_radius:
-                    parts.append(f"radius={ds.corner_radius}")
-                if ds.border_color:
-                    parts.append(f"border={ds.border_color}")
-                lines.append(f"- {' '.join(parts)}\n")
-        if t.table_count:
-            lines.append(f"**Tables:** {t.table_count}\n")
+            arrows = [ds for ds in t.decorative_shapes if ds.has_arrowhead]
+            non_arrows = [ds for ds in t.decorative_shapes if not ds.has_arrowhead]
+            if non_arrows:
+                lines.append("**Decorative shapes:**\n")
+                for ds in non_arrows:
+                    parts = [ds.shape_preset or ds.shape_type]
+                    if ds.fill_color:
+                        parts.append(f"fill={ds.fill_color}")
+                    if ds.corner_radius:
+                        parts.append(f"radius={ds.corner_radius}")
+                    if ds.border_color:
+                        parts.append(f"border={ds.border_color}")
+                    lines.append(f"- {' '.join(parts)}\n")
+            if arrows:
+                lines.append(f"**Arrows:** {len(arrows)} directional arrow(s)\n")
+        if t.table_areas:
+            lines.append("**Tables:**\n")
+            for ta in t.table_areas:
+                header_str = ", ".join(h for h in ta.header_row if h)[:60]
+                lines.append(f"- {ta.rows}×{ta.columns} (headers: {header_str})\n")
         lines.append("\n---\n")
 
     readme_path = output_dir / "README.md"

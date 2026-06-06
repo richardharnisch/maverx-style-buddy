@@ -84,6 +84,19 @@ class DecorativeShape(BaseModel):
     border_color: str | None = None
     border_pt: float | None = None
     corner_radius: float | None = None  # 0.0–0.5 for roundRect
+    has_arrowhead: bool = False    # True when the shape is an arrow or line with an arrowhead marker
+
+
+class TableArea(BaseModel):
+    """A table shape on a template slide."""
+    shape_name: str
+    left: int
+    top: int
+    width: int
+    height: int
+    rows: int
+    columns: int
+    header_row: list[str] = []    # first row cell text (truncated), useful for descriptions
 
 
 class SlideTemplate(BaseModel):
@@ -95,7 +108,7 @@ class SlideTemplate(BaseModel):
     text_areas: list[TextArea] = []
     image_areas: list[ImageArea] = []
     decorative_shapes: list[DecorativeShape] = []
-    table_count: int = 0
+    table_areas: list[TableArea] = []
     non_text_shapes: int = 0
 
 
