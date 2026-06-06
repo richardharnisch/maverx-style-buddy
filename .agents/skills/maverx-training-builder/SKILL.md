@@ -1,11 +1,11 @@
 ---
 name: maverx-training-builder
-description: Build a schema-validated Maverx didactic lesson plan JSON from a training brief. Produces one normalized master JSON for a single session or multi-session programme, including intake, research-informed didactic arc, deck outline, pre-bites, post-bites, optional handouts, trainer briefs, and per-slide reliability scores. Does not create PPTX, DOCX, visuals, or call external model services.
+description: Build a schema-validated Maverx didactic lesson plan JSON file from a training brief. Writes one normalized master JSON file for a single session or multi-session programme, including intake, research-informed didactic arc, deck outline, pre-bites, post-bites, optional handouts, trainer briefs, and per-slide reliability scores. Does not create PPTX, DOCX, visuals, or call external model services.
 ---
 
 # Maverx Training Builder
 
-This skill turns a training brief into one normalized, schema-validated didactic lesson plan JSON. The JSON is the handoff contract for downstream workers such as a PPTX design agent.
+This skill turns a training brief into one normalized, schema-validated didactic lesson plan JSON file. The JSON file is the handoff contract for downstream workers such as a PPTX design agent.
 
 The skill focuses exclusively on learning design. It does not generate PowerPoint files, Word documents, visual assets, speaker notes files, or other presentation artifacts. It also does not require external model service configuration.
 
@@ -51,9 +51,11 @@ Before drafting the lesson plan, research autonomously on the internet when curr
 
 Record concise research evidence in `research_evidence`. Do not overfit the lesson plan to one article. Use research to improve sequencing, misconceptions, examples, exercises, prerequisites, and reliability scoring.
 
-### 3. Generate The Master JSON
+### 3. Generate The Master JSON File
 
-Produce exactly one JSON object matching `schemas/lesson_plan.schema.json`. The training can be any length: one 30-minute session, several 60-minute modules, or a full multi-session certification.
+Produce exactly one JSON object matching `schemas/lesson_plan.schema.json`, then write it to disk as `out/<slug>/lesson_plan.json` inside this skill directory. The training can be any length: one 30-minute session, several 60-minute modules, or a full multi-session certification.
+
+Do not paste the JSON into chat. The chat response should only summarize the created file path, validation status, and any issues that require trainer review.
 
 Every session must follow the Maverx didactic model in this exact order:
 
@@ -87,13 +89,13 @@ Also verify:
 - pre-bite time matches the intake expectation
 - handout presence matches the intake preference
 - every deck outline item has a reliability score and rationale
-- no slide visual, layout, master, PPTX, DOCX, or external service instructions are present
 
 ## Critical Rules
 
-1. The output is didactic JSON only.
+1. The output is a didactic JSON file only.
 2. The didactic arc is mandatory: kick-off -> theory -> example -> exercise -> wrap-up.
-3. Keep slide-level content conceptual, not visual. Allowed: slide title, learning purpose, key message, suggested content, interaction, reliability. Forbidden: layout, template, master slide, colours, fonts, shapes, image placement.
+3. Keep slide-level content conceptual, not visual. Allowed: slide title, learning purpose, key message, suggested content, reliability. Forbidden: layout, template, master slide, colours, fonts, shapes, image placement.
 4. Do not use external model service configuration in the skill workflow or output.
 5. Refuse vague intake. If the user gave "some people, a few hours, make it good", ask one precise follow-up before generating.
 6. The final output must be normalized JSON verified against the schema.
+7. Never dump `lesson_plan.json` contents into chat unless the user explicitly asks to inspect the JSON inline.

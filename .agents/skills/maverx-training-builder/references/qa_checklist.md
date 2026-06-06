@@ -20,6 +20,8 @@
 
 - [ ] Output validates against `schemas/lesson_plan.schema.json`.
 - [ ] There is exactly one master JSON object for the training.
+- [ ] The JSON object is written to `out/<slug>/lesson_plan.json`.
+- [ ] The JSON object is not pasted into chat unless explicitly requested.
 - [ ] No PPTX, DOCX, visual asset, slide master, template, layout, colour, font, or external service instruction appears in the output.
 
 ## Didactic Arc

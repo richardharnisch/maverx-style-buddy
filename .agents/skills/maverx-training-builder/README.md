@@ -1,12 +1,14 @@
 # Maverx Training Builder
 
-An agentic skill that turns a training brief into one normalized, schema-validated Maverx didactic lesson plan JSON.
+An agentic skill that turns a training brief into one normalized, schema-validated Maverx didactic lesson plan JSON file.
 
-The JSON is intended for downstream agentic workers, especially a PPTX design agent. This skill does not create slides, decks, Word documents, visual assets, or files from a command-line workflow.
+The JSON file is intended for downstream agentic workers, especially a PPTX design agent. This skill does not create slides, decks, Word documents, visual assets, or files from a command-line workflow.
 
 ## Output
 
-One JSON object matching `schemas/lesson_plan.schema.json`.
+One file at `out/<slug>/lesson_plan.json`, containing one JSON object matching `schemas/lesson_plan.schema.json`.
+
+The agent should not paste the JSON into chat. The chat response should report the file path, validation status, and any review issues.
 
 The master JSON contains:
 
@@ -25,7 +27,7 @@ The master JSON contains:
 
 1. **Intake**: use `prompts/system_intake.md` and validate against `schemas/intake.schema.json`.
 2. **Research**: browse autonomously when current or topic-specific evidence improves didactic quality.
-3. **Lesson planning**: create one master JSON matching `schemas/lesson_plan.schema.json`.
+3. **Lesson planning**: create one master JSON file matching `schemas/lesson_plan.schema.json`.
 4. **Validation**: verify schema compliance and the required didactic arc before responding.
 
 ## Required Didactic Arc
@@ -69,5 +71,5 @@ The final response should state whether JSON Schema validation was completed. If
 Recommended local validation, when a JSON file exists:
 
 ```bash
-uv run python -m jsonschema -i lesson_plan.json .agents/skills/maverx-training-builder/schemas/lesson_plan.schema.json
+uv run python -m jsonschema -i .agents/skills/maverx-training-builder/out/<slug>/lesson_plan.json .agents/skills/maverx-training-builder/schemas/lesson_plan.schema.json
 ```
