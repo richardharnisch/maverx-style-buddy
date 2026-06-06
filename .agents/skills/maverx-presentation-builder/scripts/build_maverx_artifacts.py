@@ -359,6 +359,14 @@ def lead_statement(item: dict[str, Any]) -> str:
     return "Use the slide to move the session forward."
 
 
+def _session_purpose(session: dict[str, Any]) -> str:
+    brief = session.get("brief_for_trainer", {})
+    purpose = normalize_text(brief.get("session_purpose", ""))
+    if purpose:
+        return purpose
+    return normalize_text(session.get("title", "Support the session objectives."))
+
+
 def short_label(value: str, max_words: int = 4, max_chars: int = 28) -> str:
     words = normalize_text(value).split()
     label = " ".join(words[:max_words]).strip(":,. ")
