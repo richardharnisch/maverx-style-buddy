@@ -7,6 +7,8 @@ slide without breaking the style.
 
 The image paths listed in each template entry are the canonical preview images
 exported from `templates.pptx`. The editable source remains `templates.pptx`.
+Machine-readable slide breakdowns live in `template_yaml/`, with
+`template_yaml/index.yaml` as the lookup index.
 
 ## Worker Workflow
 
@@ -133,6 +135,7 @@ Every final slide should include trainer-ready speaker notes with this structure
 ### 01. Deck Title
 
 - Image: `template_images/01-deck-title.png`
+- YAML: `template_yaml/01-deck-title.yaml`
 - Source slide: `templates.pptx`, slide 1.
 - What it does: Opens the deck with the Maverx dark-cover treatment, logo,
   title, subtitle, footer, and social icons.
@@ -144,6 +147,7 @@ Every final slide should include trainer-ready speaker notes with this structure
 ### 02. Process Slide
 
 - Image: `template_images/02-process-slide.png`
+- YAML: `template_yaml/02-process-slide.yaml`
 - Source slide: `templates.pptx`, slide 2.
 - What it does: Explains a method or cascade by pairing a definition block with
   a vertical process stack and a guiding question.
@@ -155,6 +159,7 @@ Every final slide should include trainer-ready speaker notes with this structure
 ### 03. Unstructured Three Section Slide
 
 - Image: `template_images/03-unstructured-three-section-slide.png`
+- YAML: `template_yaml/03-unstructured-three-section-slide.yaml`
 - Source slide: `templates.pptx`, slide 3.
 - What it does: Provides a simple three-part text layout with subtitles,
   bullets, and a wrap-up area.
@@ -167,6 +172,7 @@ Every final slide should include trainer-ready speaker notes with this structure
 ### 04. Agenda
 
 - Image: `template_images/04-agenda.png`
+- YAML: `template_yaml/04-agenda.yaml`
 - Source slide: `templates.pptx`, slide 4.
 - What it does: Shows a five-item agenda next to a large image strip.
 - How to use it: Replace item labels and descriptions. Keep descriptions brief.
@@ -177,6 +183,7 @@ Every final slide should include trainer-ready speaker notes with this structure
 ### 05. Text Slide
 
 - Image: `template_images/05-text-slide.png`
+- YAML: `template_yaml/05-text-slide.yaml`
 - Source slide: `templates.pptx`, slide 5.
 - What it does: Provides a clean, light-background text page with ordered,
   regular, and bulleted text examples.
@@ -188,6 +195,7 @@ Every final slide should include trainer-ready speaker notes with this structure
 ### 06. Dark Text Slide
 
 - Image: `template_images/06-dark-text-slide.png`
+- YAML: `template_yaml/06-dark-text-slide.yaml`
 - Source slide: `templates.pptx`, slide 6.
 - What it does: Presents text on the Maverx dark background with room for a
   right-side image or visual.
@@ -199,6 +207,7 @@ Every final slide should include trainer-ready speaker notes with this structure
 ### 07. Complex Layout Slide 1
 
 - Image: `template_images/07-complex-layout-slide-1.png`
+- YAML: `template_yaml/07-complex-layout-slide-1.yaml`
 - Source slide: `templates.pptx`, slide 7.
 - What it does: Organizes a decision topic with input categories, structured
   examples, practical questions, and a key takeaway.
@@ -210,6 +219,7 @@ Every final slide should include trainer-ready speaker notes with this structure
 ### 08. Complex Layout Slide 2
 
 - Image: `template_images/08-complex-layout-slide-2.png`
+- YAML: `template_yaml/08-complex-layout-slide-2.yaml`
 - Source slide: `templates.pptx`, slide 8.
 - What it does: Compares risk levels in stacked bands with a strong caution and
   decision heuristic at the bottom.
@@ -221,6 +231,7 @@ Every final slide should include trainer-ready speaker notes with this structure
 ### 09. Complex Layout Slide 3
 
 - Image: `template_images/09-complex-layout-slide-3.png`
+- YAML: `template_yaml/09-complex-layout-slide-3.yaml`
 - Source slide: `templates.pptx`, slide 9.
 - What it does: Introduces an automation or process concept with three example
   cards, then lands the human role and key takeaway.
@@ -232,6 +243,7 @@ Every final slide should include trainer-ready speaker notes with this structure
 ### 10. Longer Text Slide
 
 - Image: `template_images/10-longer-text-slide.png`
+- YAML: `template_yaml/10-longer-text-slide.yaml`
 - Source slide: `templates.pptx`, slide 10.
 - What it does: Holds dense workshop instructions with numbered sections and
   timing/process detail.
@@ -243,6 +255,7 @@ Every final slide should include trainer-ready speaker notes with this structure
 ### 11. Tabular Slide
 
 - Image: `template_images/11-tabular-slide.png`
+- YAML: `template_yaml/11-tabular-slide.yaml`
 - Source slide: `templates.pptx`, slide 11.
 - What it does: Gives a trainer-facing timetable with module blocks, activity
   descriptions, notes, and timing.
@@ -254,6 +267,7 @@ Every final slide should include trainer-ready speaker notes with this structure
 ### 12. Itemized Text Boxes
 
 - Image: `template_images/12-itemized-text-boxes.png`
+- YAML: `template_yaml/12-itemized-text-boxes.yaml`
 - Source slide: `templates.pptx`, slide 12.
 - What it does: Presents five numbered capabilities or outcomes as discrete
   cards with short explanatory text.
@@ -266,6 +280,7 @@ Every final slide should include trainer-ready speaker notes with this structure
 ### 13. Four Section Slide
 
 - Image: `template_images/13-four-section-slide.png`
+- YAML: `template_yaml/13-four-section-slide.yaml`
 - Source slide: `templates.pptx`, slide 13.
 - What it does: Splits content into four quadrants with colored headers and
   light card backgrounds.
@@ -277,6 +292,7 @@ Every final slide should include trainer-ready speaker notes with this structure
 ### 14. Dark Section Title Slide
 
 - Image: `template_images/14-dark-section-title-slide.png`
+- YAML: `template_yaml/14-dark-section-title-slide.yaml`
 - Source slide: `templates.pptx`, slide 14.
 - What it does: Creates a clean dark divider slide with minimal text.
 - How to use it: Add a short section title only. Do not overload it with body
@@ -287,6 +303,7 @@ Every final slide should include trainer-ready speaker notes with this structure
 ### 15. Extra Process/Timetable Slide
 
 - Image: `template_images/15-extra-process-timetable-slide.png`
+- YAML: `template_yaml/15-extra-process-timetable-slide.yaml`
 - Source slide: `templates.pptx`, slide 15.
 - What it does: Shows a five-step session journey with connected numbered
   markers and a column for each stage.
@@ -298,6 +315,7 @@ Every final slide should include trainer-ready speaker notes with this structure
 ### 16. Three Section Slide
 
 - Image: `template_images/16-three-section-slide.png`
+- YAML: `template_yaml/16-three-section-slide.yaml`
 - Source slide: `templates.pptx`, slide 16.
 - What it does: Provides three equal colored vertical cards for parallel
   sections.
@@ -309,6 +327,7 @@ Every final slide should include trainer-ready speaker notes with this structure
 ### 17. Theory / Topic Slides
 
 - Image: `template_images/17-theory-topic-slides.png`
+- YAML: `template_yaml/17-theory-topic-slides.yaml`
 - Source slide: `templates.pptx`, slide 17.
 - What it does: Opens a theory or topic section with a large title and angled
   image treatment.
@@ -320,6 +339,7 @@ Every final slide should include trainer-ready speaker notes with this structure
 ### 18. Section Title
 
 - Image: `template_images/18-section-title.png`
+- YAML: `template_yaml/18-section-title.yaml`
 - Source slide: `templates.pptx`, slide 18.
 - What it does: Provides a lighter section divider with the same angled image
   language as the theory slide.
@@ -330,6 +350,7 @@ Every final slide should include trainer-ready speaker notes with this structure
 ### 19. Timeline/Process Slide
 
 - Image: `template_images/19-timeline-process-slide.png`
+- YAML: `template_yaml/19-timeline-process-slide.yaml`
 - Source slide: `templates.pptx`, slide 19.
 - What it does: Explains a concept through a definition bar, horizontal
   timeline, and main takeaway.
@@ -341,6 +362,7 @@ Every final slide should include trainer-ready speaker notes with this structure
 ### 20. Hand-Out Slide
 
 - Image: `template_images/20-hand-out-slide.png`
+- YAML: `template_yaml/20-hand-out-slide.yaml`
 - Source slide: `templates.pptx`, slide 20.
 - What it does: Frames a handout or practical assignment with a dark text panel
   over an image-heavy background.
@@ -352,6 +374,7 @@ Every final slide should include trainer-ready speaker notes with this structure
 ### 21. Big Question
 
 - Image: `template_images/21-big-question.png`
+- YAML: `template_yaml/21-big-question.yaml`
 - Source slide: `templates.pptx`, slide 21.
 - What it does: Poses a central question using a large illustration and minimal
   text.
@@ -363,6 +386,7 @@ Every final slide should include trainer-ready speaker notes with this structure
 ### 22. Break time!
 
 - Image: `template_images/22-break-time.png`
+- YAML: `template_yaml/22-break-time.yaml`
 - Source slide: `templates.pptx`, slide 22.
 - What it does: Announces a break with a strong image and colorful Maverx shape
   overlays.
@@ -373,6 +397,7 @@ Every final slide should include trainer-ready speaker notes with this structure
 ### 23. Debrief
 
 - Image: `template_images/23-debrief.png`
+- YAML: `template_yaml/23-debrief.yaml`
 - Source slide: `templates.pptx`, slide 23.
 - What it does: Sets up a debrief or reflection moment with a dark overlay and
   live-session photo treatment.

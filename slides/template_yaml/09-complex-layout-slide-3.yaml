@@ -1,0 +1,1495 @@
+template_id: 09-complex-layout-slide-3
+title: Complex Layout Slide 3
+source:
+  deck: templates.pptx
+  slide_number: 9
+  layout_name: Titeldia
+  preview_image: template_images/09-complex-layout-slide-3.png
+slide_size:
+  width_emu: 9144000
+  height_emu: 5143500
+  width_in: 10.0
+  height_in: 5.625
+  aspect_ratio: '16:9'
+usage:
+  dictionary_entry: slide_dictionary.md
+  editable_source: Duplicate this slide from templates.pptx and edit the listed elements in place.
+  coordinate_note: Coordinates are absolute to the slide canvas. Group children retain PowerPoint-reported coordinates.
+speaker_notes: 'Aim: Help participants recognize how much of their work is repetitive and rule-based—and therefore a strong candidate for AI-driven automation—before showing the Power Automate example. Time: 5 minutes (before demo) Instructions 1. Set the context (1 min) Start with: “Let’s shift from analysis and decision-making to something very practical—routine work.” Point to the slide: “AI is particularly strong when it comes to repetitive, structured tasks—the kind of work that follows patterns.” 2. Walk through the examples (2 min) Go through each item slowly and make it relatable: Invoice processing “Think about invoice processing—reading invoices, extracting fields, entering them into systems.” Ask: “Who here still does parts of this manually?” (Expect many hands) Expense categorization “Expense categorization—assigning transactions to the right cost category.” Add nuance: “Often this is based on rules, memory, or experience—but it’s still repetitive.” Financial reporting “Even
+  reporting—while it feels analytical—often includes repetitive steps: gathering data formatting outputs writing similar commentary every month” 3. Make the key insight explicit (1 min) Say: “These tasks share three characteristics: they are repetitive they follow patterns they don’t always require deep judgment” Pause. Then: “That’s exactly where AI performs best.” 4. Bridge to automation (1 min) Transition clearly: “So instead of asking: Can AI do this? A better question is: Which parts of this process can be automated—and which parts still need human oversight? ” 5. Set up the demo Say: “Let’s make this concrete. I’ll show you a simple example using invoice processing.” “Not to turn you into Power Automate experts—but to show how AI fits into a real finance workflow.” Debrief & Summary (before demo transition) “If a task is repetitive and rule-based, AI can likely support or automate it.” “But—and this is important—it doesn’t remove the need for control. It changes your role from doing
+  → checking.”'
+elements:
+- z_order: 1
+  shape_id: 934
+  name: Google Shape;934;p30
+  type: line
+  bbox:
+    emu:
+      x: 0
+      y: 0
+      w: 685800
+      h: 0
+    inches:
+      x: 0.0
+      y: 0.0
+      w: 0.75
+      h: 0.0
+    percent:
+      x: 0.0
+      y: 0.0
+      w: 7.5
+      h: 0.0
+  line:
+    color: '#FBFFFF'
+    width_pt: 0.75
+- z_order: 2
+  shape_id: 935
+  name: Google Shape;935;p30
+  type: text_box
+  bbox:
+    emu:
+      x: 639244
+      y: 467727
+      w: 6640800
+      h: 577200
+    inches:
+      x: 0.699
+      y: 0.512
+      w: 7.262
+      h: 0.631
+    percent:
+      x: 6.99
+      y: 9.09
+      w: 72.62
+      h: 11.22
+  text:
+    plain_text: Complex Layout Slide 3
+    paragraphs:
+    - text: Complex Layout Slide 3
+      level: 0
+      alignment: left
+      runs:
+      - text: Complex Layout Slide 3
+        font:
+          name: Space Grotesk
+          size_pt: 33.0
+          bold: true
+          color: '#0D006A'
+  fill:
+    type: background
+- z_order: 3
+  shape_id: 936
+  name: Google Shape;936;p30
+  type: text_box
+  bbox:
+    emu:
+      x: 637698
+      y: 1007125
+      w: 7867059
+      h: 278987
+    inches:
+      x: 0.697
+      y: 1.101
+      w: 8.604
+      h: 0.305
+    percent:
+      x: 6.97
+      y: 19.58
+      w: 86.04
+      h: 5.42
+  text:
+    plain_text: 'AI is automating many of the repetitive administrative tasks that used to take up significant time for professionals, like:'
+    paragraphs:
+    - text: 'AI is automating many of the repetitive administrative tasks that used to take up significant time for professionals, like:'
+      level: 0
+      alignment: left
+      runs:
+      - text: 'AI is automating many of the '
+        font:
+          name: Calibri
+          size_pt: 10.13
+          color: '#0D006A'
+      - text: 'repetitive administrative tasks '
+        font:
+          name: Calibri
+          size_pt: 10.13
+          bold: true
+          color: '#F79421'
+      - text: 'that used to take up '
+        font:
+          name: Calibri
+          size_pt: 10.13
+          color: '#0D006A'
+      - text: significant time for professionals
+        font:
+          name: Calibri
+          size_pt: 10.13
+          bold: true
+          color: '#F79421'
+      - text: ', like:'
+        font:
+          name: Calibri
+          size_pt: 10.13
+          color: '#0D006A'
+  fill:
+    type: background
+- z_order: 4
+  shape_id: 937
+  name: Google Shape;937;p30
+  type: group
+  bbox:
+    emu:
+      x: 637699
+      y: 1752850
+      w: 2507409
+      h: 1520706
+    inches:
+      x: 0.697
+      y: 1.917
+      w: 2.742
+      h: 1.663
+    percent:
+      x: 6.97
+      y: 34.08
+      w: 27.42
+      h: 29.57
+  children:
+  - z_order: 1
+    shape_id: 938
+    name: Google Shape;938;p30
+    type: group
+    bbox:
+      emu:
+        x: 1476779
+        y: 859587
+        w: 2027608
+        h: 3343211
+      inches:
+        x: 1.615
+        y: 0.94
+        w: 2.217
+        h: 3.656
+      percent:
+        x: 16.15
+        y: 16.71
+        w: 22.17
+        h: 65.0
+    rotation: 90.0
+    children:
+    - z_order: 1
+      shape_id: 939
+      name: Google Shape;939;p30
+      type: auto_shape
+      bbox:
+        emu:
+          x: 846968
+          y: 2519351
+          w: 2589772
+          h: 3888752
+        inches:
+          x: 0.926
+          y: 2.755
+          w: 2.832
+          h: 4.253
+        percent:
+          x: 9.26
+          y: 48.98
+          w: 28.32
+          h: 75.61
+      text:
+        plain_text: ''
+        paragraphs:
+        - text: ''
+          level: 0
+          alignment: center
+          runs:
+          - text: ''
+      fill:
+        type: solid
+        color: '#F79421'
+    - z_order: 2
+      shape_id: 940
+      name: Google Shape;940;p30
+      type: auto_shape
+      bbox:
+        emu:
+          x: 890618
+          y: 2519353
+          w: 11499235
+          h: 3888752
+        inches:
+          x: 0.974
+          y: 2.755
+          w: 12.576
+          h: 4.253
+        percent:
+          x: 9.74
+          y: 48.98
+          w: 125.76
+          h: 75.61
+      text:
+        plain_text: ''
+        paragraphs:
+        - text: ''
+          level: 0
+          alignment: center
+          runs:
+          - text: ''
+      fill:
+        type: solid
+        color: theme:LIGHT_1 (2)
+  - z_order: 2
+    shape_id: 941
+    name: Google Shape;941;p30
+    type: group
+    bbox:
+      emu:
+        x: 913732
+        y: 1567193
+        w: 2964028
+        h: 1032217
+      inches:
+        x: 0.999
+        y: 1.714
+        w: 3.242
+        h: 1.129
+      percent:
+        x: 9.99
+        y: 30.47
+        w: 32.42
+        h: 20.07
+    children:
+    - z_order: 1
+      shape_id: 942
+      name: Google Shape;942;p30
+      type: text_box
+      bbox:
+        emu:
+          x: 839918
+          y: 2356439
+          w: 1942759
+          h: 785238
+        inches:
+          x: 0.919
+          y: 2.577
+          w: 2.125
+          h: 0.859
+        percent:
+          x: 9.19
+          y: 45.81
+          w: 21.25
+          h: 15.27
+      text:
+        plain_text: 'Customer support triage
+
+          Reads incoming requests, identifies intent and urgency, and routes tickets to the right team automatically.'
+        paragraphs:
+        - text: Customer support triage
+          level: 0
+          alignment: left
+          runs:
+          - text: Customer support triage
+            font:
+              name: Space Grotesk
+              size_pt: 9.0
+              bold: true
+              color: theme:DARK_1 (1)
+        - text: Reads incoming requests, identifies intent and urgency, and routes tickets to the right team automatically.
+          level: 0
+          alignment: left
+          runs:
+          - text: Reads incoming requests, identifies intent and urgency, and routes tickets to the right team automatically.
+            font:
+              name: Space Grotesk
+              size_pt: 8.25
+              color: theme:DARK_1 (1)
+      fill:
+        type: background
+    - z_order: 2
+      shape_id: 943
+      name: Google Shape;943;p30
+      type: auto_shape
+      bbox:
+        emu:
+          x: 405947
+          y: 2318702
+          w: 433971
+          h: 430536
+        inches:
+          x: 0.444
+          y: 2.536
+          w: 0.475
+          h: 0.471
+        percent:
+          x: 4.44
+          y: 45.08
+          w: 4.75
+          h: 8.37
+      text:
+        plain_text: ''
+        paragraphs:
+        - text: ''
+          level: 0
+          alignment: center
+          runs:
+          - text: ''
+      fill:
+        type: solid
+        color: '#FBE5D6'
+    - z_order: 3
+      shape_id: 944
+      name: Google Shape;944;p30
+      type: auto_shape
+      bbox:
+        emu:
+          x: 489533
+          y: 2401705
+          w: 266045
+          h: 264529
+        inches:
+          x: 0.535
+          y: 2.627
+          w: 0.291
+          h: 0.289
+        percent:
+          x: 5.35
+          y: 46.69
+          w: 2.91
+          h: 5.14
+      text:
+        plain_text: ''
+        paragraphs:
+        - text: ''
+          level: 0
+      fill:
+        type: background
+- z_order: 5
+  shape_id: 945
+  name: Google Shape;945;p30
+  type: group
+  bbox:
+    emu:
+      x: 3278793
+      y: 1737539
+      w: 2507408
+      h: 1521646
+    inches:
+      x: 3.586
+      y: 1.9
+      w: 2.742
+      h: 1.664
+    percent:
+      x: 35.86
+      y: 33.78
+      w: 27.42
+      h: 29.58
+  children:
+  - z_order: 1
+    shape_id: 946
+    name: Google Shape;946;p30
+    type: group
+    bbox:
+      emu:
+        x: 1796864
+        y: 565222
+        w: 2028863
+        h: 3933191
+      inches:
+        x: 1.965
+        y: 0.618
+        w: 2.219
+        h: 4.301
+      percent:
+        x: 19.65
+        y: 10.99
+        w: 22.19
+        h: 76.47
+    rotation: 90.0
+    children:
+    - z_order: 1
+      shape_id: 947
+      name: Google Shape;947;p30
+      type: auto_shape
+      bbox:
+        emu:
+          x: 846959
+          y: 1803176
+          w: 2589778
+          h: 4567289
+        inches:
+          x: 0.926
+          y: 1.972
+          w: 2.832
+          h: 4.995
+        percent:
+          x: 9.26
+          y: 35.06
+          w: 28.32
+          h: 88.8
+      text:
+        plain_text: ''
+        paragraphs:
+        - text: ''
+          level: 0
+          alignment: center
+          runs:
+          - text: ''
+      fill:
+        type: solid
+        color: '#F79421'
+    - z_order: 2
+      shape_id: 948
+      name: Google Shape;948;p30
+      type: auto_shape
+      bbox:
+        emu:
+          x: 897745
+          y: 1803180
+          w: 11499241
+          h: 4575002
+        inches:
+          x: 0.982
+          y: 1.972
+          w: 12.576
+          h: 5.003
+        percent:
+          x: 9.82
+          y: 35.06
+          w: 125.76
+          h: 88.95
+      text:
+        plain_text: ''
+        paragraphs:
+        - text: ''
+          level: 0
+          alignment: center
+          runs:
+          - text: ''
+      fill:
+        type: solid
+        color: theme:LIGHT_1 (2)
+  - z_order: 2
+    shape_id: 949
+    name: Google Shape;949;p30
+    type: group
+    bbox:
+      emu:
+        x: 964841
+        y: 1597390
+        w: 3356034
+        h: 984886
+      inches:
+        x: 1.055
+        y: 1.747
+        w: 3.67
+        h: 1.077
+      percent:
+        x: 10.55
+        y: 31.06
+        w: 36.7
+        h: 19.15
+    children:
+    - z_order: 1
+      shape_id: 950
+      name: Google Shape;950;p30
+      type: text_box
+      bbox:
+        emu:
+          x: 941678
+          y: 2342777
+          w: 2196315
+          h: 785238
+        inches:
+          x: 1.03
+          y: 2.562
+          w: 2.402
+          h: 0.859
+        percent:
+          x: 10.3
+          y: 45.55
+          w: 24.02
+          h: 15.27
+      text:
+        plain_text: 'Document processing
+
+          Extracts key information from forms, emails, and PDFs — reducing repetitive admin work across operations.'
+        paragraphs:
+        - text: Document processing
+          level: 0
+          alignment: left
+          runs:
+          - text: Document processing
+            font:
+              name: Space Grotesk
+              size_pt: 9.0
+              bold: true
+              color: theme:DARK_1 (1)
+        - text: Extracts key information from forms, emails, and PDFs — reducing repetitive admin work across operations.
+          level: 0
+          alignment: left
+          runs:
+          - text: Extracts key information from forms, emails, and PDFs — reducing repetitive admin work across operations.
+            font:
+              name: Space Grotesk
+              size_pt: 8.25
+              color: '#000000'
+      fill:
+        type: background
+    - z_order: 2
+      shape_id: 951
+      name: Google Shape;951;p30
+      type: auto_shape
+      bbox:
+        emu:
+          x: 446929
+          y: 2372539
+          w: 509416
+          h: 430536
+        inches:
+          x: 0.489
+          y: 2.595
+          w: 0.557
+          h: 0.471
+        percent:
+          x: 4.89
+          y: 46.13
+          w: 5.57
+          h: 8.37
+      text:
+        plain_text: ''
+        paragraphs:
+        - text: ''
+          level: 0
+          alignment: center
+          runs:
+          - text: ''
+      fill:
+        type: solid
+        color: '#FBE5D6'
+- z_order: 6
+  shape_id: 952
+  name: Google Shape;952;p30
+  type: group
+  bbox:
+    emu:
+      x: 5919889
+      y: 1728110
+      w: 2520321
+      h: 1524812
+    inches:
+      x: 6.474
+      y: 1.89
+      w: 2.756
+      h: 1.668
+    percent:
+      x: 64.74
+      y: 33.6
+      w: 27.56
+      h: 29.65
+  children:
+  - z_order: 1
+    shape_id: 953
+    name: Google Shape;953;p30
+    type: group
+    bbox:
+      emu:
+        x: 1302204
+        y: 563704
+        w: 2033083
+        h: 3940444
+      inches:
+        x: 1.424
+        y: 0.616
+        w: 2.223
+        h: 4.309
+      percent:
+        x: 14.24
+        y: 10.96
+        w: 22.23
+        h: 76.61
+    rotation: 90.0
+    children:
+    - z_order: 1
+      shape_id: 954
+      name: Google Shape;954;p30
+      type: auto_shape
+      bbox:
+        emu:
+          x: 846944
+          y: 2371883
+          w: 2589772
+          h: 4583443
+        inches:
+          x: 0.926
+          y: 2.594
+          w: 2.832
+          h: 5.013
+        percent:
+          x: 9.26
+          y: 46.11
+          w: 28.32
+          h: 89.11
+      text:
+        plain_text: ''
+        paragraphs:
+        - text: ''
+          level: 0
+          alignment: center
+          runs:
+          - text: ''
+      fill:
+        type: solid
+        color: '#F79421'
+    - z_order: 2
+      shape_id: 955
+      name: Google Shape;955;p30
+      type: auto_shape
+      bbox:
+        emu:
+          x: 921739
+          y: 2371884
+          w: 11499207
+          h: 4583442
+        inches:
+          x: 1.008
+          y: 2.594
+          w: 12.576
+          h: 5.013
+        percent:
+          x: 10.08
+          y: 46.11
+          w: 125.76
+          h: 89.11
+      text:
+        plain_text: ''
+        paragraphs:
+        - text: ''
+          level: 0
+          alignment: center
+          runs:
+          - text: ''
+      fill:
+        type: solid
+        color: theme:LIGHT_1 (2)
+  - z_order: 2
+    shape_id: 956
+    name: Google Shape;956;p30
+    type: group
+    bbox:
+      emu:
+        x: 459575
+        y: 1592460
+        w: 3849689
+        h: 984885
+      inches:
+        x: 0.503
+        y: 1.742
+        w: 4.21
+        h: 1.077
+      percent:
+        x: 5.03
+        y: 30.96
+        w: 42.1
+        h: 19.15
+    children:
+    - z_order: 1
+      shape_id: 957
+      name: Google Shape;957;p30
+      type: text_box
+      bbox:
+        emu:
+          x: 568410
+          y: 2338844
+          w: 2560272
+          h: 785237
+        inches:
+          x: 0.622
+          y: 2.558
+          w: 2.8
+          h: 0.859
+        percent:
+          x: 6.22
+          y: 45.47
+          w: 28.0
+          h: 15.27
+      text:
+        plain_text: 'Operational reporting
+
+          Generates first-draft summaries and dashboards from business data — helping teams make decisions faster.'
+        paragraphs:
+        - text: Operational reporting
+          level: 0
+          alignment: left
+          runs:
+          - text: Operational reporting
+            font:
+              name: Space Grotesk
+              size_pt: 9.0
+              bold: true
+              color: theme:DARK_1 (1)
+        - text: Generates first-draft summaries and dashboards from business data — helping teams make decisions faster.
+          level: 0
+          alignment: left
+          runs:
+          - text: Generates first-draft summaries and dashboards from business data — helping teams make decisions faster.
+            font:
+              name: Space Grotesk
+              size_pt: 8.25
+              color: '#000000'
+      fill:
+        type: background
+    - z_order: 2
+      shape_id: 958
+      name: Google Shape;958;p30
+      type: auto_shape
+      bbox:
+        emu:
+          x: 41778
+          y: 2372599
+          w: 510356
+          h: 430536
+        inches:
+          x: 0.046
+          y: 2.595
+          w: 0.558
+          h: 0.471
+        percent:
+          x: 0.46
+          y: 46.13
+          w: 5.58
+          h: 8.37
+      text:
+        plain_text: ''
+        paragraphs:
+        - text: ''
+          level: 0
+          alignment: center
+          runs:
+          - text: ''
+      fill:
+        type: solid
+        color: '#FBE5D6'
+- z_order: 7
+  shape_id: 959
+  name: Google Shape;959;p30
+  type: group
+  bbox:
+    emu:
+      x: 708763
+      y: 2598076
+      w: 2303102
+      h: 550977
+    inches:
+      x: 0.775
+      y: 2.841
+      w: 2.519
+      h: 0.603
+    percent:
+      x: 7.75
+      y: 50.51
+      w: 25.19
+      h: 10.71
+  children:
+  - z_order: 1
+    shape_id: 960
+    name: Google Shape;960;p30
+    type: auto_shape
+    bbox:
+      emu:
+        x: 1049257
+        y: 3779700
+        w: 2859788
+        h: 724845
+      inches:
+        x: 1.147
+        y: 4.134
+        w: 3.128
+        h: 0.793
+      percent:
+        x: 11.47
+        y: 73.48
+        w: 31.28
+        h: 14.09
+    text:
+      plain_text: ''
+      paragraphs:
+      - text: ''
+        level: 0
+        alignment: center
+        runs:
+        - text: ''
+    fill:
+      type: solid
+      color: '#FBE5D6'
+  - z_order: 2
+    shape_id: 961
+    name: Google Shape;961;p30
+    type: auto_shape
+    bbox:
+      emu:
+        x: 1049256
+        y: 3794335
+        w: 983117
+        h: 720000
+      inches:
+        x: 1.147
+        y: 4.15
+        w: 1.075
+        h: 0.787
+      percent:
+        x: 11.47
+        y: 73.77
+        w: 10.75
+        h: 14.0
+    text:
+      plain_text: ~ 60%
+      paragraphs:
+      - text: ~ 60%
+        level: 0
+        alignment: center
+        runs:
+        - text: ~ 60%
+          font:
+            name: Space Grotesk
+            size_pt: 9.75
+            bold: true
+            color: '#F79421'
+    fill:
+      type: background
+  - z_order: 3
+    shape_id: 962
+    name: Google Shape;962;p30
+    type: text_box
+    bbox:
+      emu:
+        x: 2032374
+        y: 3970404
+        w: 1876671
+        h: 461666
+      inches:
+        x: 2.223
+        y: 4.342
+        w: 2.052
+        h: 0.505
+      percent:
+        x: 22.23
+        y: 77.19
+        w: 20.52
+        h: 8.98
+    text:
+      plain_text: Less manual sorting and reassignment
+      paragraphs:
+      - text: Less manual sorting and reassignment
+        level: 0
+        alignment: left
+        runs:
+        - text: Less manual sorting and reassignment
+          font:
+            name: Space Grotesk
+            size_pt: 8.25
+            color: theme:DARK_1 (1)
+    fill:
+      type: background
+- z_order: 8
+  shape_id: 963
+  name: Google Shape;963;p30
+  type: group
+  bbox:
+    emu:
+      x: 5990552
+      y: 2573071
+      w: 2303102
+      h: 550977
+    inches:
+      x: 6.551
+      y: 2.814
+      w: 2.519
+      h: 0.603
+    percent:
+      x: 65.51
+      y: 50.03
+      w: 25.19
+      h: 10.71
+  children:
+  - z_order: 1
+    shape_id: 964
+    name: Google Shape;964;p30
+    type: auto_shape
+    bbox:
+      emu:
+        x: 1049257
+        y: 3779700
+        w: 2859788
+        h: 724845
+      inches:
+        x: 1.147
+        y: 4.134
+        w: 3.128
+        h: 0.793
+      percent:
+        x: 11.47
+        y: 73.48
+        w: 31.28
+        h: 14.09
+    text:
+      plain_text: ''
+      paragraphs:
+      - text: ''
+        level: 0
+        alignment: center
+        runs:
+        - text: ''
+    fill:
+      type: solid
+      color: '#FBE5D6'
+  - z_order: 2
+    shape_id: 965
+    name: Google Shape;965;p30
+    type: auto_shape
+    bbox:
+      emu:
+        x: 1049256
+        y: 3794335
+        w: 983117
+        h: 720000
+      inches:
+        x: 1.147
+        y: 4.15
+        w: 1.075
+        h: 0.787
+      percent:
+        x: 11.47
+        y: 73.77
+        w: 10.75
+        h: 14.0
+    text:
+      plain_text: 'Days >
+
+        Hours'
+      paragraphs:
+      - text: Days >
+        level: 0
+        alignment: center
+        runs:
+        - text: Days >
+          font:
+            name: Space Grotesk
+            size_pt: 9.75
+            bold: true
+            color: '#F79421'
+      - text: Hours
+        level: 0
+        alignment: center
+        runs:
+        - text: Hours
+          font:
+            name: Space Grotesk
+            size_pt: 9.75
+            bold: true
+            color: '#F79421'
+    fill:
+      type: background
+  - z_order: 3
+    shape_id: 966
+    name: Google Shape;966;p30
+    type: text_box
+    bbox:
+      emu:
+        x: 2032374
+        y: 3960017
+        w: 1876671
+        h: 461666
+      inches:
+        x: 2.223
+        y: 4.331
+        w: 2.052
+        h: 0.505
+      percent:
+        x: 22.23
+        y: 76.99
+        w: 20.52
+        h: 8.98
+    text:
+      plain_text: Typical weekly reporting impact
+      paragraphs:
+      - text: Typical weekly reporting impact
+        level: 0
+        alignment: left
+        runs:
+        - text: Typical weekly reporting impact
+          font:
+            name: Space Grotesk
+            size_pt: 8.25
+            color: theme:DARK_1 (1)
+    fill:
+      type: background
+- z_order: 9
+  shape_id: 967
+  name: Google Shape;967;p30
+  type: group
+  bbox:
+    emu:
+      x: 3355383
+      y: 2603563
+      w: 2303102
+      h: 550977
+    inches:
+      x: 3.669
+      y: 2.847
+      w: 2.519
+      h: 0.603
+    percent:
+      x: 36.69
+      y: 50.62
+      w: 25.19
+      h: 10.71
+  children:
+  - z_order: 1
+    shape_id: 968
+    name: Google Shape;968;p30
+    type: auto_shape
+    bbox:
+      emu:
+        x: 1049257
+        y: 3779700
+        w: 2859788
+        h: 724845
+      inches:
+        x: 1.147
+        y: 4.134
+        w: 3.128
+        h: 0.793
+      percent:
+        x: 11.47
+        y: 73.48
+        w: 31.28
+        h: 14.09
+    text:
+      plain_text: ''
+      paragraphs:
+      - text: ''
+        level: 0
+        alignment: center
+        runs:
+        - text: ''
+    fill:
+      type: solid
+      color: '#FBE5D6'
+  - z_order: 2
+    shape_id: 969
+    name: Google Shape;969;p30
+    type: auto_shape
+    bbox:
+      emu:
+        x: 1049256
+        y: 3794335
+        w: 983117
+        h: 720000
+      inches:
+        x: 1.147
+        y: 4.15
+        w: 1.075
+        h: 0.787
+      percent:
+        x: 11.47
+        y: 73.77
+        w: 10.75
+        h: 14.0
+    text:
+      plain_text: 10x
+      paragraphs:
+      - text: 10x
+        level: 0
+        alignment: center
+        runs:
+        - text: 10x
+          font:
+            name: Space Grotesk
+            size_pt: 9.75
+            bold: true
+            color: '#F79421'
+    fill:
+      type: background
+  - z_order: 3
+    shape_id: 970
+    name: Google Shape;970;p30
+    type: text_box
+    bbox:
+      emu:
+        x: 2032374
+        y: 3946957
+        w: 1876671
+        h: 461666
+      inches:
+        x: 2.223
+        y: 4.316
+        w: 2.052
+        h: 0.505
+      percent:
+        x: 22.23
+        y: 76.74
+        w: 20.52
+        h: 8.98
+    text:
+      plain_text: Faster than manual data entry
+      paragraphs:
+      - text: Faster than manual data entry
+        level: 0
+        alignment: left
+        runs:
+        - text: Faster than manual data entry
+          font:
+            name: Space Grotesk
+            size_pt: 8.25
+            color: theme:DARK_1 (1)
+    fill:
+      type: background
+- z_order: 10
+  shape_id: 971
+  name: Google Shape;971;p30
+  type: group
+  bbox:
+    emu:
+      x: 624181
+      y: 3441843
+      w: 7816028
+      h: 698343
+    inches:
+      x: 0.683
+      y: 3.764
+      w: 8.548
+      h: 0.764
+    percent:
+      x: 6.83
+      y: 66.92
+      w: 85.48
+      h: 13.58
+  children:
+  - z_order: 1
+    shape_id: 972
+    name: Google Shape;972;p30
+    type: auto_shape
+    bbox:
+      emu:
+        x: 829975
+        y: 4918729
+        w: 10527518
+        h: 880369
+      inches:
+        x: 0.908
+        y: 5.379
+        w: 11.513
+        h: 0.963
+      percent:
+        x: 9.08
+        y: 95.63
+        w: 115.13
+        h: 17.12
+    text:
+      plain_text: ''
+      paragraphs:
+      - text: ''
+        level: 0
+        alignment: center
+        runs:
+        - text: ''
+    fill:
+      type: solid
+      color: '#5400AD'
+  - z_order: 2
+    shape_id: 973
+    name: Google Shape;973;p30
+    type: auto_shape
+    bbox:
+      emu:
+        x: 1038089
+        y: 5121577
+        w: 506472
+        h: 489633
+      inches:
+        x: 1.135
+        y: 5.601
+        w: 0.554
+        h: 0.535
+      percent:
+        x: 11.35
+        y: 99.57
+        w: 5.54
+        h: 9.52
+    text:
+      plain_text: ''
+      paragraphs:
+      - text: ''
+        level: 0
+        alignment: center
+        runs:
+        - text: ''
+    fill:
+      type: solid
+      color: '#F79421'
+  - z_order: 3
+    shape_id: 974
+    name: Google Shape;974;p30
+    type: text_box
+    bbox:
+      emu:
+        x: 1761736
+        y: 5034244
+        w: 9387643
+        h: 815608
+      inches:
+        x: 1.927
+        y: 5.506
+        w: 10.266
+        h: 0.892
+      percent:
+        x: 19.27
+        y: 97.88
+        w: 102.66
+        h: 15.86
+    text:
+      plain_text: 'HUMANS STAY IN THE LOOP TO:
+
+
+        design the workflow, validate exceptions, and improve the process when AI confidence is low — that is where human expertise matters most.'
+      paragraphs:
+      - text: 'HUMANS STAY IN THE LOOP TO:'
+        level: 0
+        alignment: left
+        runs:
+        - text: 'HUMANS STAY IN THE LOOP TO:'
+          font:
+            name: Space Grotesk
+            size_pt: 10.5
+            bold: true
+            color: '#F79421'
+      - text: ''
+        level: 0
+        alignment: left
+        runs:
+        - text: ''
+      - text: design the workflow, validate exceptions, and improve the process when AI confidence is low — that is where human expertise matters most.
+        level: 0
+        alignment: left
+        runs:
+        - text: design the workflow, validate exceptions, and improve the process when AI confidence is low — that is where human expertise matters most.
+          font:
+            name: Space Grotesk
+            size_pt: 10.5
+            color: theme:LIGHT_1 (2)
+    fill:
+      type: background
+- z_order: 11
+  shape_id: 975
+  name: Google Shape;975;p30
+  type: group
+  bbox:
+    emu:
+      x: 624181
+      y: 4299748
+      w: 7816028
+      h: 665493
+    inches:
+      x: 0.683
+      y: 4.702
+      w: 8.548
+      h: 0.728
+    percent:
+      x: 6.83
+      y: 83.6
+      w: 85.48
+      h: 12.94
+  children:
+  - z_order: 1
+    shape_id: 976
+    name: Google Shape;976;p30
+    type: auto_shape
+    bbox:
+      emu:
+        x: 829975
+        y: 5812599
+        w: 10527518
+        h: 717495
+      inches:
+        x: 0.908
+        y: 6.357
+        w: 11.513
+        h: 0.785
+      percent:
+        x: 9.08
+        y: 113.01
+        w: 115.13
+        h: 13.95
+    text:
+      plain_text: ''
+      paragraphs:
+      - text: ''
+        level: 0
+        alignment: center
+        runs:
+        - text: ''
+    fill:
+      type: solid
+      color: '#1F0531'
+  - z_order: 2
+    shape_id: 977
+    name: Google Shape;977;p30
+    type: text_box
+    bbox:
+      emu:
+        x: 963967
+        y: 5930482
+        w: 9567065
+        h: 769442
+      inches:
+        x: 1.054
+        y: 6.486
+        w: 10.463
+        h: 0.841
+      percent:
+        x: 10.54
+        y: 115.3
+        w: 104.63
+        h: 14.96
+    text:
+      plain_text: KEY TAKEAWAY - AI handles the repetitive work. Your role shifts toward oversight, improvement, and decision-making.
+      paragraphs:
+      - text: KEY TAKEAWAY - AI handles the repetitive work. Your role shifts toward oversight, improvement, and decision-making.
+        level: 0
+        alignment: left
+        runs:
+        - text: 'KEY TAKEAWAY '
+          font:
+            name: Space Grotesk
+            size_pt: 10.5
+            bold: true
+            color: '#F79421'
+        - text: '- AI handles the repetitive work. Your role shifts toward oversight, improvement, and decision-making.'
+          font:
+            name: Space Grotesk
+            size_pt: 10.5
+            bold: true
+            color: theme:LIGHT_1 (2)
+      - text: ''
+        level: 0
+        alignment: left
+        runs:
+        - text: ''
+    fill:
+      type: background
+- z_order: 12
+  shape_id: 978
+  name: Google Shape;978;p30
+  type: auto_shape
+  bbox:
+    emu:
+      x: 840095
+      y: 3653167
+      w: 248840
+      h: 248840
+    inches:
+      x: 0.919
+      y: 3.995
+      w: 0.272
+      h: 0.272
+    percent:
+      x: 9.19
+      y: 71.02
+      w: 2.72
+      h: 4.84
+  text:
+    plain_text: ''
+    paragraphs:
+    - text: ''
+      level: 0
+  fill:
+    type: background
+- z_order: 13
+  shape_id: 979
+  name: Google Shape;979;p30
+  type: auto_shape
+  bbox:
+    emu:
+      x: 3433039
+      y: 1894249
+      w: 248840
+      h: 248840
+    inches:
+      x: 3.754
+      y: 2.072
+      w: 0.272
+      h: 0.272
+    percent:
+      x: 37.54
+      y: 36.83
+      w: 2.72
+      h: 4.84
+  text:
+    plain_text: ''
+    paragraphs:
+    - text: ''
+      level: 0
+  fill:
+    type: background
+- z_order: 14
+  shape_id: 980
+  name: Google Shape;980;p30
+  type: auto_shape
+  bbox:
+    emu:
+      x: 6068632
+      y: 1865036
+      w: 248840
+      h: 248840
+    inches:
+      x: 6.637
+      y: 2.04
+      w: 0.272
+      h: 0.272
+    percent:
+      x: 66.37
+      y: 36.26
+      w: 2.72
+      h: 4.84
+  text:
+    plain_text: ''
+    paragraphs:
+    - text: ''
+      level: 0
+  fill:
+    type: background
+- z_order: 15
+  shape_id: 981
+  name: Google Shape;981;p30
+  type: auto_shape
+  bbox:
+    emu:
+      x: 6935789
+      y: 1397360
+      w: 1491505
+      h: 250831
+    inches:
+      x: 7.585
+      y: 1.528
+      w: 1.631
+      h: 0.274
+    percent:
+      x: 75.85
+      y: 27.17
+      w: 16.31
+      h: 4.88
+  text:
+    plain_text: Role 1 - automation
+    paragraphs:
+    - text: Role 1 - automation
+      level: 0
+      alignment: center
+      runs:
+      - text: Role 1 - automation
+        font:
+          name: Space Grotesk
+          size_pt: 10.5
+          color: theme:LIGHT_1 (2)
+  fill:
+    type: solid
+    color: '#F79421'

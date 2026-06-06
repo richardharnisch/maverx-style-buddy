@@ -1,0 +1,1252 @@
+template_id: 08-complex-layout-slide-2
+title: Complex Layout Slide 2
+source:
+  deck: templates.pptx
+  slide_number: 8
+  layout_name: Titeldia
+  preview_image: template_images/08-complex-layout-slide-2.png
+slide_size:
+  width_emu: 9144000
+  height_emu: 5143500
+  width_in: 10.0
+  height_in: 5.625
+  aspect_ratio: '16:9'
+usage:
+  dictionary_entry: slide_dictionary.md
+  editable_source: Duplicate this slide from templates.pptx and edit the listed elements in place.
+  coordinate_note: Coordinates are absolute to the slide canvas. Group children retain PowerPoint-reported coordinates.
+speaker_notes: 'Aim: Translate discussion into practical rules. Time: 5 minutes Instructions: Summarize patterns: Personal data → high risk Internal sensitive data → context dependent Operational data → often safe (with enterprise tools) Add nuance: “But even operational data can become sensitive if it reveals strategy or performance.” Give a decision heuristic: “If you wouldn’t email it externally—you probably shouldn’t paste it into an AI tool.” Debrief & Summary: “Think before you paste—and understand your tools.”'
+elements:
+- z_order: 1
+  shape_id: 891
+  name: Google Shape;891;p29
+  type: text_box
+  bbox:
+    emu:
+      x: 635213
+      y: 470003
+      w: 8054481
+      h: 577081
+    inches:
+      x: 0.695
+      y: 0.514
+      w: 8.808
+      h: 0.631
+    percent:
+      x: 6.95
+      y: 9.14
+      w: 88.08
+      h: 11.22
+  text:
+    plain_text: Complex Layout Slide 2
+    paragraphs:
+    - text: Complex Layout Slide 2
+      level: 0
+      alignment: left
+      runs:
+      - text: Complex Layout Slide 2
+        font:
+          name: Space Grotesk
+          size_pt: 33.0
+          bold: true
+          color: '#0D006A'
+  fill:
+    type: background
+- z_order: 2
+  shape_id: 892
+  name: Google Shape;892;p29
+  type: auto_shape
+  bbox:
+    emu:
+      x: 601980
+      y: 989481
+      w: 6858000
+      h: 373380
+    inches:
+      x: 0.658
+      y: 1.082
+      w: 7.5
+      h: 0.408
+    percent:
+      x: 6.58
+      y: 19.24
+      w: 75.0
+      h: 7.26
+  text:
+    plain_text: ''
+    paragraphs:
+    - text: ''
+      level: 0
+      alignment: center
+      runs:
+      - text: ''
+  fill:
+    type: solid
+    color: '#D6E1E5'
+- z_order: 3
+  shape_id: 893
+  name: Google Shape;893;p29
+  type: group
+  bbox:
+    emu:
+      x: 628378
+      y: 2697861
+      w: 8229320
+      h: 712707
+    inches:
+      x: 0.687
+      y: 2.95
+      w: 9.0
+      h: 0.779
+    percent:
+      x: 6.87
+      y: 52.45
+      w: 90.0
+      h: 13.86
+  children:
+  - z_order: 1
+    shape_id: 894
+    name: Google Shape;894;p29
+    type: group
+    bbox:
+      emu:
+        x: 829975
+        y: 3384273
+        w: 3420000
+        h: 1398196
+      inches:
+        x: 0.908
+        y: 3.701
+        w: 3.74
+        h: 1.529
+      percent:
+        x: 9.08
+        y: 65.8
+        w: 37.4
+        h: 27.18
+    children:
+    - z_order: 1
+      shape_id: 895
+      name: Google Shape;895;p29
+      type: auto_shape
+      bbox:
+        emu:
+          x: 846950
+          y: 3431396
+          w: 2589773
+          h: 2939071
+        inches:
+          x: 0.926
+          y: 3.753
+          w: 2.832
+          h: 3.214
+        percent:
+          x: 9.26
+          y: 66.71
+          w: 28.32
+          h: 57.14
+      text:
+        plain_text: ''
+        paragraphs:
+        - text: ''
+          level: 0
+          alignment: center
+          runs:
+          - text: ''
+      fill:
+        type: solid
+        color: '#5400AD'
+    - z_order: 2
+      shape_id: 896
+      name: Google Shape;896;p29
+      type: auto_shape
+      bbox:
+        emu:
+          x: 863754
+          y: 3409278
+          w: 3449406
+          h: 2969533
+        inches:
+          x: 0.945
+          y: 3.728
+          w: 3.772
+          h: 3.248
+        percent:
+          x: 9.45
+          y: 66.28
+          w: 37.72
+          h: 57.73
+      text:
+        plain_text: ''
+        paragraphs:
+        - text: ''
+          level: 0
+          alignment: center
+          runs:
+          - text: ''
+      fill:
+        type: solid
+        color: theme:LIGHT_1 (2)
+  - z_order: 2
+    shape_id: 897
+    name: Google Shape;897;p29
+    type: text_box
+    bbox:
+      emu:
+        x: 1099965
+        y: 3494666
+        w: 3286435
+        h: 1120929
+      inches:
+        x: 1.203
+        y: 3.822
+        w: 3.594
+        h: 1.226
+      percent:
+        x: 12.03
+        y: 67.94
+        w: 35.94
+        h: 21.79
+    text:
+      plain_text: "Operational Data \nOften safe — with approved enterprise tools\nGeneric workflows, public-domain templates, non-confidential reference. Low sensitivity when used in approved tools."
+      paragraphs:
+      - text: 'Operational Data '
+        level: 0
+        alignment: left
+        runs:
+        - text: 'Operational Data '
+          font:
+            name: Space Grotesk
+            size_pt: 10.13
+            bold: true
+            color: '#5400AD'
+      - text: Often safe — with approved enterprise tools
+        level: 0
+        alignment: left
+        runs:
+        - text: Often safe — with approved enterprise tools
+          font:
+            name: Space Grotesk
+            size_pt: 12.0
+            bold: true
+            color: theme:DARK_1 (1)
+      - text: Generic workflows, public-domain templates, non-confidential reference. Low sensitivity when used in approved tools.
+        level: 0
+        alignment: left
+        runs:
+        - text: Generic workflows, public-domain templates, non-confidential reference. Low sensitivity when used in approved tools.
+          font:
+            name: Space Grotesk
+            size_pt: 9.0
+            color: theme:DARK_1 (1)
+    fill:
+      type: background
+- z_order: 4
+  shape_id: 898
+  name: Google Shape;898;p29
+  type: group
+  bbox:
+    emu:
+      x: 635212
+      y: 1928471
+      w: 7880410
+      h: 705396
+    inches:
+      x: 0.695
+      y: 2.109
+      w: 8.618
+      h: 0.771
+    percent:
+      x: 6.95
+      y: 37.49
+      w: 86.18
+      h: 13.71
+  children:
+  - z_order: 1
+    shape_id: 899
+    name: Google Shape;899;p29
+    type: group
+    bbox:
+      emu:
+        x: 4350750
+        y: 3384273
+        w: 3420000
+        h: 1398196
+      inches:
+        x: 4.758
+        y: 3.701
+        w: 3.74
+        h: 1.529
+      percent:
+        x: 47.58
+        y: 65.8
+        w: 37.4
+        h: 27.18
+    children:
+    - z_order: 1
+      shape_id: 900
+      name: Google Shape;900;p29
+      type: auto_shape
+      bbox:
+        emu:
+          x: 846950
+          y: 3431396
+          w: 2589773
+          h: 2939071
+        inches:
+          x: 0.926
+          y: 3.753
+          w: 2.832
+          h: 3.214
+        percent:
+          x: 9.26
+          y: 66.71
+          w: 28.32
+          h: 57.14
+      text:
+        plain_text: ''
+        paragraphs:
+        - text: ''
+          level: 0
+          alignment: center
+          runs:
+          - text: ''
+      fill:
+        type: solid
+        color: '#F79421'
+    - z_order: 2
+      shape_id: 901
+      name: Google Shape;901;p29
+      type: auto_shape
+      bbox:
+        emu:
+          x: 860819
+          y: 3409278
+          w: 3452341
+          h: 2969533
+        inches:
+          x: 0.941
+          y: 3.728
+          w: 3.776
+          h: 3.248
+        percent:
+          x: 9.41
+          y: 66.28
+          w: 37.76
+          h: 57.73
+      text:
+        plain_text: ''
+        paragraphs:
+        - text: ''
+          level: 0
+          alignment: center
+          runs:
+          - text: ''
+      fill:
+        type: solid
+        color: theme:LIGHT_1 (2)
+  - z_order: 2
+    shape_id: 902
+    name: Google Shape;902;p29
+    type: text_box
+    bbox:
+      emu:
+        x: 4618912
+        y: 3530500
+        w: 3119761
+        h: 1178301
+      inches:
+        x: 5.051
+        y: 3.861
+        w: 3.412
+        h: 1.289
+      percent:
+        x: 50.51
+        y: 68.64
+        w: 34.12
+        h: 22.91
+    text:
+      plain_text: "Internal sensitive data  \nContext-dependent – judgement required\n\nBoard materials, unreleased results, audit documents, internal memos. Depends on the tool, the content and the purpose."
+      paragraphs:
+      - text: 'Internal sensitive data  '
+        level: 0
+        alignment: left
+        runs:
+        - text: 'Internal sensitive data  '
+          font:
+            name: Space Grotesk
+            size_pt: 10.13
+            bold: true
+            color: '#F79421'
+      - text: Context-dependent – judgement required
+        level: 0
+        alignment: left
+        runs:
+        - text: Context-dependent – judgement required
+          font:
+            name: Space Grotesk
+            size_pt: 12.0
+            bold: true
+            color: theme:DARK_1 (1)
+      - text: ''
+        level: 0
+        alignment: left
+        runs:
+        - text: ''
+      - text: Board materials, unreleased results, audit documents, internal memos. Depends on the tool, the content and the purpose.
+        level: 0
+        alignment: left
+        runs:
+        - text: Board materials, unreleased results, audit documents, internal memos. Depends on the tool, the content and the purpose.
+          font:
+            name: Space Grotesk
+            size_pt: 9.0
+            color: theme:DARK_1 (1)
+    fill:
+      type: background
+- z_order: 5
+  shape_id: 903
+  name: Google Shape;903;p29
+  type: group
+  bbox:
+    emu:
+      x: 660073
+      y: 1151771
+      w: 7881947
+      h: 712707
+    inches:
+      x: 0.722
+      y: 1.26
+      w: 8.62
+      h: 0.779
+    percent:
+      x: 7.22
+      y: 22.39
+      w: 86.2
+      h: 13.86
+  children:
+  - z_order: 1
+    shape_id: 904
+    name: Google Shape;904;p29
+    type: group
+    bbox:
+      emu:
+        x: 7937492
+        y: 3850192
+        w: 3420000
+        h: 1398196
+      inches:
+        x: 8.681
+        y: 4.211
+        w: 3.74
+        h: 1.529
+      percent:
+        x: 86.81
+        y: 74.86
+        w: 37.4
+        h: 27.18
+    children:
+    - z_order: 1
+      shape_id: 905
+      name: Google Shape;905;p29
+      type: auto_shape
+      bbox:
+        emu:
+          x: 846950
+          y: 3431396
+          w: 2589773
+          h: 2939071
+        inches:
+          x: 0.926
+          y: 3.753
+          w: 2.832
+          h: 3.214
+        percent:
+          x: 9.26
+          y: 66.71
+          w: 28.32
+          h: 57.14
+      text:
+        plain_text: ''
+        paragraphs:
+        - text: ''
+          level: 0
+          alignment: center
+          runs:
+          - text: ''
+      fill:
+        type: solid
+        color: '#D3116E'
+    - z_order: 2
+      shape_id: 906
+      name: Google Shape;906;p29
+      type: auto_shape
+      bbox:
+        emu:
+          x: 861493
+          y: 3409278
+          w: 3451667
+          h: 2969533
+        inches:
+          x: 0.942
+          y: 3.728
+          w: 3.775
+          h: 3.248
+        percent:
+          x: 9.42
+          y: 66.28
+          w: 37.75
+          h: 57.73
+      text:
+        plain_text: ''
+        paragraphs:
+        - text: ''
+          level: 0
+          alignment: center
+          runs:
+          - text: ''
+      fill:
+        type: solid
+        color: theme:LIGHT_1 (2)
+  - z_order: 2
+    shape_id: 907
+    name: Google Shape;907;p29
+    type: text_box
+    bbox:
+      emu:
+        x: 8194815
+        y: 3955422
+        w: 2987668
+        h: 1166214
+      inches:
+        x: 8.962
+        y: 4.326
+        w: 3.267
+        h: 1.275
+      percent:
+        x: 89.62
+        y: 76.9
+        w: 32.67
+        h: 22.67
+    text:
+      plain_text: "Personal Data\nHigh Risk – Default to off-limits \n\nNames, salaries, client details, employee records. Covered by GDPR — involve specific legal protections."
+      paragraphs:
+      - text: Personal Data
+        level: 0
+        alignment: left
+        runs:
+        - text: Personal Data
+          font:
+            name: Space Grotesk
+            size_pt: 10.13
+            bold: true
+            color: '#D3116E'
+      - text: 'High Risk – Default to off-limits '
+        level: 0
+        alignment: left
+        runs:
+        - text: 'High Risk – Default to off-limits '
+          font:
+            name: Space Grotesk
+            size_pt: 12.0
+            bold: true
+            color: theme:DARK_1 (1)
+      - text: ''
+        level: 0
+        alignment: left
+        runs:
+        - text: ''
+      - text: Names, salaries, client details, employee records. Covered by GDPR — involve specific legal protections.
+        level: 0
+        alignment: left
+        runs:
+        - text: Names, salaries, client details, employee records. Covered by GDPR — involve specific legal protections.
+          font:
+            name: Space Grotesk
+            size_pt: 9.0
+            color: theme:DARK_1 (1)
+    fill:
+      type: background
+- z_order: 6
+  shape_id: 908
+  name: Google Shape;908;p29
+  type: auto_shape
+  bbox:
+    emu:
+      x: 7022206
+      y: 1406227
+      w: 1346208
+      h: 291360
+    inches:
+      x: 7.68
+      y: 1.538
+      w: 1.472
+      h: 0.319
+    percent:
+      x: 76.8
+      y: 27.34
+      w: 14.72
+      h: 5.66
+  text:
+    plain_text: High-Risk
+    paragraphs:
+    - text: High-Risk
+      level: 0
+      alignment: center
+      runs:
+      - text: High-Risk
+        font:
+          name: Space Grotesk
+          size_pt: 6.75
+          bold: true
+          color: '#D31972'
+  fill:
+    type: solid
+    color: '#F6E5F0'
+- z_order: 7
+  shape_id: 909
+  name: Google Shape;909;p29
+  type: auto_shape
+  bbox:
+    emu:
+      x: 7022206
+      y: 2140134
+      w: 1346207
+      h: 248736
+    inches:
+      x: 7.68
+      y: 2.34
+      w: 1.472
+      h: 0.272
+    percent:
+      x: 76.8
+      y: 41.61
+      w: 14.72
+      h: 4.84
+  text:
+    plain_text: Context – Dependent
+    paragraphs:
+    - text: 'Context – Dependent '
+      level: 0
+      alignment: center
+      runs:
+      - text: 'Context – Dependent '
+        font:
+          name: Space Grotesk
+          size_pt: 6.75
+          bold: true
+          color: '#F79421'
+  fill:
+    type: solid
+    color: '#FBE5D6'
+- z_order: 8
+  shape_id: 910
+  name: Google Shape;910;p29
+  type: auto_shape
+  bbox:
+    emu:
+      x: 7022206
+      y: 2856208
+      w: 1346207
+      h: 270169
+    inches:
+      x: 7.68
+      y: 3.124
+      w: 1.472
+      h: 0.295
+    percent:
+      x: 76.8
+      y: 55.53
+      w: 14.72
+      h: 5.25
+  text:
+    plain_text: Often Safe
+    paragraphs:
+    - text: 'Often Safe '
+      level: 0
+      alignment: center
+      runs:
+      - text: 'Often Safe '
+        font:
+          name: Space Grotesk
+          size_pt: 6.75
+          bold: true
+          color: '#5400AD'
+  fill:
+    type: solid
+    color: '#F1EDF9'
+- z_order: 9
+  shape_id: 911
+  name: Google Shape;911;p29
+  type: group
+  bbox:
+    emu:
+      x: 635212
+      y: 4217350
+      w: 4568160
+      h: 620846
+    inches:
+      x: 0.695
+      y: 4.612
+      w: 4.996
+      h: 0.679
+    percent:
+      x: 6.95
+      y: 81.99
+      w: 49.96
+      h: 12.07
+  children:
+  - z_order: 1
+    shape_id: 912
+    name: Google Shape;912;p29
+    type: auto_shape
+    bbox:
+      emu:
+        x: 829975
+        y: 1677816
+        w: 5266025
+        h: 1751183
+      inches:
+        x: 0.908
+        y: 1.835
+        w: 5.759
+        h: 1.915
+      percent:
+        x: 9.08
+        y: 32.62
+        w: 57.59
+        h: 34.05
+    text:
+      plain_text: ''
+      paragraphs:
+      - text: ''
+        level: 0
+        alignment: center
+        runs:
+        - text: ''
+    fill:
+      type: solid
+      color: '#5400AD'
+  - z_order: 2
+    shape_id: 913
+    name: Google Shape;913;p29
+    type: text_box
+    bbox:
+      emu:
+        x: 1101980
+        y: 1866481
+        w: 4743236
+        h: 1563551
+      inches:
+        x: 1.205
+        y: 2.041
+        w: 5.187
+        h: 1.71
+      percent:
+        x: 12.05
+        y: 36.29
+        w: 51.87
+        h: 30.4
+    text:
+      plain_text: 'Decision Heuristic
+
+        When in doubt If you wouldn''t email it externally, you probably shouldn''t paste it into an AI tool.'
+      paragraphs:
+      - text: Decision Heuristic
+        level: 0
+        alignment: left
+        runs:
+        - text: Decision Heuristic
+          font:
+            name: Space Grotesk
+            size_pt: 12.0
+            bold: true
+            color: '#BFBFBF'
+      - text: When in doubt If you wouldn't email it externally, you probably shouldn't paste it into an AI tool.
+        level: 0
+        alignment: left
+        runs:
+        - text: When in doubt If you wouldn't email it externally, you probably shouldn't paste it into an AI tool.
+          font:
+            name: Space Grotesk
+            size_pt: 9.0
+            bold: true
+            color: theme:LIGHT_1 (2)
+    fill:
+      type: background
+- z_order: 10
+  shape_id: 914
+  name: Google Shape;914;p29
+  type: group
+  bbox:
+    emu:
+      x: 5299712
+      y: 4217344
+      w: 3205724
+      h: 620480
+    inches:
+      x: 5.796
+      y: 4.612
+      w: 3.506
+      h: 0.679
+    percent:
+      x: 57.96
+      y: 81.99
+      w: 35.06
+      h: 12.06
+  children:
+  - z_order: 1
+    shape_id: 915
+    name: Google Shape;915;p29
+    type: auto_shape
+    bbox:
+      emu:
+        x: 829975
+        y: 5812599
+        w: 10527518
+        h: 717495
+      inches:
+        x: 0.908
+        y: 6.357
+        w: 11.513
+        h: 0.785
+      percent:
+        x: 9.08
+        y: 113.01
+        w: 115.13
+        h: 13.95
+    text:
+      plain_text: ''
+      paragraphs:
+      - text: ''
+        level: 0
+        alignment: center
+        runs:
+        - text: ''
+    fill:
+      type: solid
+      color: '#1F0531'
+  - z_order: 2
+    shape_id: 916
+    name: Google Shape;916;p29
+    type: text_box
+    bbox:
+      emu:
+        x: 1026557
+        y: 5965971
+        w: 9567064
+        h: 480463
+      inches:
+        x: 1.123
+        y: 6.524
+        w: 10.463
+        h: 0.525
+      percent:
+        x: 11.23
+        y: 115.99
+        w: 104.63
+        h: 9.34
+    text:
+      plain_text: KEY TAKEAWAY- Think before you paste — and understand your tools.
+      paragraphs:
+      - text: KEY TAKEAWAY- Think before you paste — and understand your tools.
+        level: 0
+        alignment: left
+        runs:
+        - text: KEY TAKEAWAY
+          font:
+            name: Space Grotesk
+            size_pt: 10.5
+            bold: true
+            color: '#F79421'
+        - text: '- Think before you paste'
+          font:
+            name: Space Grotesk
+            size_pt: 10.5
+            bold: true
+            color: theme:LIGHT_1 (2)
+        - text: ' — and understand your tools.'
+          font:
+            name: Space Grotesk
+            size_pt: 10.5
+            color: theme:LIGHT_1 (2)
+    fill:
+      type: background
+- z_order: 11
+  shape_id: 917
+  name: Google Shape;917;p29
+  type: group
+  bbox:
+    emu:
+      x: 613767
+      y: 3486930
+      w: 7901855
+      h: 620482
+    inches:
+      x: 0.671
+      y: 3.813
+      w: 8.642
+      h: 0.679
+    percent:
+      x: 6.71
+      y: 67.79
+      w: 86.42
+      h: 12.06
+  children:
+  - z_order: 1
+    shape_id: 918
+    name: Google Shape;918;p29
+    type: auto_shape
+    bbox:
+      emu:
+        x: 846950
+        y: 3431400
+        w: 2589773
+        h: 2732306
+      inches:
+        x: 0.926
+        y: 3.753
+        w: 2.832
+        h: 2.988
+      percent:
+        x: 9.26
+        y: 66.71
+        w: 28.32
+        h: 53.12
+    text:
+      plain_text: ''
+      paragraphs:
+      - text: ''
+        level: 0
+        alignment: center
+        runs:
+        - text: ''
+    fill:
+      type: solid
+      color: '#F79421'
+  - z_order: 2
+    shape_id: 919
+    name: Google Shape;919;p29
+    type: auto_shape
+    bbox:
+      emu:
+        x: 897749
+        y: 3429003
+        w: 7526183
+        h: 2734698
+      inches:
+        x: 0.982
+        y: 3.75
+        w: 8.231
+        h: 2.991
+      percent:
+        x: 9.82
+        y: 66.67
+        w: 82.31
+        h: 53.17
+    text:
+      plain_text: ''
+      paragraphs:
+      - text: ''
+        level: 0
+        alignment: center
+        runs:
+        - text: ''
+    fill:
+      type: solid
+      color: '#FBE5D6'
+- z_order: 12
+  shape_id: 920
+  name: Google Shape;920;p29
+  type: auto_shape
+  bbox:
+    emu:
+      x: 744356
+      y: 3596522
+      w: 392726
+      h: 403947
+    inches:
+      x: 0.814
+      y: 3.933
+      w: 0.429
+      h: 0.442
+    percent:
+      x: 8.14
+      y: 69.92
+      w: 4.29
+      h: 7.85
+  text:
+    plain_text: ''
+    paragraphs:
+    - text: ''
+      level: 0
+      alignment: center
+      runs:
+      - text: ''
+  fill:
+    type: solid
+    color: '#F79421'
+- z_order: 13
+  shape_id: 921
+  name: Google Shape;921;p29
+  type: text_box
+  bbox:
+    emu:
+      x: 1253116
+      y: 3547427
+      w: 6533306
+      h: 652166
+    inches:
+      x: 1.37
+      y: 3.88
+      w: 7.145
+      h: 0.713
+    percent:
+      x: 13.7
+      y: 68.97
+      w: 71.45
+      h: 12.68
+  text:
+    plain_text: 'But Watch out
+
+      Even operational data can become sensitive if it reveals strategy, performance or future direction'
+    paragraphs:
+    - text: But Watch out
+      level: 0
+      alignment: left
+      runs:
+      - text: But Watch out
+        font:
+          name: Space Grotesk
+          size_pt: 10.13
+          bold: true
+          color: '#F79421'
+    - text: 'Even operational data can become sensitive if it reveals strategy, performance or future direction '
+      level: 0
+      alignment: left
+      runs:
+      - text: 'Even operational data '
+        font:
+          name: Space Grotesk
+          size_pt: 10.5
+          bold: true
+          color: theme:DARK_1 (1)
+      - text: 'can become sensitive if it reveals '
+        font:
+          name: Space Grotesk
+          size_pt: 10.5
+          color: theme:DARK_1 (1)
+      - text: 'strategy, performance or future direction '
+        font:
+          name: Space Grotesk
+          size_pt: 10.5
+          bold: true
+          color: theme:DARK_1 (1)
+    - text: ''
+      level: 0
+      alignment: left
+      runs:
+      - text: ''
+  fill:
+    type: background
+- z_order: 14
+  shape_id: 922
+  name: Google Shape;922;p29
+  type: auto_shape
+  bbox:
+    emu:
+      x: 744356
+      y: 2852240
+      w: 392726
+      h: 403947
+    inches:
+      x: 0.814
+      y: 3.119
+      w: 0.429
+      h: 0.442
+    percent:
+      x: 8.14
+      y: 55.45
+      w: 4.29
+      h: 7.85
+  text:
+    plain_text: ''
+    paragraphs:
+    - text: ''
+      level: 0
+      alignment: center
+      runs:
+      - text: ''
+  fill:
+    type: solid
+    color: '#F1EDF9'
+- z_order: 15
+  shape_id: 923
+  name: Google Shape;923;p29
+  type: auto_shape
+  bbox:
+    emu:
+      x: 744356
+      y: 2083571
+      w: 392726
+      h: 403947
+    inches:
+      x: 0.814
+      y: 2.279
+      w: 0.429
+      h: 0.442
+    percent:
+      x: 8.14
+      y: 40.51
+      w: 4.29
+      h: 7.85
+  text:
+    plain_text: ''
+    paragraphs:
+    - text: ''
+      level: 0
+      alignment: center
+      runs:
+      - text: ''
+  fill:
+    type: solid
+    color: '#FBE5D6'
+- z_order: 16
+  shape_id: 924
+  name: Google Shape;924;p29
+  type: auto_shape
+  bbox:
+    emu:
+      x: 744356
+      y: 1315634
+      w: 392726
+      h: 403947
+    inches:
+      x: 0.814
+      y: 1.439
+      w: 0.429
+      h: 0.442
+    percent:
+      x: 8.14
+      y: 25.58
+      w: 4.29
+      h: 7.85
+  text:
+    plain_text: ''
+    paragraphs:
+    - text: ''
+      level: 0
+      alignment: center
+      runs:
+      - text: ''
+  fill:
+    type: solid
+    color: '#F3E0ED'
+- z_order: 17
+  shape_id: 925
+  name: Google Shape;925;p29
+  type: auto_shape
+  bbox:
+    emu:
+      x: 812849
+      y: 1377574
+      w: 255739
+      h: 264406
+    inches:
+      x: 0.889
+      y: 1.507
+      w: 0.28
+      h: 0.289
+    percent:
+      x: 8.89
+      y: 26.78
+      w: 2.8
+      h: 5.14
+  text:
+    plain_text: ''
+    paragraphs:
+    - text: ''
+      level: 0
+  fill:
+    type: background
+- z_order: 18
+  shape_id: 926
+  name: Google Shape;926;p29
+  type: picture
+  bbox:
+    emu:
+      x: 812849
+      y: 2148723
+      w: 255739
+      h: 255739
+    inches:
+      x: 0.889
+      y: 2.35
+      w: 0.28
+      h: 0.28
+    percent:
+      x: 8.89
+      y: 41.78
+      w: 2.8
+      h: 4.97
+  image:
+    content_type: image/png
+    extension: png
+    sha1: 47911bc3b85d88309b9fdfa0e3bd4e33ae5e00a0
+    size_px:
+      width: 42
+      height: 42
+- z_order: 19
+  shape_id: 927
+  name: Google Shape;927;p29
+  type: picture
+  bbox:
+    emu:
+      x: 808983
+      y: 2932020
+      w: 255739
+      h: 255739
+    inches:
+      x: 0.885
+      y: 3.206
+      w: 0.28
+      h: 0.28
+    percent:
+      x: 8.85
+      y: 57.0
+      w: 2.8
+      h: 4.97
+  image:
+    content_type: image/png
+    extension: png
+    sha1: 20aed38594f2c8e9f9370913e8f4bcfa281e859a
+    size_px:
+      width: 42
+      height: 42
+- z_order: 20
+  shape_id: 928
+  name: Google Shape;928;p29
+  type: picture
+  bbox:
+    emu:
+      x: 808982
+      y: 3670626
+      w: 255739
+      h: 255739
+    inches:
+      x: 0.885
+      y: 4.014
+      w: 0.28
+      h: 0.28
+    percent:
+      x: 8.85
+      y: 71.36
+      w: 2.8
+      h: 4.97
+  image:
+    content_type: image/png
+    extension: png
+    sha1: d8991dc45d1a566cf8a83018e96b681741f087c6
+    size_px:
+      width: 42
+      height: 42

@@ -1,0 +1,144 @@
+template_id: 20-hand-out-slide
+title: Hand-Out Slide
+source:
+  deck: templates.pptx
+  slide_number: 20
+  layout_name: Foto Slide Grijs
+  preview_image: template_images/20-hand-out-slide.png
+slide_size:
+  width_emu: 9144000
+  height_emu: 5143500
+  width_in: 10.0
+  height_in: 5.625
+  aspect_ratio: '16:9'
+usage:
+  dictionary_entry: slide_dictionary.md
+  editable_source: Duplicate this slide from templates.pptx and edit the listed elements in place.
+  coordinate_note: Coordinates are absolute to the slide canvas. Group children retain PowerPoint-reported coordinates.
+speaker_notes: 'Aim: Drive real-world action. Time: 6 minutes Instructions: Ask participants to write: one process one tool one risk one control Add accountability: “Share this with someone next to you.” Debrief & Summary: “Learning only matters if it changes behavior.”'
+elements:
+- z_order: 1
+  shape_id: 1188
+  name: Google Shape;1188;g3e8e462ab06_0_70
+  type: text_box
+  bbox:
+    emu:
+      x: 674178
+      y: 433400
+      w: 7954800
+      h: 577200
+    inches:
+      x: 0.737
+      y: 0.474
+      w: 8.699
+      h: 0.631
+    percent:
+      x: 7.37
+      y: 8.43
+      w: 86.99
+      h: 11.22
+  text:
+    plain_text: Hand-Out Slide
+    paragraphs:
+    - text: Hand-Out Slide
+      level: 0
+      alignment: left
+      runs:
+      - text: Hand-Out Slide
+        font:
+          name: Space Grotesk
+          size_pt: 33.0
+          bold: true
+          color: '#FFFFFF'
+  fill:
+    type: background
+- z_order: 2
+  shape_id: 1189
+  name: Google Shape;1189;g3e8e462ab06_0_70
+  type: text_box
+  bbox:
+    emu:
+      x: 628650
+      y: 1657068
+      w: 4328100
+      h: 1250700
+    inches:
+      x: 0.688
+      y: 1.812
+      w: 4.733
+      h: 1.368
+    percent:
+      x: 6.88
+      y: 32.22
+      w: 47.33
+      h: 24.32
+  text:
+    plain_text: 'Text for the Hand-Out
+
+      Can have bullets
+
+      …
+
+      …'
+    paragraphs:
+    - text: Text for the Hand-Out
+      level: 0
+      alignment: left
+      runs:
+      - text: Text for the Hand-Out
+        font:
+          size_pt: 15.0
+          color: '#FFFFFF'
+    - text: Can have bullets
+      level: 0
+      alignment: left
+      runs:
+      - text: Can have bullets
+        font:
+          size_pt: 15.0
+          color: '#FFFFFF'
+    - text: …
+      level: 0
+      alignment: left
+      runs:
+      - text: …
+        font:
+          size_pt: 15.0
+          color: '#FFFFFF'
+    - text: …
+      level: 0
+      alignment: left
+      runs:
+      - text: …
+        font:
+          size_pt: 15.0
+          color: '#FFFFFF'
+  fill:
+    type: background
+- z_order: 3
+  shape_id: 1190
+  name: Google Shape;1190;g3e8e462ab06_0_70
+  type: picture
+  bbox:
+    emu:
+      x: 2792756
+      y: -1
+      w: 6348551
+      h: 5143501
+    inches:
+      x: 3.054
+      y: -0.0
+      w: 6.943
+      h: 5.625
+    percent:
+      x: 30.54
+      y: -0.0
+      w: 69.43
+      h: 100.0
+  image:
+    content_type: image/jpeg
+    extension: jpg
+    sha1: 426cd3e9ad0e9d34ac27bc777a62df460a7cd6d8
+    size_px:
+      width: 1093
+      height: 843

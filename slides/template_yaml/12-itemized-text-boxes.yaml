@@ -1,0 +1,989 @@
+template_id: 12-itemized-text-boxes
+title: Itemized Text Boxes
+source:
+  deck: templates.pptx
+  slide_number: 12
+  layout_name: Titeldia
+  preview_image: template_images/12-itemized-text-boxes.png
+slide_size:
+  width_emu: 9144000
+  height_emu: 5143500
+  width_in: 10.0
+  height_in: 5.625
+  aspect_ratio: '16:9'
+usage:
+  dictionary_entry: slide_dictionary.md
+  editable_source: Duplicate this slide from templates.pptx and edit the listed elements in place.
+  coordinate_note: Coordinates are absolute to the slide canvas. Group children retain PowerPoint-reported coordinates.
+speaker_notes: 'Aim: Land the five core learning outcomes as memorable, actionable capabilities — not just concepts. Time: 4 minutes Instructions: Walk through each numbered takeaway, but don''t read them verbatim. Translate each one into one plain sentence: "One — Discover. You can now spot where AI could add value in a process. Not everywhere — but somewhere specific. Two — Use. You''ve used AI tools hands-on. You know what they actually produce. Three — Analyse. You can weigh the trade-offs before committing — value, risk, effort. Four — Validate. You know that confident output is not the same as correct output. That''s the most important skill. Five — Navigate. You understand the ethical and governance boundaries well enough to make a judgment call." Then ask the room: "Which of these five do you feel most confident about right now — and which one do you want to keep developing?" Quick show of hands or one word in chat. Key discussion points: These five are a progression: discover →
+  use → analyse → validate → navigate. Validation is the one most people underestimate before the session and rate highest after. These capabilities compound — the more you use AI, the better your judgment becomes. Link to reality: "In six months, the professionals who will get the most from AI are not the ones who used it the most. They''re the ones who learned to judge it the best. That''s what today was about." Debrief & Summary: "You don''t need to be an AI expert. You need to be an informed, critical user. That''s what you are now."'
+elements:
+- z_order: 1
+  shape_id: 1016
+  name: Google Shape;1016;p38
+  type: group
+  bbox:
+    emu:
+      x: 622678
+      y: 3655041
+      w: 7892671
+      h: 1012341
+    inches:
+      x: 0.681
+      y: 3.997
+      w: 8.632
+      h: 1.107
+    percent:
+      x: 6.81
+      y: 71.06
+      w: 86.32
+      h: 19.68
+  children:
+  - z_order: 1
+    shape_id: 1017
+    name: Google Shape;1017;p38
+    type: auto_shape
+    bbox:
+      emu:
+        x: 846950
+        y: 3431396
+        w: 2589773
+        h: 2939071
+      inches:
+        x: 0.926
+        y: 3.753
+        w: 2.832
+        h: 3.214
+      percent:
+        x: 9.26
+        y: 66.71
+        w: 28.32
+        h: 57.14
+    text:
+      plain_text: ''
+      paragraphs:
+      - text: ''
+        level: 0
+        alignment: center
+        runs:
+        - text: ''
+    fill:
+      type: solid
+      color: theme:DARK_1 (1)
+  - z_order: 2
+    shape_id: 1018
+    name: Google Shape;1018;p38
+    type: auto_shape
+    bbox:
+      emu:
+        x: 897749
+        y: 3429000
+        w: 15290754
+        h: 2969533
+      inches:
+        x: 0.982
+        y: 3.75
+        w: 16.722
+        h: 3.248
+      percent:
+        x: 9.82
+        y: 66.67
+        w: 167.22
+        h: 57.73
+    text:
+      plain_text: ''
+      paragraphs:
+      - text: ''
+        level: 0
+        alignment: center
+        runs:
+        - text: ''
+    fill:
+      type: solid
+      color: '#C7CFD7'
+- z_order: 2
+  shape_id: 1019
+  name: Google Shape;1019;p38
+  type: text_box
+  bbox:
+    emu:
+      x: 635213
+      y: 470003
+      w: 6640835
+      h: 577081
+    inches:
+      x: 0.695
+      y: 0.514
+      w: 7.263
+      h: 0.631
+    percent:
+      x: 6.95
+      y: 9.14
+      w: 72.63
+      h: 11.22
+  text:
+    plain_text: Itemized Text Boxes
+    paragraphs:
+    - text: Itemized Text Boxes
+      level: 0
+      alignment: left
+      runs:
+      - text: Itemized Text Boxes
+        font:
+          name: Space Grotesk
+          size_pt: 33.0
+          bold: true
+          color: '#0D006A'
+  fill:
+    type: background
+- z_order: 3
+  shape_id: 1020
+  name: Google Shape;1020;p38
+  type: group
+  bbox:
+    emu:
+      x: 622678
+      y: 1229338
+      w: 3881386
+      h: 1012340
+    inches:
+      x: 0.681
+      y: 1.344
+      w: 4.245
+      h: 1.107
+    percent:
+      x: 6.81
+      y: 23.9
+      w: 42.45
+      h: 19.68
+  children:
+  - z_order: 1
+    shape_id: 1021
+    name: Google Shape;1021;p38
+    type: group
+    bbox:
+      emu:
+        x: 326250
+        y: 3429000
+        w: 7576982
+        h: 2969533
+      inches:
+        x: 0.357
+        y: 3.75
+        w: 8.286
+        h: 3.248
+      percent:
+        x: 3.57
+        y: 66.67
+        w: 82.86
+        h: 57.73
+    children:
+    - z_order: 1
+      shape_id: 1022
+      name: Google Shape;1022;p38
+      type: auto_shape
+      bbox:
+        emu:
+          x: 846950
+          y: 3431396
+          w: 2589773
+          h: 2939071
+        inches:
+          x: 0.926
+          y: 3.753
+          w: 2.832
+          h: 3.214
+        percent:
+          x: 9.26
+          y: 66.71
+          w: 28.32
+          h: 57.14
+      text:
+        plain_text: ''
+        paragraphs:
+        - text: ''
+          level: 0
+          alignment: center
+          runs:
+          - text: ''
+      fill:
+        type: solid
+        color: '#5400AD'
+      line:
+        color: '#1C3052'
+        width_pt: 1.0
+    - z_order: 2
+      shape_id: 1023
+      name: Google Shape;1023;p38
+      type: auto_shape
+      bbox:
+        emu:
+          x: 897749
+          y: 3429000
+          w: 7526183
+          h: 2969533
+        inches:
+          x: 0.982
+          y: 3.75
+          w: 8.231
+          h: 3.248
+        percent:
+          x: 9.82
+          y: 66.67
+          w: 82.31
+          h: 57.73
+      text:
+        plain_text: ''
+        paragraphs:
+        - text: ''
+          level: 0
+          alignment: center
+          runs:
+          - text: ''
+      fill:
+        type: solid
+        color: '#C6C6DE'
+  - z_order: 2
+    shape_id: 1024
+    name: Google Shape;1024;p38
+    type: text_box
+    bbox:
+      emu:
+        x: 1396761
+        y: 3696209
+        w: 6175364
+        h: 2590132
+      inches:
+        x: 1.528
+        y: 4.042
+        w: 6.753
+        h: 2.833
+      percent:
+        x: 15.28
+        y: 71.86
+        w: 67.53
+        h: 50.36
+    text:
+      plain_text: "DISCOVER \nSpot AI opportunities in business processes\n\nRecognise where AI can streamline workflows, reduce repetitive work, and support operational efficiency — and where human involvement remains essential."
+      paragraphs:
+      - text: 'DISCOVER '
+        level: 0
+        alignment: left
+        runs:
+        - text: 'DISCOVER '
+          font:
+            name: Space Grotesk
+            size_pt: 10.13
+            bold: true
+            color: '#5400AD'
+      - text: Spot AI opportunities in business processes
+        level: 0
+        alignment: left
+        runs:
+        - text: Spot AI opportunities in business processes
+          font:
+            name: Space Grotesk
+            size_pt: 9.0
+            bold: true
+            color: theme:DARK_1 (1)
+      - text: ''
+        level: 0
+        alignment: left
+        runs:
+        - text: ''
+      - text: Recognise where AI can streamline workflows, reduce repetitive work, and support operational efficiency — and where human involvement remains essential.
+        level: 0
+        alignment: left
+        runs:
+        - text: Recognise where AI can streamline workflows, reduce repetitive work, and support operational efficiency — and where human involvement remains essential.
+          font:
+            name: Space Grotesk
+            size_pt: 9.0
+            color: '#000000'
+    fill:
+      type: background
+- z_order: 4
+  shape_id: 1025
+  name: Google Shape;1025;p38
+  type: group
+  bbox:
+    emu:
+      x: 4637350
+      y: 1229528
+      w: 3881387
+      h: 1012341
+    inches:
+      x: 5.071
+      y: 1.345
+      w: 4.245
+      h: 1.107
+    percent:
+      x: 50.71
+      y: 23.9
+      w: 42.45
+      h: 19.68
+  children:
+  - z_order: 1
+    shape_id: 1026
+    name: Google Shape;1026;p38
+    type: auto_shape
+    bbox:
+      emu:
+        x: 846950
+        y: 3431396
+        w: 2589773
+        h: 2939071
+      inches:
+        x: 0.926
+        y: 3.753
+        w: 2.832
+        h: 3.214
+      percent:
+        x: 9.26
+        y: 66.71
+        w: 28.32
+        h: 57.14
+    text:
+      plain_text: ''
+      paragraphs:
+      - text: ''
+        level: 0
+        alignment: center
+        runs:
+        - text: ''
+    fill:
+      type: solid
+      color: '#BF9000'
+  - z_order: 2
+    shape_id: 1027
+    name: Google Shape;1027;p38
+    type: auto_shape
+    bbox:
+      emu:
+        x: 897749
+        y: 3429000
+        w: 7526183
+        h: 2969533
+      inches:
+        x: 0.982
+        y: 3.75
+        w: 8.231
+        h: 3.248
+      percent:
+        x: 9.82
+        y: 66.67
+        w: 82.31
+        h: 57.73
+    text:
+      plain_text: ''
+      paragraphs:
+      - text: ''
+        level: 0
+        alignment: center
+        runs:
+        - text: ''
+    fill:
+      type: solid
+      color: '#DBD5C8'
+- z_order: 5
+  shape_id: 1028
+  name: Google Shape;1028;p38
+  type: group
+  bbox:
+    emu:
+      x: 628650
+      y: 2395379
+      w: 3881387
+      h: 1012341
+    inches:
+      x: 0.688
+      y: 2.62
+      w: 4.245
+      h: 1.107
+    percent:
+      x: 6.88
+      y: 46.57
+      w: 42.45
+      h: 19.68
+  children:
+  - z_order: 1
+    shape_id: 1029
+    name: Google Shape;1029;p38
+    type: auto_shape
+    bbox:
+      emu:
+        x: 846950
+        y: 3431396
+        w: 2589773
+        h: 2939071
+      inches:
+        x: 0.926
+        y: 3.753
+        w: 2.832
+        h: 3.214
+      percent:
+        x: 9.26
+        y: 66.71
+        w: 28.32
+        h: 57.14
+    text:
+      plain_text: ''
+      paragraphs:
+      - text: ''
+        level: 0
+        alignment: center
+        runs:
+        - text: ''
+    fill:
+      type: solid
+      color: '#F79421'
+  - z_order: 2
+    shape_id: 1030
+    name: Google Shape;1030;p38
+    type: auto_shape
+    bbox:
+      emu:
+        x: 897749
+        y: 3429000
+        w: 7526183
+        h: 2969533
+      inches:
+        x: 0.982
+        y: 3.75
+        w: 8.231
+        h: 3.248
+      percent:
+        x: 9.82
+        y: 66.67
+        w: 82.31
+        h: 57.73
+    text:
+      plain_text: ''
+      paragraphs:
+      - text: ''
+        level: 0
+        alignment: center
+        runs:
+        - text: ''
+    fill:
+      type: solid
+      color: '#FBE5D6'
+- z_order: 6
+  shape_id: 1031
+  name: Google Shape;1031;p38
+  type: group
+  bbox:
+    emu:
+      x: 4663862
+      y: 2395379
+      w: 3881387
+      h: 1012341
+    inches:
+      x: 5.1
+      y: 2.62
+      w: 4.245
+      h: 1.107
+    percent:
+      x: 51.0
+      y: 46.57
+      w: 42.45
+      h: 19.68
+  children:
+  - z_order: 1
+    shape_id: 1032
+    name: Google Shape;1032;p38
+    type: auto_shape
+    bbox:
+      emu:
+        x: 846950
+        y: 3431396
+        w: 2589773
+        h: 2939071
+      inches:
+        x: 0.926
+        y: 3.753
+        w: 2.832
+        h: 3.214
+      percent:
+        x: 9.26
+        y: 66.71
+        w: 28.32
+        h: 57.14
+    text:
+      plain_text: ''
+      paragraphs:
+      - text: ''
+        level: 0
+        alignment: center
+        runs:
+        - text: ''
+    fill:
+      type: solid
+      color: '#D3116E'
+  - z_order: 2
+    shape_id: 1033
+    name: Google Shape;1033;p38
+    type: auto_shape
+    bbox:
+      emu:
+        x: 897749
+        y: 3429000
+        w: 7526183
+        h: 2969533
+      inches:
+        x: 0.982
+        y: 3.75
+        w: 8.231
+        h: 3.248
+      percent:
+        x: 9.82
+        y: 66.67
+        w: 82.31
+        h: 57.73
+    text:
+      plain_text: ''
+      paragraphs:
+      - text: ''
+        level: 0
+        alignment: center
+        runs:
+        - text: ''
+    fill:
+      type: solid
+      color: '#D6C9D7'
+- z_order: 7
+  shape_id: 1034
+  name: Google Shape;1034;p38
+  type: auto_shape
+  bbox:
+    emu:
+      x: 733452
+      y: 1340420
+      w: 392726
+      h: 403947
+    inches:
+      x: 0.802
+      y: 1.466
+      w: 0.429
+      h: 0.442
+    percent:
+      x: 8.02
+      y: 26.06
+      w: 4.29
+      h: 7.85
+  text:
+    plain_text: '1'
+    paragraphs:
+    - text: '1'
+      level: 0
+      alignment: center
+      runs:
+      - text: '1'
+        font:
+          name: Space Grotesk
+          size_pt: 15.0
+          bold: true
+          color: theme:LIGHT_1 (2)
+  fill:
+    type: solid
+    color: '#5400AD'
+- z_order: 8
+  shape_id: 1035
+  name: Google Shape;1035;p38
+  type: auto_shape
+  bbox:
+    emu:
+      x: 4774657
+      y: 2511651
+      w: 392726
+      h: 403947
+    inches:
+      x: 5.222
+      y: 2.747
+      w: 0.429
+      h: 0.442
+    percent:
+      x: 52.22
+      y: 48.83
+      w: 4.29
+      h: 7.85
+  text:
+    plain_text: '4'
+    paragraphs:
+    - text: '4'
+      level: 0
+      alignment: center
+      runs:
+      - text: '4'
+        font:
+          name: Space Grotesk
+          size_pt: 15.0
+          bold: true
+          color: '#FFFFFF'
+  fill:
+    type: solid
+    color: '#D3116E'
+- z_order: 9
+  shape_id: 1036
+  name: Google Shape;1036;p38
+  type: auto_shape
+  bbox:
+    emu:
+      x: 4774657
+      y: 1357972
+      w: 392726
+      h: 403947
+    inches:
+      x: 5.222
+      y: 1.485
+      w: 0.429
+      h: 0.442
+    percent:
+      x: 52.22
+      y: 26.4
+      w: 4.29
+      h: 7.85
+  text:
+    plain_text: '2'
+    paragraphs:
+    - text: '2'
+      level: 0
+      alignment: center
+      runs:
+      - text: '2'
+        font:
+          name: Space Grotesk
+          size_pt: 15.0
+          bold: true
+          color: '#FFFFFF'
+  fill:
+    type: solid
+    color: '#BF9000'
+- z_order: 10
+  shape_id: 1037
+  name: Google Shape;1037;p38
+  type: auto_shape
+  bbox:
+    emu:
+      x: 732768
+      y: 2511651
+      w: 392726
+      h: 403947
+    inches:
+      x: 0.801
+      y: 2.747
+      w: 0.429
+      h: 0.442
+    percent:
+      x: 8.01
+      y: 48.83
+      w: 4.29
+      h: 7.85
+  text:
+    plain_text: '3'
+    paragraphs:
+    - text: '3'
+      level: 0
+      alignment: center
+      runs:
+      - text: '3'
+        font:
+          name: Space Grotesk
+          size_pt: 15.0
+          bold: true
+          color: '#FFFFFF'
+  fill:
+    type: solid
+    color: '#F79421'
+- z_order: 11
+  shape_id: 1038
+  name: Google Shape;1038;p38
+  type: auto_shape
+  bbox:
+    emu:
+      x: 732767
+      y: 3775289
+      w: 392726
+      h: 403947
+    inches:
+      x: 0.801
+      y: 4.129
+      w: 0.429
+      h: 0.442
+    percent:
+      x: 8.01
+      y: 73.4
+      w: 4.29
+      h: 7.85
+  text:
+    plain_text: '5'
+    paragraphs:
+    - text: '5'
+      level: 0
+      alignment: center
+      runs:
+      - text: '5'
+        font:
+          name: Space Grotesk
+          size_pt: 15.0
+          bold: true
+          color: '#FFFFFF'
+  fill:
+    type: solid
+    color: theme:DARK_1 (1)
+- z_order: 12
+  shape_id: 1039
+  name: Google Shape;1039;p38
+  type: text_box
+  bbox:
+    emu:
+      x: 5242298
+      y: 1325206
+      w: 3253002
+      h: 1021498
+    inches:
+      x: 5.733
+      y: 1.449
+      w: 3.558
+      h: 1.117
+    percent:
+      x: 57.33
+      y: 25.76
+      w: 35.58
+      h: 19.86
+  text:
+    plain_text: 'USE
+
+      Draft content, analyse information & summarise insights
+
+
+      Use AI tools hands-on to generate drafts, explain concepts, summarise information, and identify patterns in data or operations.'
+    paragraphs:
+    - text: USE
+      level: 0
+      alignment: left
+      runs:
+      - text: USE
+        font:
+          name: Space Grotesk
+          size_pt: 10.13
+          bold: true
+          color: '#BF9000'
+    - text: Draft content, analyse information & summarise insights
+      level: 0
+      alignment: left
+      runs:
+      - text: Draft content, analyse information & summarise insights
+        font:
+          name: Space Grotesk
+          size_pt: 9.0
+          bold: true
+          color: theme:DARK_1 (1)
+    - text: ''
+      level: 0
+      alignment: left
+      runs:
+      - text: ''
+    - text: Use AI tools hands-on to generate drafts, explain concepts, summarise information, and identify patterns in data or operations.
+      level: 0
+      alignment: left
+      runs:
+      - text: Use AI tools hands-on to generate drafts, explain concepts, summarise information, and identify patterns in data or operations.
+        font:
+          name: Space Grotesk
+          size_pt: 9.0
+          color: '#000000'
+  fill:
+    type: background
+- z_order: 13
+  shape_id: 1040
+  name: Google Shape;1040;p38
+  type: text_box
+  bbox:
+    emu:
+      x: 1203589
+      y: 2474426
+      w: 3163394
+      h: 882999
+    inches:
+      x: 1.316
+      y: 2.706
+      w: 3.46
+      h: 0.966
+    percent:
+      x: 13.16
+      y: 48.11
+      w: 34.6
+      h: 17.17
+  text:
+    plain_text: 'ANALYSE
+
+      Weigh the pros and cons of AI in your workflow
+
+
+      Evaluate the value, risks, and practical trade-offs of integrating AI into existing processes — before committing.'
+    paragraphs:
+    - text: ANALYSE
+      level: 0
+      alignment: left
+      runs:
+      - text: ANALYSE
+        font:
+          name: Space Grotesk
+          size_pt: 10.13
+          bold: true
+          color: '#F79421'
+    - text: Weigh the pros and cons of AI in your workflow
+      level: 0
+      alignment: left
+      runs:
+      - text: Weigh the pros and cons of AI in your workflow
+        font:
+          name: Space Grotesk
+          size_pt: 9.0
+          bold: true
+          color: theme:DARK_1 (1)
+    - text: ''
+      level: 0
+      alignment: left
+      runs:
+      - text: ''
+    - text: Evaluate the value, risks, and practical trade-offs of integrating AI into existing processes — before committing.
+      level: 0
+      alignment: left
+      runs:
+      - text: Evaluate the value, risks, and practical trade-offs of integrating AI into existing processes — before committing.
+        font:
+          name: Space Grotesk
+          size_pt: 9.0
+          color: '#000000'
+  fill:
+    type: background
+- z_order: 14
+  shape_id: 1041
+  name: Google Shape;1041;p38
+  type: text_box
+  bbox:
+    emu:
+      x: 5281333
+      y: 2498989
+      w: 3163394
+      h: 882999
+    inches:
+      x: 5.776
+      y: 2.733
+      w: 3.46
+      h: 0.966
+    percent:
+      x: 57.76
+      y: 48.59
+      w: 34.6
+      h: 17.17
+  text:
+    plain_text: 'VALIDATE
+
+      Check AI output for reliability and accuracy
+
+
+      Apply a practical verification mindset to AI-generated content — identifying errors, hallucinations, and misleading conclusions.'
+    paragraphs:
+    - text: VALIDATE
+      level: 0
+      alignment: left
+      runs:
+      - text: VALIDATE
+        font:
+          name: Space Grotesk
+          size_pt: 10.13
+          bold: true
+          color: '#D3116E'
+    - text: Check AI output for reliability and accuracy
+      level: 0
+      alignment: left
+      runs:
+      - text: Check AI output for reliability and accuracy
+        font:
+          name: Space Grotesk
+          size_pt: 9.0
+          bold: true
+          color: theme:DARK_1 (1)
+    - text: ''
+      level: 0
+      alignment: left
+      runs:
+      - text: ''
+    - text: Apply a practical verification mindset to AI-generated content — identifying errors, hallucinations, and misleading conclusions.
+      level: 0
+      alignment: left
+      runs:
+      - text: Apply a practical verification mindset to AI-generated content — identifying errors, hallucinations, and misleading conclusions.
+        font:
+          name: Space Grotesk
+          size_pt: 9.0
+          color: '#000000'
+  fill:
+    type: background
+- z_order: 15
+  shape_id: 1042
+  name: Google Shape;1042;p38
+  type: text_box
+  bbox:
+    emu:
+      x: 1154064
+      y: 3776001
+      w: 7179540
+      h: 767582
+    inches:
+      x: 1.262
+      y: 4.129
+      w: 7.852
+      h: 0.839
+    percent:
+      x: 12.62
+      y: 73.41
+      w: 78.52
+      h: 14.92
+  text:
+    plain_text: 'NAVIGATE
+
+      Apply ethical and operational judgment when using AI
+
+
+      Understand privacy, governance, and ethical considerations so AI is used responsibly, effectively, and with proper human oversight.'
+    paragraphs:
+    - text: NAVIGATE
+      level: 0
+      alignment: left
+      runs:
+      - text: NAVIGATE
+        font:
+          name: Space Grotesk
+          size_pt: 10.13
+          bold: true
+          color: theme:DARK_1 (1)
+    - text: Apply ethical and operational judgment when using AI
+      level: 0
+      alignment: left
+      runs:
+      - text: Apply ethical and operational judgment when using AI
+        font:
+          name: Space Grotesk
+          size_pt: 10.5
+          bold: true
+          color: theme:DARK_1 (1)
+    - text: ''
+      level: 0
+      alignment: left
+      runs:
+      - text: ''
+    - text: Understand privacy, governance, and ethical considerations so AI is used responsibly, effectively, and with proper human oversight.
+      level: 0
+      alignment: left
+      runs:
+      - text: Understand privacy, governance, and ethical considerations so AI is used responsibly, effectively, and with proper human oversight.
+        font:
+          name: Space Grotesk
+          size_pt: 9.0
+          color: '#000000'
+  fill:
+    type: background

@@ -1,0 +1,96 @@
+source_deck: templates.pptx
+dictionary: slide_dictionary.md
+slide_count: 23
+slides:
+- template_id: 01-deck-title
+  title: Deck Title
+  yaml: template_yaml/01-deck-title.yaml
+  preview_image: template_images/01-deck-title.png
+- template_id: 02-process-slide
+  title: Process Slide
+  yaml: template_yaml/02-process-slide.yaml
+  preview_image: template_images/02-process-slide.png
+- template_id: 03-unstructured-three-section-slide
+  title: Unstructured Three Section Slide
+  yaml: template_yaml/03-unstructured-three-section-slide.yaml
+  preview_image: template_images/03-unstructured-three-section-slide.png
+- template_id: 04-agenda
+  title: Agenda
+  yaml: template_yaml/04-agenda.yaml
+  preview_image: template_images/04-agenda.png
+- template_id: 05-text-slide
+  title: Text Slide
+  yaml: template_yaml/05-text-slide.yaml
+  preview_image: template_images/05-text-slide.png
+- template_id: 06-dark-text-slide
+  title: Dark Text Slide
+  yaml: template_yaml/06-dark-text-slide.yaml
+  preview_image: template_images/06-dark-text-slide.png
+- template_id: 07-complex-layout-slide-1
+  title: Complex Layout Slide 1
+  yaml: template_yaml/07-complex-layout-slide-1.yaml
+  preview_image: template_images/07-complex-layout-slide-1.png
+- template_id: 08-complex-layout-slide-2
+  title: Complex Layout Slide 2
+  yaml: template_yaml/08-complex-layout-slide-2.yaml
+  preview_image: template_images/08-complex-layout-slide-2.png
+- template_id: 09-complex-layout-slide-3
+  title: Complex Layout Slide 3
+  yaml: template_yaml/09-complex-layout-slide-3.yaml
+  preview_image: template_images/09-complex-layout-slide-3.png
+- template_id: 10-longer-text-slide
+  title: Longer Text Slide
+  yaml: template_yaml/10-longer-text-slide.yaml
+  preview_image: template_images/10-longer-text-slide.png
+- template_id: 11-tabular-slide
+  title: Tabular Slide
+  yaml: template_yaml/11-tabular-slide.yaml
+  preview_image: template_images/11-tabular-slide.png
+- template_id: 12-itemized-text-boxes
+  title: Itemized Text Boxes
+  yaml: template_yaml/12-itemized-text-boxes.yaml
+  preview_image: template_images/12-itemized-text-boxes.png
+- template_id: 13-four-section-slide
+  title: Four Section Slide
+  yaml: template_yaml/13-four-section-slide.yaml
+  preview_image: template_images/13-four-section-slide.png
+- template_id: 14-dark-section-title-slide
+  title: Dark Section Title Slide
+  yaml: template_yaml/14-dark-section-title-slide.yaml
+  preview_image: template_images/14-dark-section-title-slide.png
+- template_id: 15-extra-process-timetable-slide
+  title: Extra Process/Timetable Slide
+  yaml: template_yaml/15-extra-process-timetable-slide.yaml
+  preview_image: template_images/15-extra-process-timetable-slide.png
+- template_id: 16-three-section-slide
+  title: Three Section Slide
+  yaml: template_yaml/16-three-section-slide.yaml
+  preview_image: template_images/16-three-section-slide.png
+- template_id: 17-theory-topic-slides
+  title: Theory / Topic Slides
+  yaml: template_yaml/17-theory-topic-slides.yaml
+  preview_image: template_images/17-theory-topic-slides.png
+- template_id: 18-section-title
+  title: Section Title
+  yaml: template_yaml/18-section-title.yaml
+  preview_image: template_images/18-section-title.png
+- template_id: 19-timeline-process-slide
+  title: Timeline/Process Slide
+  yaml: template_yaml/19-timeline-process-slide.yaml
+  preview_image: template_images/19-timeline-process-slide.png
+- template_id: 20-hand-out-slide
+  title: Hand-Out Slide
+  yaml: template_yaml/20-hand-out-slide.yaml
+  preview_image: template_images/20-hand-out-slide.png
+- template_id: 21-big-question
+  title: Big Question
+  yaml: template_yaml/21-big-question.yaml
+  preview_image: template_images/21-big-question.png
+- template_id: 22-break-time
+  title: Break time!
+  yaml: template_yaml/22-break-time.yaml
+  preview_image: template_images/22-break-time.png
+- template_id: 23-debrief
+  title: Debrief
+  yaml: template_yaml/23-debrief.yaml
+  preview_image: template_images/23-debrief.png
