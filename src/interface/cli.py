@@ -1,12 +1,14 @@
 """CLI interface — accepts a user prompt and optional --style flag, runs the agent."""
 
 import argparse
+import logging
 
 from rich.console import Console
 from rich.markdown import Markdown
 
 from src.agent.client import OpenRouterClient
 from src.agent.loop import AgentLoop
+from src.logger import configure
 from src.skills.registry import SkillRegistry
 
 console = Console()
@@ -16,7 +18,10 @@ def run_cli() -> None:
     parser = argparse.ArgumentParser(description="Style Buddy — AI-powered PowerPoint generator")
     parser.add_argument("prompt", nargs="?", help="What to build (omit for interactive mode)")
     parser.add_argument("--model", help="Override the model (e.g. openai/gpt-4o)")
+    parser.add_argument("--log-level", default="INFO", choices=["DEBUG", "INFO", "WARNING"], help="Log verbosity")
     args = parser.parse_args()
+
+    configure(level=getattr(logging, args.log_level))
 
     client = OpenRouterClient(model=args.model)
     registry = SkillRegistry()
@@ -36,6 +41,10 @@ def run_cli() -> None:
                 break
             if not prompt or prompt.lower() in ("quit", "exit"):
                 break
+            if prompt.lower() in ("reset", "new", "/reset", "/new"):
+                loop.reset()
+                console.print("[dim]Conversation reset.[/dim]\n")
+                continue
             _run(loop, prompt)
 
 
