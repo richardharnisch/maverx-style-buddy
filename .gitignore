@@ -1,0 +1,29 @@
+# environment
+.env
+.venv
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# uv
+uv.lock
+
+# build / dist
+dist/
+build/
+*.egg-info/
+
+# output files
+outputs/
+*.pptx
+
+# editor
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# os
+.DS_Store
+Thumbs.db
