@@ -1,21 +1,11 @@
-"""File server — the "Deliverable Host".
-
-Serves generated files (pptx, pre-bite, post-bite) for download.
-Files are scoped to a session directory so one session can't reach
-another's outputs.
-"""
-
-from pathlib import Path
-
 from fastapi import APIRouter, HTTPException
 from fastapi.responses import FileResponse
 from pydantic import BaseModel
 
+from src.constants import OUTPUT_DIR
 from .session import SessionStatus, get_session_or_404
 
 router = APIRouter(prefix="/sessions", tags=["files"])
-
-OUTPUT_DIR = Path("outputs")
 
 MIME_TYPES: dict[str, str] = {
     ".pptx": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
