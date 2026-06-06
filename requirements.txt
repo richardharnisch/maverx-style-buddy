@@ -1,0 +1,6 @@
+openai          # openrouter is openai-compatible
+python-pptx
+pydantic
+pyyaml
+python-dotenv
+rich            # cli output
