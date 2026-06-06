@@ -37,7 +37,9 @@ templates you are considering or debugging.
    - Use `22-break-time` for `slide_type: "break"`.
    - Use `20-hand-out-slide` for `slide_type: "handout"`.
    - Use `23-debrief` for debrief/consolidation moments.
-   - Use content templates by didactic intent, not by visual preference.
+   - Use content templates by didactic intent and content density, not by visual preference.
+   - Prefer templates that can comfortably carry 3-5 short statements when the lesson-plan item has enough substance.
+   - Use intentionally sparse templates such as `18-section-title` or `21-big-question` only when the slide is genuinely a reset, prompt, or transition.
 4. Source or generate external images when a chosen template needs a more
    relevant image. Store them under the output folder, then replace image
    placeholders carefully while preserving template geometry. If image
@@ -73,8 +75,14 @@ pdftoppm -png -r 130 path/to/render_dir/deck.pdf path/to/render_dir/slide
 - Preserve template logos, footers, social icons, margins, brand colors,
   typography, and image treatments.
 - Do not treat template preview PNGs as editable assets; they are references.
-- Keep slide text short. Prefer the `key_message` and the strongest
-  `suggested_content` items over dumping all lesson-plan text onto a slide.
+- Fill the chosen layout comfortably. Aim to use most of the slide's intended
+  text regions without creating clutter or unreadable density.
+- Avoid one-line content slides unless the template is intentionally sparse and
+  the slide is serving as a title, reset, big question, break, or debrief.
+- Prefer the `key_message`, `learning_purpose`, and strongest
+  `suggested_content` items over dumping full lesson-plan text onto a slide.
+- If a chosen template would leave most of the slide empty, switch to a denser
+  template or rewrite the on-slide copy so the available regions are used well.
 - Use the lesson-plan `reliability` object in speaker notes so trainers know
   what needs review.
 - Every final slide must have trainer-ready speaker notes with:
