@@ -17,6 +17,7 @@ build/
 # output files
 outputs/
 *.pptx
+!.agents/skills/maverx-presentation-builder/assets/slides/*.pptx
 
 # editor
 .vscode/
@@ -27,4 +28,3 @@ outputs/
 # os
 .DS_Store
 Thumbs.db
-

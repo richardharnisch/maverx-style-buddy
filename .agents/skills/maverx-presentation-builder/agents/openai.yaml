@@ -1,0 +1,4 @@
+interface:
+  display_name: "Maverx Presentation Builder"
+  short_description: "Build Maverx decks and docs."
+  default_prompt: "Create Maverx presentation artifacts from this lesson_plan.json."
