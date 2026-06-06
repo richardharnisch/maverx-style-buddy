@@ -1,0 +1,406 @@
+{
+  "schema_version": "1.0",
+  "training": {
+    "slug": "prompt-engineering-basics",
+    "title": "Prompt Engineering Basics for Tech Consultants",
+    "scope": "single_session",
+    "total_sessions": 1,
+    "total_minutes": 60
+  },
+  "intake_summary": {
+    "topic": "Prompt engineering",
+    "audience": "Junior to mid-level tech consultants with no prior AI experience",
+    "knowledge_level": "mixed",
+    "duration": {
+      "sessions": 1,
+      "minutes_per_session": 60
+    },
+    "primary_objective": "Participants should understand the basic concept of prompt engineering and use a handful of broad techniques to improve generative AI output.",
+    "case_sector": "Technology consulting client work",
+    "tools": [
+      "Tool-agnostic chat-based generative AI assistant"
+    ],
+    "prep_time_minutes_per_session": 10,
+    "include_handouts": true,
+    "handout_time_minutes_per_session": 10
+  },
+  "research_evidence": [
+    {
+      "source_title": "OpenAI Help Center: How to prompt ChatGPT",
+      "source_url": "https://help.openai.com/en/articles/6654000-how-to-prompt-chatgpt",
+      "source_type": "official",
+      "key_takeaway": "Effective prompts benefit from clear instructions, examples, desired output length or format, and explicit guidance on what to do instead of only what to avoid.",
+      "used_for": "Theory block techniques and the weak-versus-strong prompt comparison.",
+      "evidence_strength": "high"
+    },
+    {
+      "source_title": "OpenAI Platform Documentation: Prompt engineering",
+      "source_url": "https://platform.openai.com/docs/guides/prompt-engineering",
+      "source_type": "official",
+      "key_takeaway": "For complex tasks, prompts are improved by decomposing the task, supplying relevant context, giving models time or structure to reason, and testing changes systematically.",
+      "used_for": "Sequencing from concept to structured prompt patterns and reliability scoring for advanced techniques.",
+      "evidence_strength": "high"
+    },
+    {
+      "source_title": "Google Cloud: Prompt engineering overview",
+      "source_url": "https://cloud.google.com/discover/what-is-prompt-engineering",
+      "source_type": "official",
+      "key_takeaway": "Prompt engineering is the practice of designing inputs that help generative AI systems produce more relevant and useful outputs for the user's task.",
+      "used_for": "Definition and framing for beginners in the kick-off and theory blocks.",
+      "evidence_strength": "high"
+    },
+    {
+      "source_title": "Microsoft Learn: Prompt engineering techniques",
+      "source_url": "https://learn.microsoft.com/en-us/azure/ai-services/openai/concepts/prompt-engineering",
+      "source_type": "official",
+      "key_takeaway": "Common practical techniques include assigning a role, providing task instructions, adding context, using examples, and specifying response format.",
+      "used_for": "Technique list, consultant scenario examples, and group exercise checklist.",
+      "evidence_strength": "high"
+    }
+  ],
+  "programme_learning_outcomes": [
+    "Explain prompt engineering as a practical method for improving generative AI outputs.",
+    "Diagnose why a vague prompt produces weak, generic, or unusable output.",
+    "Improve a prompt by adding task, context, role, constraints, examples, and output format.",
+    "Evaluate generated output against the intended consulting use case and iterate the prompt."
+  ],
+  "sessions": [
+    {
+      "session_n": 1,
+      "title": "Prompt Engineering Basics",
+      "duration_min": 60,
+      "brief_for_trainer": {
+        "session_purpose": "Give consultants a practical first toolkit for using prompt engineering to get more useful AI-generated outputs in consulting tasks.",
+        "intended_skills": [
+          "Prompt diagnosis",
+          "Prompt structuring",
+          "Context selection",
+          "Output evaluation",
+          "Iterative refinement"
+        ],
+        "learning_outcomes": [
+          "Participants can describe what prompt engineering changes in an AI interaction.",
+          "Participants can identify missing task, context, constraint, or format information in a weak prompt.",
+          "Participants can rewrite a weak consulting prompt using several broad prompt-improvement techniques.",
+          "Participants can compare two generated outputs and decide which prompt change likely improved the result."
+        ]
+      },
+      "pre_bite": {
+        "purpose": "Prime participants to notice how prompt specificity changes output quality.",
+        "time_min": 10,
+        "participant_task": "Before the session, write down one work task where you might ask a generative AI assistant for help and note what a good answer would need to include.",
+        "resources": [
+          {
+            "title": "OpenAI Help Center: How to prompt ChatGPT",
+            "url_or_reference": "https://help.openai.com/en/articles/6654000-how-to-prompt-chatgpt",
+            "why_it_is_included": "Provides accessible beginner guidance on clear instructions, examples, and output formats."
+          }
+        ]
+      },
+      "didactic_arc": [
+        {
+          "block": "kick-off",
+          "time_min": 6,
+          "learning_purpose": "Create relevance and define what participants will be able to do in one hour.",
+          "trainer_actions": [
+            "State the session objective in practical consulting language.",
+            "Ask participants to name one task from their pre-bite where output quality matters.",
+            "Surface the difference between using AI as a search box and using it as a task partner with instructions."
+          ],
+          "participant_actions": [
+            "Share one candidate work task with a partner or table group.",
+            "Identify what would make an AI-generated answer usable for that task."
+          ],
+          "content_outline": [
+            "Prompt engineering is about shaping instructions and context to improve usefulness, relevance, and format.",
+            "The session focuses on broad reusable techniques rather than one specific AI tool.",
+            "The output of the session is a rewritten prompt and a simple evaluation habit."
+          ],
+          "learning_check": "Participants can give one sentence on why a vague prompt creates risk in consulting work."
+        },
+        {
+          "block": "theory",
+          "time_min": 22,
+          "learning_purpose": "Teach the core concepts and techniques needed to improve basic prompts.",
+          "trainer_actions": [
+            "Define prompt engineering and relate it to instructions, context, constraints, and evaluation.",
+            "Introduce a simple prompt structure: task, role, context, constraints, output format, examples, and success criteria.",
+            "Explain why models often need task boundaries, relevant background, and a clear target format.",
+            "Discuss common beginner mistakes: vague verbs, hidden assumptions, missing audience, missing format, and accepting the first answer uncritically."
+          ],
+          "participant_actions": [
+            "Map each prompt component to a consulting deliverable such as an email, analysis summary, meeting agenda, or requirements draft.",
+            "Mark which components are missing from a short weak prompt shown by the trainer."
+          ],
+          "content_outline": [
+            "Technique 1: clarify the task and audience.",
+            "Technique 2: add relevant context without dumping irrelevant information.",
+            "Technique 3: set role, constraints, and success criteria.",
+            "Technique 4: specify output format and level of detail.",
+            "Technique 5: provide examples or patterns when the target style is hard to infer.",
+            "Technique 6: iterate and evaluate the output instead of treating the first response as final."
+          ],
+          "learning_check": "Participants label missing prompt components in a weak prompt and explain the likely output problem."
+        },
+        {
+          "block": "example",
+          "time_min": 10,
+          "learning_purpose": "Make the theory concrete through a realistic consulting prompt transformation.",
+          "trainer_actions": [
+            "Show a weak prompt for a consultant task, such as drafting client discovery questions for a data platform migration.",
+            "Walk through how to add task, audience, context, constraints, output format, and evaluation criteria.",
+            "Compare expected differences between the weak and improved prompt outputs."
+          ],
+          "participant_actions": [
+            "Identify which prompt additions are most likely to improve relevance.",
+            "Predict what failure mode remains even after the prompt is improved."
+          ],
+          "content_outline": [
+            "Weak prompt: ask for generic discovery questions with no client context or output format.",
+            "Improved prompt: specify consultant role, client situation, stakeholder audience, constraints, desired categories, and concise output format.",
+            "Evaluation habit: check whether the answer fits the task, audience, constraints, and next action."
+          ],
+          "learning_check": "Participants name two concrete changes that make the improved prompt more useful than the weak version."
+        },
+        {
+          "block": "exercise",
+          "time_min": 17,
+          "learning_purpose": "Have participants actively apply the prompt-improvement techniques to a work-relevant scenario.",
+          "trainer_actions": [
+            "Distribute the group exercise sheet and assign small groups.",
+            "Ask groups to diagnose the weak prompt before rewriting it.",
+            "Facilitate a short comparison of rewritten prompts and ask groups to explain their design choices.",
+            "Debrief using the prompt component checklist."
+          ],
+          "participant_actions": [
+            "Use the exercise sheet to identify missing prompt components.",
+            "Rewrite the prompt using at least four broad techniques from the theory block.",
+            "State how the group would evaluate whether the generated output is good enough for client work."
+          ],
+          "content_outline": [
+            "Group task: improve a vague consulting prompt into a structured prompt.",
+            "Required output: rewritten prompt plus a short evaluation checklist.",
+            "Debrief focus: which added context matters, which constraints reduce ambiguity, and what still requires human judgement."
+          ],
+          "learning_check": "Each group produces a rewritten prompt that includes task, context, constraints, output format, and evaluation criteria."
+        },
+        {
+          "block": "wrap-up",
+          "time_min": 5,
+          "learning_purpose": "Consolidate the prompt-engineering toolkit and connect it to post-session application.",
+          "trainer_actions": [
+            "Summarize the reusable prompt structure.",
+            "Ask participants to choose one prompt technique they will use first in client or internal work.",
+            "Assign the post-bite follow-up task."
+          ],
+          "participant_actions": [
+            "Write one personal action for applying the prompt checklist.",
+            "Note one type of AI output that should always be reviewed by a human before client use."
+          ],
+          "content_outline": [
+            "Prompt engineering is an iterative workflow: instruct, contextualize, constrain, format, test, and refine.",
+            "Better prompts reduce ambiguity but do not remove responsibility for human review.",
+            "The post-bite transfers the method to a real participant task."
+          ],
+          "learning_check": "Participants can name the six-part prompt checklist and one review habit."
+        }
+      ],
+      "deck_outline": [
+        {
+          "slide_n": 1,
+          "didactic_block": "kick-off",
+          "title": "Why Prompt Engineering Matters",
+          "learning_purpose": "Anchor the session in consultant work where output quality affects usefulness.",
+          "key_message": "A prompt is not just a question; it is a work instruction for producing a useful output.",
+          "suggested_content": [
+            "Session objective and expected participant output",
+            "Examples of consultant tasks where better prompts matter",
+            "Contrast between vague request and purposeful instruction"
+          ],
+          "reliability": {
+            "score": 0.91,
+            "rationale": "The framing is grounded in official prompt guidance and directly matches the user's stated audience and objective.",
+            "review_priority": "low"
+          }
+        },
+        {
+          "slide_n": 2,
+          "didactic_block": "kick-off",
+          "title": "The One-Hour Goal",
+          "learning_purpose": "Set clear expectations for what participants will learn and practice.",
+          "key_message": "By the end, participants will diagnose weak prompts, rewrite them, and evaluate the result.",
+          "suggested_content": [
+            "Learning outcomes for the session",
+            "Five-block session arc",
+            "Group exercise output"
+          ],
+          "reliability": {
+            "score": 0.95,
+            "rationale": "This content is based on the validated intake and Maverx didactic structure.",
+            "review_priority": "low"
+          }
+        },
+        {
+          "slide_n": 3,
+          "didactic_block": "theory",
+          "title": "What Prompt Engineering Is",
+          "learning_purpose": "Give beginners a practical definition without tool-specific detail.",
+          "key_message": "Prompt engineering is designing instructions and context so a generative AI system can produce a more relevant output.",
+          "suggested_content": [
+            "Simple definition",
+            "Relationship between prompt, model response, and human review",
+            "Why vague prompts produce generic answers"
+          ],
+          "reliability": {
+            "score": 0.94,
+            "rationale": "The definition is supported by official OpenAI and Google Cloud guidance and is stable at beginner level.",
+            "review_priority": "low"
+          }
+        },
+        {
+          "slide_n": 4,
+          "didactic_block": "theory",
+          "title": "The Prompt Checklist",
+          "learning_purpose": "Introduce a reusable structure participants can apply immediately.",
+          "key_message": "Strong prompts usually specify task, role, context, constraints, output format, examples, and success criteria.",
+          "suggested_content": [
+            "Task and audience",
+            "Role and context",
+            "Constraints and output format",
+            "Examples and success criteria"
+          ],
+          "reliability": {
+            "score": 0.9,
+            "rationale": "The checklist synthesizes recurring recommendations across official OpenAI, Microsoft, and Google sources.",
+            "review_priority": "low"
+          }
+        },
+        {
+          "slide_n": 5,
+          "didactic_block": "theory",
+          "title": "Common Beginner Failure Modes",
+          "learning_purpose": "Help participants diagnose why a prompt underperforms.",
+          "key_message": "Weak prompts often hide the real task, audience, constraints, or quality criteria.",
+          "suggested_content": [
+            "Vague verbs and missing deliverable",
+            "Hidden client context",
+            "No target audience or level of detail",
+            "No required format or review criteria"
+          ],
+          "reliability": {
+            "score": 0.84,
+            "rationale": "The failure modes are a practical synthesis of prompt guidance and consulting experience, so trainer calibration is useful.",
+            "review_priority": "medium"
+          }
+        },
+        {
+          "slide_n": 6,
+          "didactic_block": "example",
+          "title": "Worked Example: Discovery Questions",
+          "learning_purpose": "Show how the checklist changes a realistic consulting prompt.",
+          "key_message": "Adding context, constraints, and output format turns a generic request into a task-ready prompt.",
+          "suggested_content": [
+            "Weak prompt for client discovery questions",
+            "Prompt diagnosis using the checklist",
+            "Improved prompt with role, context, constraints, and output format",
+            "Expected improvement in relevance and usability"
+          ],
+          "reliability": {
+            "score": 0.78,
+            "rationale": "The example is realistic for tech consulting but should be adapted to the trainer's client context.",
+            "review_priority": "medium"
+          }
+        },
+        {
+          "slide_n": 7,
+          "didactic_block": "exercise",
+          "title": "Group Exercise: Rewrite the Prompt",
+          "learning_purpose": "Move participants from recognition to active prompt improvement.",
+          "key_message": "The technique becomes useful when participants can apply it to a messy, underspecified work task.",
+          "suggested_content": [
+            "Exercise objective",
+            "Group output requirements",
+            "Prompt component checklist",
+            "Evaluation question for the generated output"
+          ],
+          "reliability": {
+            "score": 0.88,
+            "rationale": "The exercise directly reinforces the theory block and follows established active-learning practice.",
+            "review_priority": "low"
+          }
+        },
+        {
+          "slide_n": 8,
+          "didactic_block": "exercise",
+          "title": "Debrief: What Changed the Output",
+          "learning_purpose": "Help participants connect prompt edits to likely output improvements.",
+          "key_message": "Good prompt edits are intentional: each added instruction should reduce ambiguity or improve evaluation.",
+          "suggested_content": [
+            "Compare group prompt rewrites",
+            "Identify the highest-impact prompt additions",
+            "Discuss remaining risks and need for human review"
+          ],
+          "reliability": {
+            "score": 0.82,
+            "rationale": "The debrief logic is grounded in prompt iteration guidance, but exact discussion quality depends on participant outputs.",
+            "review_priority": "medium"
+          }
+        },
+        {
+          "slide_n": 9,
+          "didactic_block": "wrap-up",
+          "title": "Use the Checklist, Then Review",
+          "learning_purpose": "Consolidate the toolkit and reinforce responsible use.",
+          "key_message": "Prompt engineering improves output quality, but consultants still need to review accuracy, relevance, and client fit.",
+          "suggested_content": [
+            "Six-part prompt checklist recap",
+            "One review habit before using AI output in work",
+            "Post-bite assignment"
+          ],
+          "reliability": {
+            "score": 0.9,
+            "rationale": "The recap is based on official prompting guidance and a stable human-review principle for consulting work.",
+            "review_priority": "low"
+          }
+        }
+      ],
+      "handout": {
+        "time_budget_min": 10,
+        "purpose": "Guide small groups through diagnosing and improving a weak consulting prompt.",
+        "activities": [
+          {
+            "activity_title": "Prompt Rewrite Sprint",
+            "instructions": [
+              "Read the weak prompt and underline missing task, context, constraint, format, or success-criteria information.",
+              "Rewrite the prompt so it includes at least four checklist components.",
+              "Add a two- or three-point evaluation checklist for deciding whether the generated output is usable.",
+              "Prepare to explain which prompt addition would most improve the output."
+            ],
+            "participant_output": "A rewritten prompt and a short output evaluation checklist."
+          }
+        ]
+      },
+      "post_bite": {
+        "purpose": "Transfer the prompt-engineering method to a real participant work task.",
+        "time_min": 10,
+        "participant_task": "Take the work task you identified before the session, write a structured prompt using the checklist, and note one change you would make after reviewing the first generated answer.",
+        "resources": [
+          {
+            "title": "OpenAI Platform Documentation: Prompt engineering",
+            "url_or_reference": "https://platform.openai.com/docs/guides/prompt-engineering",
+            "why_it_is_included": "Provides additional official guidance for participants who want to deepen their prompting practice after the session."
+          }
+        ]
+      }
+    }
+  ],
+  "validation": {
+    "schema_validated": true,
+    "didactic_arc_verified": true,
+    "timing_verified": true,
+    "research_used": true,
+    "issues": [
+      "Trainer should adapt the worked example to the participants' consulting domain if a more specific client context is known."
+    ]
+  }
+}
