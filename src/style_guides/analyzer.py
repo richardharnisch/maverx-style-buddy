@@ -80,13 +80,12 @@ def _alignment_name(para) -> str | None:
     return None
 
 
-def _apply_group_transform(shape, group) -> tuple[int, int, int, int]:
-    """Convert a shape's position from its parent group's internal space to slide space.
+def _apply_group_transform_raw(left: int, top: int, width: int, height: int, group) -> tuple[int, int, int, int]:
+    """Map raw (left, top, width, height) from a group's internal coord space to its parent's space.
 
-    PPTX groups use a separate coordinate system: grpSpPr.xfrm defines the mapping
-    between the group's internal child coordinates (chOff/chExt) and the slide-space
-    bounding box (off/ext). Formula:
-        slide_x = off_x + (child_x - chOff_x) * (ext_cx / chExt_cx)
+    PPTX groups define a mapping via grpSpPr.xfrm: chOff/chExt are the group's internal
+    origin/extent, off/ext are the bounding box in the parent's space.
+        parent_x = off_x + (child_x - chOff_x) * (ext_cx / chExt_cx)
     """
     from pptx.oxml.ns import qn as _qn
     try:
@@ -98,7 +97,7 @@ def _apply_group_transform(shape, group) -> tuple[int, int, int, int]:
         grpSpPr = group._element.find(_qn("p:grpSpPr"))
         xfrm = grpSpPr.find(_qn("a:xfrm")) if grpSpPr is not None else None
         if xfrm is None:
-            return int(shape.left or 0), int(shape.top or 0), int(shape.width or 0), int(shape.height or 0)
+            return left, top, width, height
 
         chOff = xfrm.find(_qn("a:chOff"))
         chExt = xfrm.find(_qn("a:chExt"))
@@ -110,30 +109,40 @@ def _apply_group_transform(shape, group) -> tuple[int, int, int, int]:
         sx = g_width / ch_cx if ch_cx else 1.0
         sy = g_height / ch_cy if ch_cy else 1.0
 
-        s_left = int(shape.left or 0)
-        s_top = int(shape.top or 0)
-        s_width = int(shape.width or 0)
-        s_height = int(shape.height or 0)
-
         return (
-            int(g_left + (s_left - ch_x) * sx),
-            int(g_top + (s_top - ch_y) * sy),
-            int(s_width * sx),
-            int(s_height * sy),
+            int(g_left + (left - ch_x) * sx),
+            int(g_top + (top - ch_y) * sy),
+            int(width * sx),
+            int(height * sy),
         )
     except Exception:
-        return int(shape.left or 0), int(shape.top or 0), int(shape.width or 0), int(shape.height or 0)
+        return left, top, width, height
 
 
 def _iter_shapes(slide):
-    """Yield (shape, parent_group_or_None) for all shapes, recursing one level into groups."""
-    for shape in slide.shapes:
-        if int(shape.shape_type) == 6:  # GROUP
-            for child in shape.shapes:
-                if int(child.shape_type) != 6:  # don't recurse into nested groups
-                    yield child, shape
-        else:
-            yield shape, None
+    """Yield (shape, group_chain) for every non-group shape, recursing fully into nested groups.
+
+    group_chain is ordered outermost→innermost. Use _resolve_slide_coords() to convert
+    the shape's local coordinates to slide space.
+    """
+    def _recurse(shapes, chain):
+        for shape in shapes:
+            if int(shape.shape_type) == 6:  # GROUP
+                yield from _recurse(shape.shapes, chain + [shape])
+            else:
+                yield shape, chain
+    yield from _recurse(slide.shapes, [])
+
+
+def _resolve_slide_coords(shape, group_chain) -> tuple[int, int, int, int]:
+    """Return (left, top, width, height) in slide space, applying all group transforms."""
+    left = int(shape.left or 0)
+    top = int(shape.top or 0)
+    width = int(shape.width or 0)
+    height = int(shape.height or 0)
+    for group in reversed(group_chain):   # innermost first
+        left, top, width, height = _apply_group_transform_raw(left, top, width, height, group)
+    return left, top, width, height
 
 
 def _detect_arrowhead(shape) -> bool:
@@ -199,11 +208,11 @@ def _extract_auto_shape_style(shape) -> dict:
 def _extract_text_areas(slide) -> list[dict]:
     """Return raw dicts for TEXT_BOX and text-bearing AUTO_SHAPE on the slide.
 
-    Recurses one level into GROUP shapes (via _iter_shapes), applying the correct
-    coordinate transform so positions are always in slide space.
+    Recurses fully into nested GROUP shapes (via _iter_shapes), applying the correct
+    coordinate transforms so positions are always in slide space.
     """
     areas = []
-    for shape, parent_group in _iter_shapes(slide):
+    for shape, group_chain in _iter_shapes(slide):
         is_textbox = shape.shape_type == MSO_SHAPE_TYPE.TEXT_BOX
         is_auto = shape.shape_type == MSO_SHAPE_TYPE.AUTO_SHAPE
         if not (is_textbox or is_auto):
@@ -238,13 +247,7 @@ def _extract_text_areas(slide) -> list[dict]:
         except Exception:
             pass
 
-        if parent_group is not None:
-            left, top, width, height = _apply_group_transform(shape, parent_group)
-        else:
-            left = int(shape.left or 0)
-            top = int(shape.top or 0)
-            width = int(shape.width or 0)
-            height = int(shape.height or 0)
+        left, top, width, height = _resolve_slide_coords(shape, group_chain)
 
         style = _extract_auto_shape_style(shape) if is_auto else {"shape_preset": None, "bg_color": None, "corner_radius": None}
 
@@ -268,12 +271,13 @@ def _extract_text_areas(slide) -> list[dict]:
 
 
 def _extract_decorative_shapes(slide, W: int, H: int, captured_names: set) -> list[dict]:
-    """Extract non-text, non-image decorative shapes (incl. arrows), recursing into groups."""
+    """Extract non-text, non-image decorative shapes (incl. arrows), recursing into all nested groups."""
     _DECO_TYPES = {MSO_SHAPE_TYPE.AUTO_SHAPE, MSO_SHAPE_TYPE.LINE, MSO_SHAPE_TYPE.FREEFORM}
-    min_area = W * H * 0.003  # ignore shapes smaller than 0.3% of slide
+    # 0.1% threshold — small enough to catch decorative circles/dots, large enough to skip sub-pixel noise
+    min_area = W * H * 0.001
 
     shapes = []
-    for shape, parent_group in _iter_shapes(slide):
+    for shape, group_chain in _iter_shapes(slide):
         st = shape.shape_type
         if int(st) == 19:  # TABLE — handled separately
             continue
@@ -289,14 +293,8 @@ def _extract_decorative_shapes(slide, W: int, H: int, captured_names: set) -> li
         except Exception:
             pass
 
-        # Resolve slide-space coordinates
-        if parent_group is not None:
-            left, top, width, height = _apply_group_transform(shape, parent_group)
-        else:
-            left = int(shape.left or 0)
-            top = int(shape.top or 0)
-            width = int(shape.width or 0)
-            height = int(shape.height or 0)
+        # Resolve slide-space coordinates through full group chain
+        left, top, width, height = _resolve_slide_coords(shape, group_chain)
 
         if width * height < min_area and st != MSO_SHAPE_TYPE.LINE:
             continue
@@ -313,13 +311,17 @@ def _extract_decorative_shapes(slide, W: int, H: int, captured_names: set) -> li
         except Exception:
             pass
 
-        # Fill color
+        # Fill color — track has_fill separately so scheme-color fills don't discard the shape
         fill_color = None
+        has_fill = False
         try:
-            if shape.fill.type is not None:
+            ft = shape.fill.type
+            # PP_FILL.BACKGROUND (5) = noFill / transparent — not a real fill
+            if ft is not None and int(ft) != 5:
+                has_fill = True
                 fill_color = f"#{shape.fill.fore_color.rgb}"
         except Exception:
-            pass
+            pass  # fill_color stays None; has_fill may already be True from the line above
 
         # Border
         border_color = border_pt = None
@@ -332,8 +334,8 @@ def _extract_decorative_shapes(slide, W: int, H: int, captured_names: set) -> li
         except Exception:
             pass
 
-        # Skip invisible shapes (no fill, no visible border)
-        if fill_color is None and border_color is None and not _detect_arrowhead(shape):
+        # Skip shapes with no visible attributes at all
+        if not has_fill and border_color is None and not _detect_arrowhead(shape):
             continue
 
         # Corner radius

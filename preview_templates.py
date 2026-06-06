@@ -37,7 +37,7 @@ def filler_for(template):
 
 
 def main():
-    guide = load_style_guide("maverx")
+    guide = load_style_guide("updated_maverx")
     templates = load_slide_templates(guide)
 
     if not templates:

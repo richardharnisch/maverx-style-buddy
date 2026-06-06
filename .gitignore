@@ -28,3 +28,5 @@ outputs/
 # os
 .DS_Store
 Thumbs.db
+
+/style_guides

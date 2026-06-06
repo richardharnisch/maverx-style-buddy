@@ -9,7 +9,7 @@ from src.skills.registry import SkillRegistry
 
 log = logging.getLogger(__name__)
 
-MAX_ITERATIONS = 20
+MAX_ITERATIONS = 40
 
 SYSTEM_PROMPT = (
     "You are an AI assistant that creates PowerPoint presentations based on branded style guides.\n\n"
@@ -18,7 +18,16 @@ SYSTEM_PROMPT = (
     "2. Call list_layouts to discover all available layout keys and their descriptions. Read them carefully.\n"
     "3. Optionally call list_images if the presentation would benefit from photos or icons.\n"
     "4. Call add_slide for each slide.\n"
-    "5. Call export_pptx to save the finished file.\n\n"
+    "5. Call render_slides to get PNG images of every slide. Review each carefully for:\n"
+    "   - Text cut off or overflowing outside the slide boundary\n"
+    "   - Text areas that are empty but should have content\n"
+    "   - Layout choices that don't match the content (e.g. two-column layout with only one column filled)\n"
+    "   - Slides that look visually weak or sparse compared to others in the deck\n"
+    "6. For any slide that needs improvement, call update_slide with corrected content.\n"
+    "   You may change the layout key if a different layout suits the content better.\n"
+    "7. After making updates, call render_slides again to verify the changes look correct.\n"
+    "8. Repeat steps 6–7 until satisfied. Aim for 1–2 rounds; stop after 3 at most.\n"
+    "9. Call export_pptx to finalise and save the presentation.\n\n"
     "Layout selection rules — follow these strictly:\n"
     "- VARY your layout choices across slides. A deck with 6 slides should use at least 3-4 different layouts.\n"
     "- Match the layout's visual style to the slide's purpose:\n"
@@ -88,14 +97,29 @@ class AgentLoop:
                     args = json.loads(tc.function.arguments)
                     log.info("Tool call: %s(%s)", tc.function.name, json.dumps(args))
                     result = self.registry.dispatch(tc.function.name, args)
-                    log.debug("Tool result: %s", json.dumps(result))
-                    messages.append(
-                        {
-                            "role": "tool",
-                            "tool_call_id": tc.id,
-                            "content": json.dumps(result),
-                        }
-                    )
+
+                    # render_slides returns base64 images — build a multimodal tool message
+                    if tc.function.name == "render_slides" and "slides" in result:
+                        log.debug("render_slides: %d slide image(s) received", result.get("count", 0))
+                        content: list[dict] = [
+                            {"type": "text", "text": f"Rendered {result['count']} slide(s). Review each carefully:"}
+                        ]
+                        for s in result["slides"]:
+                            content.append({"type": "text", "text": f"Slide {s['index'] + 1}:"})
+                            content.append({
+                                "type": "image_url",
+                                "image_url": {"url": f"data:image/png;base64,{s['image_b64']}"},
+                            })
+                        messages.append({"role": "tool", "tool_call_id": tc.id, "content": content})
+                    else:
+                        log.debug("Tool result: %s", json.dumps(result))
+                        messages.append(
+                            {
+                                "role": "tool",
+                                "tool_call_id": tc.id,
+                                "content": json.dumps(result),
+                            }
+                        )
             else:
                 log.info("Agent finished after %d iteration(s)", iteration + 1)
                 return choice.message.content or ""
