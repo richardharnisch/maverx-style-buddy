@@ -369,6 +369,8 @@ def fill_timeline(slide, item: dict[str, Any]) -> None:
 def fill_break(slide, item: dict[str, Any]) -> None:
     message = item.get("message", "Break time!")
     duration = item.get("duration_min")
+    if re.search(r"\b\d+\s*minutes?\b", message, flags=re.IGNORECASE):
+        message = "Break time!"
     set_text(
         first_text_shapes(slide)[0],
         [message, f"{duration} minutes"],
@@ -396,11 +398,13 @@ def fill_handout(slide, item: dict[str, Any]) -> None:
 
 
 def fill_debrief(slide, item: dict[str, Any]) -> None:
+    title = item.get("title", "Debrief")
+    size = 29 if len(title) > 34 else 33
     set_text(
         first_text_shapes(slide)[0],
-        item.get("title", "Debrief"),
+        title,
         font="Space Grotesk",
-        size=33,
+        size=size,
         color=OFF_WHITE,
         bold=True,
     )

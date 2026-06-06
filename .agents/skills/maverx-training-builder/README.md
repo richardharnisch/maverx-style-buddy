@@ -62,6 +62,7 @@ This skill does not:
 - `prompts/system_lesson_plan.md`: normalized JSON drafting contract
 - `schemas/intake.schema.json`: intake validation
 - `schemas/lesson_plan.schema.json`: final output validation
+- `scripts/validate_lesson_plan.py`: dynamic validation for timing, slide density, didactic order, and reliability fields
 - `references/didactic_model.md`: Maverx didactic model
 - `references/qa_checklist.md`: manual validation checklist
 
@@ -72,5 +73,7 @@ The final response should state whether JSON Schema validation was completed. If
 Recommended local validation, when a JSON file exists:
 
 ```bash
-uv run python -m jsonschema -i .agents/skills/maverx-training-builder/out/<slug>/lesson_plan.json .agents/skills/maverx-training-builder/schemas/lesson_plan.schema.json
+uv run --with jsonschema python .agents/skills/maverx-training-builder/scripts/validate_lesson_plan.py \
+  .agents/skills/maverx-training-builder/out/<slug>/lesson_plan.json \
+  --schema .agents/skills/maverx-training-builder/schemas/lesson_plan.schema.json
 ```

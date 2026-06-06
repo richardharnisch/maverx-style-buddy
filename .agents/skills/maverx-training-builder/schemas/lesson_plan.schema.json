@@ -129,6 +129,7 @@
         "schema_validated",
         "didactic_arc_verified",
         "timing_verified",
+        "slide_density_verified",
         "research_used",
         "issues"
       ],
@@ -137,6 +138,7 @@
         "schema_validated": { "type": "boolean" },
         "didactic_arc_verified": { "type": "boolean" },
         "timing_verified": { "type": "boolean" },
+        "slide_density_verified": { "type": "boolean" },
         "research_used": { "type": "boolean" },
         "issues": {
           "type": "array",
@@ -196,7 +198,7 @@
         },
         "deck_outline": {
           "type": "array",
-          "minItems": 5,
+          "minItems": 10,
           "items": { "$ref": "#/definitions/deck_item" }
         },
         "handout": {

@@ -28,6 +28,10 @@ Slide outline rules:
 - Content slides use `slide_type: "content"` and include slide number, didactic block, title, learning purpose, key message, suggested content, and reliability.
 - Break slides use `slide_type: "break"` and include slide number, message, duration in minutes, and reliability. The message should state that this is a break and how long the break lasts.
 - Handout slides use `slide_type: "handout"` and include slide number, `didactic_block: "exercise"`, message, time budget in minutes, and reliability. The message is shown while participants work on the handout. The handout slide time budget is part of the exercise block, not extra time outside the didactic arc.
+- Deck outlines must scale with session duration. For each session, compute `minimum_teach_work_slides = ceil(duration_min / 3)`.
+- The session must contain at least `minimum_teach_work_slides` non-break deck outline items. Count content slides and handout slides. Do not count break slides. Example: a 60-minute session needs at least 20 non-break deck outline items.
+- Allocate slide items across kick-off, theory, example, exercise, and wrap-up according to each block's time budget. Split longer blocks into several focused slide items with distinct learning purposes, examples, misconceptions, checks, or exercise steps.
+- Do not reuse a generic 8-slide session skeleton. Multi-session programmes should vary slide titles, sequence details, examples, participant outputs, and checks according to the objective of each session.
 - Forbidden fields: layout, template, master, visual placement, colours, fonts, shapes, speaker note formatting.
 
 Reliability scoring:
@@ -44,5 +48,7 @@ Before returning:
 - verify every slide has a reliability score and rationale
 - verify break slides are present when `include_breaks` is true
 - verify handout slides are present when `include_handouts` is true
+- verify every session has at least `ceil(duration_min / 3)` non-break deck outline items and set `validation.slide_density_verified` accordingly
+- the agent host must run `scripts/validate_lesson_plan.py` before accepting the file
 
 The final JSON must be written to a file by the agent host. Do not paste the JSON into chat unless the user explicitly asks for inline JSON.

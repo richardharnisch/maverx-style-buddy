@@ -21,6 +21,7 @@
 ## Lesson Plan JSON
 
 - [ ] Output validates against `schemas/lesson_plan.schema.json`.
+- [ ] `scripts/validate_lesson_plan.py` passes for schema checks and dynamic checks.
 - [ ] There is exactly one master JSON object for the training.
 - [ ] The JSON object is written to `out/<slug>/lesson_plan.json`.
 - [ ] The JSON object is not pasted into chat unless explicitly requested.
@@ -38,6 +39,10 @@
 ## Session Requirements
 
 - [ ] Every session has a didactic deck outline.
+- [ ] Every session has at least `ceil(duration_min / 3)` non-break deck outline items.
+- [ ] Break slides are excluded from the slide-density count.
+- [ ] Long theory, example, and exercise blocks are split into multiple focused deck outline items rather than one generic slide.
+- [ ] Multi-session programmes do not repeat the same 8-slide structure across sessions.
 - [ ] Every session has a pre-bite.
 - [ ] Every session has a post-bite.
 - [ ] Every session has a trainer brief with intended skills and learning outcomes.

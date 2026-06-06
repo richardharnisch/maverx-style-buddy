@@ -77,13 +77,27 @@ Each session must include:
 - a trainer brief listing intended skills and learning outcomes
 - per-slide reliability scoring so the trainer can review weak or uncertain content
 
+Deck outlines must scale with session duration. For each session, compute `minimum_teach_work_slides = ceil(duration_min / 3)`. The session's `deck_outline` must contain at least that many non-break items. Count `slide_type: "content"` items and `slide_type: "handout"` items toward this minimum; do not count `slide_type: "break"` items. A 60-minute session therefore needs at least 20 non-break deck outline items. Do not reuse a generic 8-slide skeleton for longer sessions.
+
+Distribute the deck outline across the five didactic blocks according to their time budgets. A longer theory, example, or exercise block should be split into several focused slide items with distinct learning purposes, not one broad slide. Avoid repeating the same slide pattern in every session; vary titles, examples, checks, misconceptions, prompts, and exercise steps to match the session objective and research evidence.
+
 Each session may include a handout plan with brainstorm questions or exercise prompts, but only if the user requested handouts. When handouts are included, the deck outline must include a `slide_type: "handout"` item during the exercise block. This slide is a placeholder for the predefined handout-work layout; include only the message to show participants and the time budget. The handout slide time budget is part of the exercise block, not extra time outside the didactic arc.
 
 If breaks are included, the deck outline must include one or more `slide_type: "break"` items. A break slide is not a didactic block. It should only state that it is a break and how long the break lasts.
 
 ### 4. Verify Before Responding
 
-Validate the final JSON against `schemas/lesson_plan.schema.json` using a JSON Schema validator available in the environment. If a validator is not available, perform a manual field-by-field check against the schema and say that validation was manual.
+Validate the final JSON against `schemas/lesson_plan.schema.json` using a JSON Schema validator available in the environment. Then run the bundled dynamic validator:
+
+```bash
+uv run --with jsonschema python .agents/skills/maverx-training-builder/scripts/validate_lesson_plan.py \
+  .agents/skills/maverx-training-builder/out/<slug>/lesson_plan.json \
+  --schema .agents/skills/maverx-training-builder/schemas/lesson_plan.schema.json
+```
+
+If a JSON Schema validator is not available, the script still checks dynamic rules such as slide density, didactic order, timing, and reliability fields. If the script reports any issue, fix the JSON before responding.
+
+Set `validation.slide_density_verified` to `true` only after verifying every session meets the slide-density rule.
 
 Also verify:
 
@@ -94,6 +108,7 @@ Also verify:
 - handout presence matches the intake preference
 - break slide presence matches the intake preference
 - every deck outline item has a reliability score and rationale
+- every session has at least `ceil(duration_min / 3)` non-break deck outline items, with break slides excluded from the count
 
 ## Critical Rules
 
@@ -104,3 +119,4 @@ Also verify:
 5. Refuse vague intake. If the user gave "some people, a few hours, make it good", ask one precise follow-up before generating.
 6. The final output must be normalized JSON verified against the schema.
 7. Never dump `lesson_plan.json` contents into chat unless the user explicitly asks to inspect the JSON inline.
+8. Never create a fixed small deck outline for a long session. Slide count must scale with session duration.
