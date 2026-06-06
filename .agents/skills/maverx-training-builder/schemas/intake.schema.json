@@ -1,0 +1,96 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Maverx training intake",
+  "type": "object",
+  "required": [
+    "topic",
+    "audience",
+    "knowledge_level",
+    "duration",
+    "primary_objective",
+    "prep_time_minutes_per_session",
+    "include_handouts"
+  ],
+  "properties": {
+    "topic": {
+      "type": "string",
+      "minLength": 5,
+      "description": "Topic or skill to be trained."
+    },
+    "audience": {
+      "type": "string",
+      "minLength": 5,
+      "description": "Who attends — department, role, seniority."
+    },
+    "knowledge_level": {
+      "type": "string",
+      "enum": ["beginner", "intermediate", "advanced", "mixed"]
+    },
+    "duration": {
+      "type": "object",
+      "required": ["sessions", "minutes_per_session"],
+      "properties": {
+        "sessions": { "type": "integer", "minimum": 1, "maximum": 20 },
+        "minutes_per_session": { "type": "integer", "minimum": 30, "maximum": 480 }
+      }
+    },
+    "primary_objective": {
+      "type": "string",
+      "minLength": 10,
+      "description": "What participants must be able to do at the end."
+    },
+    "certification_name": { "type": "string" },
+    "case_sector": {
+      "type": "string",
+      "description": "Sector, industry, or running context for examples and exercises."
+    },
+    "tools": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Software/tools learners will use, or tool-agnostic constraints."
+    },
+    "prep_time_minutes_per_session": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 240,
+      "description": "Expected participant preparation time before each session."
+    },
+    "include_handouts": {
+      "type": "boolean",
+      "description": "Whether the user wants handouts, brainstorm sheets, or exercise worksheets."
+    },
+    "handout_time_minutes_per_session": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 240,
+      "description": "Time to budget inside each session for handout-based work. Required when include_handouts is true."
+    },
+    "follow_ups_asked": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Log of follow-up questions the intake agent asked (audit trail for QA)."
+    },
+    "completeness_score": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "vague_fields": {
+      "type": "array",
+      "items": { "type": "string" }
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "include_handouts": { "const": true }
+        },
+        "required": ["include_handouts"]
+      },
+      "then": {
+        "required": ["handout_time_minutes_per_session"]
+      }
+    }
+  ]
+}

@@ -1,0 +1,348 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Maverx didactic lesson plan",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "training",
+    "intake_summary",
+    "research_evidence",
+    "programme_learning_outcomes",
+    "sessions",
+    "validation"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "const": "1.0"
+    },
+    "training": {
+      "type": "object",
+      "required": ["slug", "title", "scope", "total_sessions", "total_minutes"],
+      "additionalProperties": false,
+      "properties": {
+        "slug": { "type": "string", "pattern": "^[a-z0-9-]+$" },
+        "title": { "type": "string", "minLength": 3 },
+        "scope": { "type": "string", "enum": ["single_session", "multi_session", "certification"] },
+        "total_sessions": { "type": "integer", "minimum": 1, "maximum": 50 },
+        "total_minutes": { "type": "integer", "minimum": 30 }
+      }
+    },
+    "intake_summary": {
+      "type": "object",
+      "required": [
+        "topic",
+        "audience",
+        "knowledge_level",
+        "duration",
+        "primary_objective",
+        "prep_time_minutes_per_session",
+        "include_handouts"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "topic": { "type": "string", "minLength": 5 },
+        "audience": { "type": "string", "minLength": 5 },
+        "knowledge_level": { "type": "string", "enum": ["beginner", "intermediate", "advanced", "mixed"] },
+        "duration": {
+          "type": "object",
+          "required": ["sessions", "minutes_per_session"],
+          "additionalProperties": false,
+          "properties": {
+            "sessions": { "type": "integer", "minimum": 1, "maximum": 50 },
+            "minutes_per_session": { "type": "integer", "minimum": 30, "maximum": 480 }
+          }
+        },
+        "primary_objective": { "type": "string", "minLength": 10 },
+        "certification_name": { "type": "string" },
+        "case_sector": { "type": "string" },
+        "tools": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "prep_time_minutes_per_session": { "type": "integer", "minimum": 0, "maximum": 240 },
+        "include_handouts": { "type": "boolean" },
+        "handout_time_minutes_per_session": { "type": "integer", "minimum": 0, "maximum": 240 }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "include_handouts": { "const": true }
+            },
+            "required": ["include_handouts"]
+          },
+          "then": {
+            "required": ["handout_time_minutes_per_session"]
+          }
+        }
+      ]
+    },
+    "research_evidence": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["source_title", "source_url", "source_type", "key_takeaway", "used_for", "evidence_strength"],
+        "additionalProperties": false,
+        "properties": {
+          "source_title": { "type": "string", "minLength": 3 },
+          "source_url": { "type": "string", "minLength": 8 },
+          "source_type": {
+            "type": "string",
+            "enum": ["official", "academic", "professional", "government", "practitioner", "other"]
+          },
+          "key_takeaway": { "type": "string", "minLength": 10 },
+          "used_for": { "type": "string", "minLength": 5 },
+          "evidence_strength": { "type": "string", "enum": ["high", "medium", "low"] }
+        }
+      }
+    },
+    "programme_learning_outcomes": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "type": "string", "minLength": 10 }
+    },
+    "sessions": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/definitions/session" }
+    },
+    "validation": {
+      "type": "object",
+      "required": [
+        "schema_validated",
+        "didactic_arc_verified",
+        "timing_verified",
+        "research_used",
+        "issues"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "schema_validated": { "type": "boolean" },
+        "didactic_arc_verified": { "type": "boolean" },
+        "timing_verified": { "type": "boolean" },
+        "research_used": { "type": "boolean" },
+        "issues": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "session": {
+      "type": "object",
+      "required": [
+        "session_n",
+        "title",
+        "duration_min",
+        "brief_for_trainer",
+        "pre_bite",
+        "didactic_arc",
+        "deck_outline",
+        "post_bite"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "session_n": { "type": "integer", "minimum": 1 },
+        "title": { "type": "string", "minLength": 3 },
+        "duration_min": { "type": "integer", "minimum": 30, "maximum": 480 },
+        "brief_for_trainer": {
+          "type": "object",
+          "required": ["session_purpose", "intended_skills", "learning_outcomes"],
+          "additionalProperties": false,
+          "properties": {
+            "session_purpose": { "type": "string", "minLength": 10 },
+            "intended_skills": {
+              "type": "array",
+              "minItems": 1,
+              "items": { "type": "string", "minLength": 3 }
+            },
+            "learning_outcomes": {
+              "type": "array",
+              "minItems": 1,
+              "items": { "type": "string", "minLength": 10 }
+            }
+          }
+        },
+        "pre_bite": { "$ref": "#/definitions/bite" },
+        "didactic_arc": {
+          "type": "array",
+          "minItems": 5,
+          "maxItems": 5,
+          "items": [
+            { "$ref": "#/definitions/kickoff_block" },
+            { "$ref": "#/definitions/theory_block" },
+            { "$ref": "#/definitions/example_block" },
+            { "$ref": "#/definitions/exercise_block" },
+            { "$ref": "#/definitions/wrapup_block" }
+          ]
+        },
+        "deck_outline": {
+          "type": "array",
+          "minItems": 5,
+          "items": { "$ref": "#/definitions/deck_item" }
+        },
+        "handout": {
+          "oneOf": [
+            { "type": "null" },
+            { "$ref": "#/definitions/handout" }
+          ]
+        },
+        "post_bite": { "$ref": "#/definitions/bite" }
+      }
+    },
+    "base_block": {
+      "type": "object",
+      "required": [
+        "block",
+        "time_min",
+        "learning_purpose",
+        "trainer_actions",
+        "participant_actions",
+        "content_outline",
+        "learning_check"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "block": { "type": "string" },
+        "time_min": { "type": "integer", "minimum": 1 },
+        "learning_purpose": { "type": "string", "minLength": 10 },
+        "trainer_actions": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "string", "minLength": 5 }
+        },
+        "participant_actions": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "string", "minLength": 5 }
+        },
+        "content_outline": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "string", "minLength": 5 }
+        },
+        "learning_check": { "type": "string", "minLength": 5 }
+      }
+    },
+    "kickoff_block": {
+      "allOf": [
+        { "$ref": "#/definitions/base_block" },
+        { "properties": { "block": { "const": "kick-off" } } }
+      ]
+    },
+    "theory_block": {
+      "allOf": [
+        { "$ref": "#/definitions/base_block" },
+        { "properties": { "block": { "const": "theory" } } }
+      ]
+    },
+    "example_block": {
+      "allOf": [
+        { "$ref": "#/definitions/base_block" },
+        { "properties": { "block": { "const": "example" } } }
+      ]
+    },
+    "exercise_block": {
+      "allOf": [
+        { "$ref": "#/definitions/base_block" },
+        { "properties": { "block": { "const": "exercise" } } }
+      ]
+    },
+    "wrapup_block": {
+      "allOf": [
+        { "$ref": "#/definitions/base_block" },
+        { "properties": { "block": { "const": "wrap-up" } } }
+      ]
+    },
+    "deck_item": {
+      "type": "object",
+      "required": [
+        "slide_n",
+        "didactic_block",
+        "title",
+        "learning_purpose",
+        "key_message",
+        "suggested_content",
+        "reliability"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "slide_n": { "type": "integer", "minimum": 1 },
+        "didactic_block": { "type": "string", "enum": ["kick-off", "theory", "example", "exercise", "wrap-up"] },
+        "title": { "type": "string", "minLength": 3, "maxLength": 120 },
+        "learning_purpose": { "type": "string", "minLength": 10 },
+        "key_message": { "type": "string", "minLength": 10 },
+        "suggested_content": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "string", "minLength": 3 }
+        },
+        "reliability": { "$ref": "#/definitions/reliability" }
+      }
+    },
+    "reliability": {
+      "type": "object",
+      "required": ["score", "rationale", "review_priority"],
+      "additionalProperties": false,
+      "properties": {
+        "score": { "type": "number", "minimum": 0, "maximum": 1 },
+        "rationale": { "type": "string", "minLength": 10 },
+        "review_priority": { "type": "string", "enum": ["low", "medium", "high"] }
+      }
+    },
+    "bite": {
+      "type": "object",
+      "required": ["purpose", "time_min", "participant_task", "resources"],
+      "additionalProperties": false,
+      "properties": {
+        "purpose": { "type": "string", "minLength": 10 },
+        "time_min": { "type": "integer", "minimum": 0, "maximum": 240 },
+        "participant_task": { "type": "string", "minLength": 10 },
+        "resources": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["title", "url_or_reference", "why_it_is_included"],
+            "additionalProperties": false,
+            "properties": {
+              "title": { "type": "string", "minLength": 3 },
+              "url_or_reference": { "type": "string", "minLength": 3 },
+              "why_it_is_included": { "type": "string", "minLength": 10 }
+            }
+          }
+        }
+      }
+    },
+    "handout": {
+      "type": "object",
+      "required": ["time_budget_min", "purpose", "activities"],
+      "additionalProperties": false,
+      "properties": {
+        "time_budget_min": { "type": "integer", "minimum": 1, "maximum": 240 },
+        "purpose": { "type": "string", "minLength": 10 },
+        "activities": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "required": ["activity_title", "instructions", "participant_output"],
+            "additionalProperties": false,
+            "properties": {
+              "activity_title": { "type": "string", "minLength": 3 },
+              "instructions": {
+                "type": "array",
+                "minItems": 1,
+                "items": { "type": "string", "minLength": 5 }
+              },
+              "participant_output": { "type": "string", "minLength": 5 }
+            }
+          }
+        }
+      }
+    }
+  }
+}
