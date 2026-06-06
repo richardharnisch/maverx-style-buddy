@@ -4,10 +4,20 @@ version = "0.1.0"
 description = "Add your description here"
 requires-python = ">=3.12"
 dependencies = [
+    "fastapi[standard]>=0.136.3",
     "openai>=2.41.0",
     "pydantic>=2.13.4",
     "python-dotenv>=1.2.2",
     "python-pptx>=1.0.2",
     "pyyaml>=6.0.3",
     "rich>=15.0.0",
+    "ruff>=0.15.16",
+    "uvicorn[standard]>=0.34",
+    "python-multipart>=0.0.20",
 ]
+
+[tool.ruff]
+line-length = 80
+
+[tool.fastapi]
+entrypoint = "src.api.router:app"
