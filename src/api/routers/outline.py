@@ -1,44 +1,58 @@
-"""Outline generator — the "Human-in-the-Loop" checkpoint.
-
-Generates a structured training outline (kick-off → theory → example
-→ exercise → wrap-up) from the completed intake, then waits for the
-trainer to review, optionally edit, and approve before heavy generation
-begins.
-"""
-
+import re
 from datetime import datetime, timezone
 from typing import Any
 
 from fastapi import APIRouter, HTTPException
-from pydantic import BaseModel
 
-from .session import SessionStatus, get_session_or_404, _sessions
+from ..schemas.outline import (
+    Outline,
+    OutlineEditRequest,
+    OutlinePathRequest,
+    SlideBlock,
+    SpeakerNotes,
+)
+from ..schemas.session import SessionStatus
+from .session import _sessions, get_session_or_404
 
 router = APIRouter(prefix="/sessions", tags=["outline"])
 
 
-class SlideBlock(BaseModel):
-    block: str  # kick-off | theory | example | exercise | wrap-up
-    title: str
-    bullets: list[str] = []
-    notes: str = ""
-    estimated_minutes: int = 0
+@router.post(
+    "/{session_id}/outline/path",
+    summary="Choose outline path: 'trainer' (Option A) or 'research' (Option B)",
+)
+def set_outline_path(
+    session_id: str, body: OutlinePathRequest
+) -> dict[str, str]:
+    session = get_session_or_404(session_id)
 
+    if session.status == SessionStatus.intake:
+        raise HTTPException(
+            status_code=409,
+            detail="Complete intake before choosing an outline path",
+        )
 
-class Outline(BaseModel):
-    title: str
-    total_minutes: int
-    modules: list[SlideBlock]
+    if body.path not in ("trainer", "research"):
+        raise HTTPException(
+            status_code=422, detail="path must be 'trainer' or 'research'"
+        )
 
+    session.outline_path = body.path
+    session.updated_at = datetime.now(timezone.utc)
+    _sessions[session_id] = session
 
-class OutlineEditRequest(BaseModel):
-    outline: Outline
+    if body.path == "trainer":
+        next_step = "PUT /sessions/{id}/outline to upload your outline, then POST /sessions/{id}/outline/approve"
+    else:
+        next_step = "POST /sessions/{id}/outline/generate to let the research agent propose an outline"
+
+    return {"outline_path": body.path, "next": next_step}
 
 
 @router.post(
     "/{session_id}/outline/generate",
     response_model=Outline,
-    summary="Generate a training outline from completed intake",
+    summary="Option B — generate a training outline via the research agent",
 )
 def generate_outline(session_id: str) -> Outline:
     session = get_session_or_404(session_id)
@@ -57,7 +71,8 @@ def generate_outline(session_id: str) -> Outline:
             detail=f"Cannot generate outline in '{session.status}' state",
         )
 
-    # TODO: call agent loop with intake data to produce the outline
+    # TODO: call agent loop with intake data to produce outline
+    #   The agent should propose the structure chunk by chunk and confirm with the trainer.
     outline = _stub_outline(session.intake)
 
     session.outline = outline.model_dump()
@@ -83,16 +98,22 @@ def get_outline(session_id: str) -> Outline:
 @router.put(
     "/{session_id}/outline",
     response_model=Outline,
-    summary="Replace the outline with trainer edits",
+    summary="Option A — upload trainer-supplied outline, or edit a generated one",
 )
-def edit_outline(session_id: str, body: OutlineEditRequest) -> Outline:
+def set_outline(session_id: str, body: OutlineEditRequest) -> Outline:
     session = get_session_or_404(session_id)
-    if session.status != SessionStatus.outline_pending:
+
+    if session.status not in (
+        SessionStatus.intake_complete,
+        SessionStatus.outline_pending,
+    ):
         raise HTTPException(
             status_code=409,
-            detail="Outline can only be edited while in 'outline_pending' state",
+            detail="Outline can only be set while in 'intake_complete' or 'outline_pending' state",
         )
+
     session.outline = body.outline.model_dump()
+    session.status = SessionStatus.outline_pending
     session.updated_at = datetime.now(timezone.utc)
     _sessions[session_id] = session
     return body.outline
@@ -100,14 +121,14 @@ def edit_outline(session_id: str, body: OutlineEditRequest) -> Outline:
 
 @router.post(
     "/{session_id}/outline/approve",
-    summary="Approve the outline and queue asset generation",
+    summary="Approve the outline — unlocks asset generation and chunk proposal",
 )
 def approve_outline(session_id: str) -> dict[str, str]:
     session = get_session_or_404(session_id)
+
     if session.status != SessionStatus.outline_pending:
         raise HTTPException(
-            status_code=409,
-            detail="Only a pending outline can be approved",
+            status_code=409, detail="Only a pending outline can be approved"
         )
     if not session.outline:
         raise HTTPException(status_code=409, detail="No outline to approve")
@@ -117,19 +138,17 @@ def approve_outline(session_id: str) -> dict[str, str]:
     _sessions[session_id] = session
 
     return {
-        "message": "Outline approved — call POST /sessions/{id}/assets/generate to build the deck"
+        "message": (
+            "Outline approved. "
+            "Option 1 (iterative): POST /sessions/{id}/chunks/{block}/propose per block. "
+            "Option 2 (bulk): POST /sessions/{id}/assets/generate"
+        )
     }
-
-
-# ---------------------------------------------------------------------------
-# Stub — replaced by real agent call
-# ---------------------------------------------------------------------------
-
 
 def _stub_outline(intake: dict[str, Any]) -> Outline:
     topic = intake.get("topic", "Training Topic")
-    duration_raw = intake.get("duration", "3 hours")
-    total_minutes = _parse_duration_minutes(duration_raw)
+    total_minutes = _parse_duration_minutes(intake.get("duration", "3 hours"))
+    notes = SpeakerNotes()
 
     blocks = [
         (
@@ -170,18 +189,16 @@ def _stub_outline(intake: dict[str, Any]) -> Outline:
             title=title,
             bullets=bullets,
             estimated_minutes=minutes,
+            speaker_notes=notes,
         )
         for block, title, bullets, minutes in blocks
     ]
-
     return Outline(title=topic, total_minutes=total_minutes, modules=modules)
 
 
 def _parse_duration_minutes(raw: str) -> int:
     raw = raw.lower()
     total = 0
-    import re
-
     for match in re.finditer(
         r"(\d+(?:\.\d+)?)\s*(hour|hr|minute|min|h|m)", raw
     ):

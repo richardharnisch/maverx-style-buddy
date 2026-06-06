@@ -1,31 +1,18 @@
-"""Asset compiler — the "Heavy Lifter".
-
-Kicks off background generation of the full asset bundle:
-  - .pptx deck in Maverx house style
-  - pre-bite preparation document
-  - post-bite follow-up document
-
-Generation runs as a background task so the HTTP response is immediate;
-clients poll GET /assets for status.
-"""
-
 from datetime import datetime, timezone
 from pathlib import Path
-
 from fastapi import APIRouter, BackgroundTasks, HTTPException
-from pydantic import BaseModel
 
-from .session import SessionStatus, get_session_or_404, _sessions
+from src.constants import (
+    DECK_FILENAME,
+    OUTPUT_DIR,
+    POST_BITE_FILENAME,
+    PRE_BITE_FILENAME,
+)
+from ..schemas.assets import AssetStatus
+from ..schemas.session import SessionStatus
+from .session import _sessions, get_session_or_404
 
 router = APIRouter(prefix="/sessions", tags=["assets"])
-
-OUTPUT_DIR = Path("outputs")
-
-
-class AssetStatus(BaseModel):
-    status: str
-    assets: list[str]
-    message: str | None = None
 
 
 @router.post(
@@ -60,7 +47,7 @@ def generate_assets(
 @router.get(
     "/{session_id}/assets",
     response_model=AssetStatus,
-    summary="Get generation status and list of ready assets",
+    summary="Get generation status, file list, cost, and confidence scores",
 )
 def get_assets(session_id: str) -> AssetStatus:
     session = get_session_or_404(session_id)
@@ -75,17 +62,15 @@ def get_assets(session_id: str) -> AssetStatus:
 
     if session.status not in (SessionStatus.ready, SessionStatus.refining):
         return AssetStatus(
-            status=session.status,
-            assets=[],
-            message="Assets not yet generated",
+            status=session.status, assets=[], message="Assets not yet generated"
         )
 
-    return AssetStatus(status="ready", assets=session.assets)
-
-
-# ---------------------------------------------------------------------------
-# Generation worker — public so track.py can call it directly in sequence
-# ---------------------------------------------------------------------------
+    return AssetStatus(
+        status="ready",
+        assets=session.assets,
+        generation_cost_usd=session.generation_cost_usd,
+        confidence_scores=session.confidence_scores,
+    )
 
 
 def run_generation(
@@ -96,9 +81,8 @@ def run_generation(
 
     Args:
         session_id: Target session.
-        previous_post_bite_path: When called from a Track, the post-bite
-            document of the preceding session is passed here so the LLM
-            can open it with a forward reference in this session's pre-bite.
+        previous_post_bite_path: Post-bite of the preceding session (Tier 3 tracks).
+            Passed to the pre-bite generator so it can write a bridging intro.
     """
     session = _sessions.get(session_id)
     if not session:
@@ -108,30 +92,30 @@ def run_generation(
         session_dir = OUTPUT_DIR / session_id
         session_dir.mkdir(parents=True, exist_ok=True)
 
-        # When part of a track, surface the previous post-bite path so the
-        # pre-bite generator can write a bridging intro referencing it.
         if previous_post_bite_path:
             session.intake["_previous_post_bite"] = str(previous_post_bite_path)
 
-        # TODO: call skills pipeline
-        #   1. create_presentation(title, style_guide="maverx")
-        #   2. for each slide block in outline: add_slide(...)
-        #   3. apply_style_guide(...)
-        #   4. export_pptx(path=session_dir / "deck.pptx")
-        #   5. generate pre-bite — read session.intake["_previous_post_bite"]
-        #      if present and pass its content to the LLM as bridging context
-        #   6. generate post-bite
+        # TODO: implement full pipeline:
+        #   1. create_presentation(title, style_guide=session.style_guide, language=session.language)
+        #   2. for each block in approved outline:
+        #        for each slide: add_slide(presentation_id, layout, block, title, bullets, speaker_notes)
+        #        session.confidence_scores[block] = mean(slide confidence_scores for this block)
+        #   3. apply_style_guide(presentation_id, session.style_guide)
+        #   4. export_pptx(presentation_id, output_path=session_dir/"deck.pptx")
+        #   5. generate_document("pre-bite",  ..., previous_post_bite_summary if track session)
+        #   6. generate_document("post-bite", ...)
+        #   7. record total token cost → session.generation_cost_usd
 
-        pptx_path = session_dir / "deck.pptx"
-        prebite_path = session_dir / "pre-bite.docx"
-        postbite_path = session_dir / "post-bite.docx"
+        pptx_path = session_dir / DECK_FILENAME
+        prebite_path = session_dir / PRE_BITE_FILENAME
+        postbite_path = session_dir / POST_BITE_FILENAME
 
-        # Stubs — replaced by real skill calls
         pptx_path.touch()
         prebite_path.touch()
         postbite_path.touch()
 
         session.assets = [pptx_path.name, prebite_path.name, postbite_path.name]
+        session.generation_cost_usd = 0.0  # TODO: sum token costs
         session.status = SessionStatus.ready
         session.updated_at = datetime.now(timezone.utc)
 
