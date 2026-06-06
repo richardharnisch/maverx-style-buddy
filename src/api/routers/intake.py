@@ -1,17 +1,12 @@
-"""Intake endpoint — the "Pushback" agent.
-
-Walks the trainer through the 5 mandatory questions in order.
-Refuses to advance until each answer is specific enough; asks
-follow-up questions when input is vague.
-"""
-
 from datetime import datetime, timezone
 from typing import Any
 
 from fastapi import APIRouter, HTTPException
-from pydantic import BaseModel
 
-from .session import SessionStatus, get_session_or_404, _sessions
+from src.constants import SESSION_MIN_ANSWER_WORDS
+from ..schemas.intake import AnswerRequest, IntakeResponse, IntakeStateResponse
+from ..schemas.session import SessionStatus
+from .session import _sessions, get_session_or_404
 
 router = APIRouter(prefix="/sessions", tags=["intake"])
 
@@ -19,13 +14,13 @@ INTAKE_QUESTIONS: list[dict[str, Any]] = [
     {
         "key": "topic",
         "question": "What is the topic or skill to be trained?",
-        "why": "Sets the domain",
+        "why": "Defines the domain and content direction",
         "vague_signals": ["something", "stuff", "things", "general", "various"],
     },
     {
         "key": "audience",
         "question": "Who is the target audience?",
-        "why": "Sets tone and depth",
+        "why": "Determines tone, depth, and examples",
         "vague_signals": ["everyone", "anyone", "people", "employees"],
     },
     {
@@ -44,34 +39,15 @@ INTAKE_QUESTIONS: list[dict[str, Any]] = [
     {
         "key": "learning_objective",
         "question": "What is the primary learning objective?",
-        "why": "Anchors the entire structure",
+        "why": "Anchors the entire training structure",
         "vague_signals": ["learn", "understand", "know about", "get better"],
     },
 ]
 
 
-class AnswerRequest(BaseModel):
-    answer: str
-
-
-class IntakeResponse(BaseModel):
-    question_key: str | None
-    question: str | None
-    progress: int
-    total: int
-    complete: bool
-    pushback: str | None = None
-
-
-class IntakeStateResponse(BaseModel):
-    answers: dict[str, str]
-    next_question: dict[str, Any] | None
-    complete: bool
-
-
 def _is_vague(answer: str, question_def: dict[str, Any]) -> bool:
     answer_lower = answer.lower().strip()
-    if len(answer_lower.split()) < 2:
+    if len(answer_lower.split()) < SESSION_MIN_ANSWER_WORDS:
         return True
     for signal in question_def.get("vague_signals", []):
         if signal in answer_lower:
@@ -108,7 +84,7 @@ def get_intake(session_id: str) -> IntakeStateResponse:
 @router.post(
     "/{session_id}/intake",
     response_model=IntakeResponse,
-    summary="Submit an intake answer",
+    summary="Submit an intake answer — system refuses to advance if answer is vague",
 )
 def submit_intake_answer(
     session_id: str, body: AnswerRequest
@@ -134,20 +110,17 @@ def submit_intake_answer(
     if not answer:
         raise HTTPException(status_code=422, detail="Answer cannot be empty")
 
-    pushback: str | None = None
     if _is_vague(answer, next_q):
-        pushback = (
-            f"That answer is a bit vague. Could you be more specific? "
-            f"This matters because: {next_q['why']}."
-        )
-        answered_count = len(session.intake)
         return IntakeResponse(
             question_key=next_q["key"],
             question=next_q["question"],
-            progress=answered_count,
+            progress=len(session.intake),
             total=len(INTAKE_QUESTIONS),
             complete=False,
-            pushback=pushback,
+            pushback=(
+                f"That answer is a bit vague — the system cannot generate until this is clear. "
+                f"Could you be more specific? This matters because: {next_q['why']}."
+            ),
         )
 
     session.intake[next_q["key"]] = answer
@@ -155,7 +128,6 @@ def submit_intake_answer(
 
     next_q_after = _next_unanswered(session.intake)
     complete = next_q_after is None
-
     if complete:
         session.status = SessionStatus.intake_complete
 

@@ -1,47 +1,19 @@
-"""Session management — the backbone of the multi-step flow.
-
-State machine:
-  intake → intake_complete → outline_pending → outline_approved
-  → generating → ready → (refining → ready)
-"""
-
 import uuid
 from datetime import datetime, timezone
-from enum import Enum
-from typing import Any
 
 from fastapi import APIRouter, HTTPException
-from pydantic import BaseModel
+
+from src.constants import OUTPUT_DIR
+from ..schemas.session import (
+    CreateSessionRequest,
+    Session,
+    SessionResponse,
+    SessionStatus,
+)
 
 router = APIRouter(prefix="/sessions", tags=["session"])
 
-
-class SessionStatus(str, Enum):
-    intake = "intake"
-    intake_complete = "intake_complete"
-    outline_pending = "outline_pending"
-    outline_approved = "outline_approved"
-    generating = "generating"
-    ready = "ready"
-    refining = "refining"
-    error = "error"
-
-
-class Session(BaseModel):
-    id: str
-    status: SessionStatus
-    created_at: datetime
-    updated_at: datetime
-    intake: dict[str, Any] = {}
-    outline: dict[str, Any] | None = None
-    assets: list[str] = []
-    error: str | None = None
-    # Track context — None when this is a standalone (Tier 1/2) session
-    track_id: str | None = None
-    session_number: int | None = None
-
-
-# In-memory store — swap for Redis / DB in production
+# In-memory store.
 _sessions: dict[str, Session] = {}
 
 
@@ -54,24 +26,21 @@ def get_session_or_404(session_id: str) -> Session:
     return session
 
 
-class SessionResponse(BaseModel):
-    id: str
-    status: SessionStatus
-    created_at: datetime
-    updated_at: datetime
-
-
 @router.post(
     "",
     response_model=SessionResponse,
     status_code=201,
     summary="Create a new training session",
 )
-def create_session() -> SessionResponse:
+def create_session(
+    body: CreateSessionRequest = CreateSessionRequest(),
+) -> SessionResponse:
     now = datetime.now(timezone.utc)
     session = Session(
         id=str(uuid.uuid4()),
         status=SessionStatus.intake,
+        language=body.language,
+        style_guide=body.style_guide,
         created_at=now,
         updated_at=now,
     )
@@ -91,5 +60,9 @@ def get_session(session_id: str) -> Session:
 )
 def delete_session(session_id: str) -> None:
     get_session_or_404(session_id)
-    # TODO: also delete generated files from disk
+    import shutil
+
+    session_dir = OUTPUT_DIR / session_id
+    if session_dir.exists():
+        shutil.rmtree(session_dir)
     del _sessions[session_id]

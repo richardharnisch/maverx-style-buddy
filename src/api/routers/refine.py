@@ -1,52 +1,16 @@
-"""Refinement endpoint — post-generation slide / section editing.
-
-Lets a trainer say "rewrite the exercise block to be more hands-on"
-or "shorten the theory section" without regenerating the whole deck.
-Each refinement is a job — trainers can queue several and poll for results.
-"""
-
 import uuid
 from datetime import datetime, timezone
-from enum import Enum
 from typing import Any
-
 from fastapi import APIRouter, BackgroundTasks, HTTPException
-from pydantic import BaseModel
-
-from .session import SessionStatus, get_session_or_404, _sessions
+from src.constants import VALID_BLOCKS
+from ..schemas.refine import RefineJob, RefinementJobStatus, RefineRequest
+from ..schemas.session import SessionStatus
+from .session import _sessions, get_session_or_404
 
 router = APIRouter(prefix="/sessions", tags=["refine"])
 
-VALID_BLOCKS = {"kick-off", "theory", "example", "exercise", "wrap-up"}
-
-# In-memory job store — keyed by session_id → job_id → job
+# In-memory job store — keyed by session_id → job_id → job dict
 _jobs: dict[str, dict[str, Any]] = {}
-
-
-class RefinementJobStatus(str, Enum):
-    pending = "pending"
-    running = "running"
-    done = "done"
-    failed = "failed"
-
-
-class RefineRequest(BaseModel):
-    target_block: str
-    instruction: str
-    scope: str = "slide"  # "slide" | "speaker_notes" | "both"
-
-
-class RefineJob(BaseModel):
-    job_id: str
-    session_id: str
-    target_block: str
-    instruction: str
-    scope: str
-    status: RefinementJobStatus
-    created_at: datetime
-    updated_at: datetime
-    result: dict[str, Any] | None = None
-    error: str | None = None
 
 
 @router.post(
@@ -102,8 +66,7 @@ def submit_refinement(
 )
 def list_refinements(session_id: str) -> list[RefineJob]:
     get_session_or_404(session_id)
-    jobs = _jobs.get(session_id, {})
-    return [RefineJob(**j) for j in jobs.values()]
+    return [RefineJob(**j) for j in _jobs.get(session_id, {}).values()]
 
 
 @router.get(
@@ -119,11 +82,6 @@ def get_refinement(session_id: str, job_id: str) -> RefineJob:
     return RefineJob(**job_data)
 
 
-# ---------------------------------------------------------------------------
-# Background worker
-# ---------------------------------------------------------------------------
-
-
 def _run_refinement(session_id: str, job_id: str, body: RefineRequest) -> None:
     job_data = _jobs.get(session_id, {}).get(job_id)
     if not job_data:
@@ -133,11 +91,9 @@ def _run_refinement(session_id: str, job_id: str, body: RefineRequest) -> None:
     job_data["updated_at"] = datetime.now(timezone.utc)
 
     try:
-        # TODO: call agent loop with:
-        #   - current slide XML for target_block
-        #   - body.instruction
-        #   - body.scope
-        # Then re-export the updated .pptx to disk
+        # TODO: retrieve current slide XML for body.target_block from the .pptx on disk
+        # TODO: call agent loop with the XML, body.instruction, and body.scope
+        # TODO: re-export the updated .pptx to disk
 
         job_data["result"] = {
             "block": body.target_block,
@@ -145,7 +101,6 @@ def _run_refinement(session_id: str, job_id: str, body: RefineRequest) -> None:
         }
         job_data["status"] = RefinementJobStatus.done
 
-        # Flip session back to ready once no more running jobs remain
         session = _sessions.get(session_id)
         if session:
             still_running = any(
