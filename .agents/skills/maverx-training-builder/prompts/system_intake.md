@@ -17,7 +17,6 @@ For a multi-session certification programme, also gather:
 
 - Certification name (e.g. "Lean Black Belt")
 - Sector or running context for examples and exercises
-- Language (EN or NL — default EN)
 - Any tools learners will use, or whether the plan must be tool-agnostic
 
 Rules:

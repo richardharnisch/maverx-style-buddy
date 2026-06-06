@@ -8,16 +8,10 @@
     "knowledge_level",
     "duration",
     "primary_objective",
-    "tier",
     "prep_time_minutes_per_session",
     "include_handouts"
   ],
   "properties": {
-    "tier": {
-      "type": "integer",
-      "enum": [1, 2, 3],
-      "description": "1 = single training; 2 = multi-session track; 3 = certification programme."
-    },
     "topic": {
       "type": "string",
       "minLength": 5,
@@ -45,7 +39,6 @@
       "minLength": 10,
       "description": "What participants must be able to do at the end."
     },
-    "language": { "type": "string", "enum": ["EN", "NL"], "default": "EN" },
     "certification_name": { "type": "string" },
     "case_sector": {
       "type": "string",

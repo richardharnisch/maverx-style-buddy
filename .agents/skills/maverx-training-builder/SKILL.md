@@ -37,7 +37,7 @@ Ask the required intake questions unless the user already provided a concrete an
 7. Whether handouts or group exercise sheets are wanted
 8. If handouts are wanted, the time budget for handout-based work
 
-For multi-session certification programmes, also gather: certification name, case sector or running context, language, and tools or tool-agnostic constraints.
+For multi-session certification programmes, also gather: certification name, case sector or running context, and tools or tool-agnostic constraints.
 
 Refuse to generate until the intake would validate against `schemas/intake.schema.json`, `completeness_score >= 0.8`, and `vague_fields == []`. If vague, ask one precise follow-up at a time and log it in `follow_ups_asked`.
 

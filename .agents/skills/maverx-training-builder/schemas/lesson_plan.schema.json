@@ -19,12 +19,11 @@
     },
     "training": {
       "type": "object",
-      "required": ["slug", "title", "language", "scope", "total_sessions", "total_minutes"],
+      "required": ["slug", "title", "scope", "total_sessions", "total_minutes"],
       "additionalProperties": false,
       "properties": {
         "slug": { "type": "string", "pattern": "^[a-z0-9-]+$" },
         "title": { "type": "string", "minLength": 3 },
-        "language": { "type": "string", "enum": ["EN", "NL"] },
         "scope": { "type": "string", "enum": ["single_session", "multi_session", "certification"] },
         "total_sessions": { "type": "integer", "minimum": 1, "maximum": 50 },
         "total_minutes": { "type": "integer", "minimum": 30 }
@@ -117,7 +116,6 @@
         "didactic_arc_verified",
         "timing_verified",
         "research_used",
-        "no_visual_or_pptx_fields",
         "issues"
       ],
       "additionalProperties": false,
@@ -126,7 +124,6 @@
         "didactic_arc_verified": { "type": "boolean" },
         "timing_verified": { "type": "boolean" },
         "research_used": { "type": "boolean" },
-        "no_visual_or_pptx_fields": { "type": "boolean" },
         "issues": {
           "type": "array",
           "items": { "type": "string" }
@@ -270,7 +267,6 @@
         "learning_purpose",
         "key_message",
         "suggested_content",
-        "participant_interaction",
         "reliability"
       ],
       "additionalProperties": false,
@@ -285,7 +281,6 @@
           "minItems": 1,
           "items": { "type": "string", "minLength": 3 }
         },
-        "participant_interaction": { "type": "string", "minLength": 3 },
         "reliability": { "$ref": "#/definitions/reliability" }
       }
     },
