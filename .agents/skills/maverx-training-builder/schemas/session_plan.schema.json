@@ -1,0 +1,21 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Session plan",
+  "type": "object",
+  "required": ["session_n", "title", "duration_min", "slides"],
+  "properties": {
+    "session_n": { "type": "integer", "minimum": 1 },
+    "title": { "type": "string" },
+    "duration_min": { "type": "integer", "minimum": 30 },
+    "backbone_phase": { "type": "string" },
+    "agenda": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "slides": {
+      "type": "array",
+      "minItems": 8,
+      "items": { "$ref": "slide.schema.json" }
+    }
+  }
+}

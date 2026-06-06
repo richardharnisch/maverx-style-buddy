@@ -1,0 +1,343 @@
+{
+  "source": "maverx_master.pptx",
+  "slide_width_emu": 9144000,
+  "slide_height_emu": 5143500,
+  "slide_width_in": 10.0,
+  "slide_height_in": 5.625,
+  "layouts": [
+    {
+      "idx": 0,
+      "name": "Foto Slide Grijs",
+      "placeholders": []
+    },
+    {
+      "idx": 1,
+      "name": "Aangepaste indeling",
+      "placeholders": []
+    },
+    {
+      "idx": 2,
+      "name": "1_Aangepaste indeling",
+      "placeholders": []
+    },
+    {
+      "idx": 3,
+      "name": "Titeldia",
+      "placeholders": []
+    }
+  ],
+  "sample_slides": [
+    {
+      "slide_idx": 0,
+      "layout_name": "Title Slide",
+      "title": "Presentation Style Guide  \n@ Hackaton",
+      "preview": "Presentation Style Guide  \n@ Hackaton | Structure, style & assets \u2014 all in one place"
+    },
+    {
+      "slide_idx": 1,
+      "layout_name": "Titeldia",
+      "title": "Agenda",
+      "preview": "Agenda | Layout \nFonts, sizes, margins etc. according to Maverx Template\nStructure \nThe required order of your slides \nAssets\nTem"
+    },
+    {
+      "slide_idx": 2,
+      "layout_name": "Title Only",
+      "title": "Title < Space Grotesk Bold> - 33 pt",
+      "preview": "Subtitle (optional) <Space Grotesk> - 22 pt | Main text for \u2018bullet points\u2019 <Raleway or Space Grotesk> \u2013 15+ pt\n\nEmphasize important words with color\n\nUse empty lines"
+    },
+    {
+      "slide_idx": 3,
+      "layout_name": "Titeldia",
+      "title": "Alternative Style Title \u2013 33 pt",
+      "preview": "Alternative Style Title \u2013 33 pt | Subtitle - 25,5 pt I \u201csub-subtitle \u2013 21 pt\u201d | Main text for bullet points \u2013 22-24 pt & Bold\n\nEmphasize important words with color\n\nUse empty lines between points or i"
+    },
+    {
+      "slide_idx": 4,
+      "layout_name": "DEFAULT",
+      "title": "Theme Color Usage",
+      "preview": "Theme Color Usage"
+    },
+    {
+      "slide_idx": 5,
+      "layout_name": "Titeldia",
+      "title": "Color usage I \u201cHow do I pick the right color?\u201d",
+      "preview": "Color usage I \u201cHow do I pick the right color?\u201d | Style guide | The lighter the background \u2013 the darker the highlights\nUse hard or darkened colors for light backgrounds\nAnd pastel colo | New colors should always be introduced by adding  or removing brightness to existing colors"
+    },
+    {
+      "slide_idx": 6,
+      "layout_name": "Titeldia",
+      "title": "Styleguide",
+      "preview": "Styleguide | Flexible area | Flexible \narea | Flexible \narea"
+    },
+    {
+      "slide_idx": 7,
+      "layout_name": "Titeldia",
+      "title": "Examples I \u201cHow do I pick the right color?\u201d",
+      "preview": "Examples I \u201cHow do I pick the right color?\u201d | Storytelling | The pipet is your biggest friend\n\nSelect a color and then add white or add black for consistency"
+    },
+    {
+      "slide_idx": 8,
+      "layout_name": "Titeldia",
+      "title": "Best practices I Consistency & Takeaways",
+      "preview": "Best practices I Consistency & Takeaways | Style guide | Don\u2019t move the title or subtitle unless absolutely necessary\nIf so, copy the new placement to all other slides | Copying elements from another slide (or deck) is always better\nEspecially when creating stories with compounded icons"
+    },
+    {
+      "slide_idx": 9,
+      "layout_name": "Titeldia",
+      "title": "Agenda",
+      "preview": "Agenda | Layout \nFonts, sizes, margins according to Maverx Template\nStructure \nThe required order of your slides \nExamples\nReal s"
+    },
+    {
+      "slide_idx": 10,
+      "layout_name": "Blank",
+      "title": "The structure of your training",
+      "preview": "The structure of your training | Before\nAbout this session (slide 13 of this presentation)\nTimetable for trainer (slide 14 of this presentation)\nTimetabl"
+    },
+    {
+      "slide_idx": 11,
+      "layout_name": "Titeldia",
+      "title": "Agenda",
+      "preview": "Agenda | Layout \nFonts, sizes, margins according to Maverx Template\nStructure \nThe required order of your slides \nExamples\nReal s"
+    },
+    {
+      "slide_idx": 12,
+      "layout_name": "Blank",
+      "title": "A note before you dive in\n\n\nThe example slides and assets that follow are inspiration \u2014 not a strict template.\n\n\nBe crea",
+      "preview": "A note before you dive in\n\n\nThe example slides and assets that follow are inspiration \u2014 not a strict template.\n\n\nBe crea"
+    },
+    {
+      "slide_idx": 13,
+      "layout_name": "Blank",
+      "title": "Four parts:\nPre-training slides\nTopic / theory slides\nExercise slides \nWrap up & reflection slides",
+      "preview": "Four parts:\nPre-training slides\nTopic / theory slides\nExercise slides \nWrap up & reflection slides | Example Slides | In the next part, we will show some example slides that are currently  being used in other trainings"
+    },
+    {
+      "slide_idx": 14,
+      "layout_name": "Titeldia",
+      "title": "We expect the following regarding the speaker notes\n\nCreate a structured facilitation guide for the trainer \u2013per slide- ",
+      "preview": "We expect the following regarding the speaker notes\n\nCreate a structured facilitation guide for the trainer \u2013per slide-  | Speaker Notes"
+    },
+    {
+      "slide_idx": 15,
+      "layout_name": "3_Aangepaste indeling",
+      "title": "On the next pages you can find examples of the pre-training slides",
+      "preview": "On the next pages you can find examples of the pre-training slides | 1 \u2013 Pre-training slides | - NOTE \u2013 \nALL THESE SLIDES ARE FROM DIFFERENT TRAININGS. NO SPECIFIC ORDER IS BEING USED HERE"
+    },
+    {
+      "slide_idx": 16,
+      "layout_name": "Titeldia",
+      "title": "Target group",
+      "preview": "Target group | Professionals who want to understand how AI can support their work \u2014 no technical or programming knowledge required. | ALL PROFESSIONALS WELCOME | About this session"
+    },
+    {
+      "slide_idx": 17,
+      "layout_name": "Titeldia",
+      "title": "+/- 5 min",
+      "preview": "+/- 5 min | +/- 5 min | +/- 5 min | +/- 5 min"
+    },
+    {
+      "slide_idx": 18,
+      "layout_name": "Title Slide",
+      "title": "Training Title Proper Case",
+      "preview": "Training Title Proper Case | subtitle in lower case"
+    },
+    {
+      "slide_idx": 19,
+      "layout_name": "Titeldia",
+      "title": "1",
+      "preview": "1 | 2 | 4 | 5"
+    },
+    {
+      "slide_idx": 20,
+      "layout_name": "Titeldia",
+      "title": "Agenda",
+      "preview": "Agenda | Purpose\nWhy doing the right things matters \nCustomer Value Deep Dive\nMoments of Truth, Customer Arena, Value vs. Waste\nS"
+    },
+    {
+      "slide_idx": 21,
+      "layout_name": "3_Aangepaste indeling",
+      "title": "2 \u2013 Theory & Topic slides",
+      "preview": "2 \u2013 Theory & Topic slides | - NOTE \u2013 \nALL THESE SLIDES ARE FROM DIFFERENT TRAININGS. NO SPECIFIC ORDER IS BEING USED HERE"
+    },
+    {
+      "slide_idx": 22,
+      "layout_name": "Foto Slide Grijs",
+      "title": "2. Theory / topic slides",
+      "preview": "2. Theory / topic slides"
+    },
+    {
+      "slide_idx": 23,
+      "layout_name": "Titeldia",
+      "title": "Moments of truth (MoT)",
+      "preview": "Moments of truth (MoT) | 1 | 2 | 3"
+    },
+    {
+      "slide_idx": 24,
+      "layout_name": "Titeldia",
+      "title": "Hoshin Kanri",
+      "preview": "Hoshin Kanri | What is it? \n\nA method to cascade organisational goals down to every level. So that daily (operational) work connects to | Can you draw this arrow for your project?? | \u2018Managing our direction\u2019"
+    },
+    {
+      "slide_idx": 25,
+      "layout_name": "Blank",
+      "title": "",
+      "preview": ""
+    },
+    {
+      "slide_idx": 26,
+      "layout_name": "Titeldia",
+      "title": "What happens to the data we send?",
+      "preview": "What happens to the data we send?"
+    },
+    {
+      "slide_idx": 27,
+      "layout_name": "Titeldia",
+      "title": "Where AI goes wrong (and why)",
+      "preview": "Where AI goes wrong (and why) | KEY TAKEAWAY\n\nConfidence \u2260 correctness. \nAlways validate.\nThe more polished the output, the easier it is to trust uncrit"
+    },
+    {
+      "slide_idx": 28,
+      "layout_name": "Titeldia",
+      "title": "Compliance patterns",
+      "preview": "Compliance patterns | High-Risk | Context \u2013 Dependent | Often Safe"
+    },
+    {
+      "slide_idx": 29,
+      "layout_name": "Titeldia",
+      "title": "AI automating routine tasks",
+      "preview": "AI automating routine tasks | AI is automating many of the repetitive administrative tasks that used to take up significant time for professionals, li | Role 1 - automation"
+    },
+    {
+      "slide_idx": 30,
+      "layout_name": "3_Aangepaste indeling",
+      "title": "3 \u2013 Exercise slides",
+      "preview": "3 \u2013 Exercise slides | Next are some slides in which we\u2019ll introduce / debrief an exercise (these are 3 different slides for 1 exercise)"
+    },
+    {
+      "slide_idx": 31,
+      "layout_name": "Aangepaste indeling",
+      "title": "Exercise : \t Upgrade your A3  - Ambition & KPIs\n\n\t\t\t\t  From 0.1 to 0.2",
+      "preview": "Exercise : \t Upgrade your A3  - Ambition & KPIs\n\n\t\t\t\t  From 0.1 to 0.2"
+    },
+    {
+      "slide_idx": 32,
+      "layout_name": "Titeldia",
+      "title": "Exercise: Upgrade your A3 0.1 to 0.2",
+      "preview": "Exercise: Upgrade your A3 0.1 to 0.2 | In breakout rooms \uf0e0 teams (30/40 minutes) \nOpen your A3 v0.1 from Session 1 as input. One person shares screen. \n\nAmbiti"
+    },
+    {
+      "slide_idx": 33,
+      "layout_name": "Titeldia",
+      "title": "Debrief",
+      "preview": "Debrief | What did you realize you don't know yet about your own project?\n\nWhich quadrant felt harder, Ambition or KPIs? Why?\n\nWha"
+    },
+    {
+      "slide_idx": 34,
+      "layout_name": "3_Aangepaste indeling",
+      "title": "4 \u2013 Wrap up & Next Steps \n       Slides",
+      "preview": "4 \u2013 Wrap up & Next Steps \n       Slides | - NOTE \u2013 \nALL THESE SLIDES ARE FROM DIFFERENT TRAININGS. NO SPECIFIC ORDER IS BEING USED HERE"
+    },
+    {
+      "slide_idx": 35,
+      "layout_name": "Titeldia",
+      "title": "Wrap-up: What stays",
+      "preview": "Wrap-up: What stays | Value vs Waste | What do they pay for vs. what costs us | Customer arena"
+    },
+    {
+      "slide_idx": 36,
+      "layout_name": "Titeldia",
+      "title": "Wrap-up: What\u2019s next!",
+      "preview": "Wrap-up: What\u2019s next! | Catchball: Pitching your A3 Upwards and Sideways | How to present your Ambition to sponsors (get buy-in) | How to align with peers across functions (build support)"
+    },
+    {
+      "slide_idx": 37,
+      "layout_name": "Titeldia",
+      "title": "Key takeaways for today",
+      "preview": "Key takeaways for today | 1 | 4 | 2"
+    },
+    {
+      "slide_idx": 38,
+      "layout_name": "Titeldia",
+      "title": "Resources & next steps",
+      "preview": "Resources & next steps | Lorum | Listen to the podcasts | To give you some more foundational knowledge on AI"
+    },
+    {
+      "slide_idx": 39,
+      "layout_name": "Foto Slide Grijs",
+      "title": "To close it off",
+      "preview": "To close it off | I would like you to write down:\nOne key takeaway for today \nOne action you will take to \n       keep yourself up-to-date"
+    },
+    {
+      "slide_idx": 40,
+      "layout_name": "Titeldia",
+      "title": "Agenda",
+      "preview": "Agenda | Layout \nFonts, sizes, margins according to Maverx Template\nStructure \nThe required order of your slides \nExamples\nReal s"
+    },
+    {
+      "slide_idx": 41,
+      "layout_name": "Titeldia",
+      "title": "TITLE\nSubtitle\n\nLorum ipsum Lorum ipsum Lorum ipsum Lorum ipsum Lorum ipsum Lorum ipsum Lorum ipsum",
+      "preview": "TITLE\nSubtitle\n\nLorum ipsum Lorum ipsum Lorum ipsum Lorum ipsum Lorum ipsum Lorum ipsum Lorum ipsum | Asset Template (1)"
+    },
+    {
+      "slide_idx": 42,
+      "layout_name": "Titeldia",
+      "title": "Asset Template (2)",
+      "preview": "Asset Template (2)"
+    },
+    {
+      "slide_idx": 43,
+      "layout_name": "Titeldia",
+      "title": "Asset template (3)",
+      "preview": "Asset template (3) | TITLE\nSubtitle\n\nLorum ipsum Lorum ipsum Lorum ipsum Lorum ipsum Lorum ipsum Lorum ipsum Lorum ipsum"
+    },
+    {
+      "slide_idx": 44,
+      "layout_name": "Titeldia",
+      "title": "Asset template (4)",
+      "preview": "Asset template (4)"
+    },
+    {
+      "slide_idx": 45,
+      "layout_name": "Titeldia",
+      "title": "Agenda",
+      "preview": "Agenda | Layout \nFonts, sizes, margins according to Maverx Template\nStructure \nThe required order of your slides \nExamples\nReal s"
+    },
+    {
+      "slide_idx": 46,
+      "layout_name": "Titeldia",
+      "title": "What happens to the data we send?",
+      "preview": "What happens to the data we send?"
+    },
+    {
+      "slide_idx": 47,
+      "layout_name": "Foto Slide Gradient Licht",
+      "title": "Break time!",
+      "preview": "Break time!"
+    },
+    {
+      "slide_idx": 48,
+      "layout_name": "Foto Slide Gradient Donker ",
+      "title": "Debrief",
+      "preview": "Debrief"
+    }
+  ],
+  "master_fonts": {
+    "major": "Calibri Light",
+    "minor": "Calibri"
+  },
+  "theme_colors": [
+    "dk1",
+    "lt1",
+    "dk2",
+    "lt2",
+    "accent1",
+    "accent2",
+    "accent3",
+    "accent4",
+    "accent5",
+    "accent6",
+    "hlink",
+    "folHlink"
+  ]
+}

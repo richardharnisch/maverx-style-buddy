@@ -1,0 +1,18 @@
+{
+  "session_n": 1,
+  "title": "Smoke Test Session",
+  "duration_min": 60,
+  "backbone_phase": "Define",
+  "slides": [
+    {"role": "cover", "block": "kickoff", "title": "Smoke Test — Session 1", "body": ["A minimal deck to verify the builder"], "notes": {"aim": "Verify build_deck.py clones master slides", "time_min": 5, "instructions": ["Open the deck in PowerPoint", "Confirm fonts/colors look right"], "reflective_question": "Does the deck open without a repair prompt?", "debrief": "If yes, the builder works end to end."}},
+    {"role": "section_divider_theory", "block": "theory", "title": "Theory", "body": [], "notes": {"aim": "Transition into theory", "time_min": 1, "instructions": ["Pause; click through."], "reflective_question": "Ready to learn?", "debrief": "Sets the stage for the theory block."}},
+    {"role": "theory_text", "block": "theory", "title": "Concept under test", "body": ["Cloning preserves house style", "Text frames swap in place", "Footer survives"], "exercise_target": "cloning", "notes": {"aim": "Explain the cloning approach", "time_min": 15, "instructions": ["Walk through the slide", "Take questions"], "reflective_question": "Where might cloning fail?", "debrief": "Cloning preserves theme, layout, and footer."}},
+    {"role": "example", "block": "example", "title": "Worked example", "body": ["Original master slide on the left", "Generated slide on the right"], "notes": {"aim": "Show side-by-side", "time_min": 8, "instructions": ["Compare visually"], "reflective_question": "What stays consistent?", "debrief": "Look and feel are identical."}},
+    {"role": "section_divider_exercise", "block": "exercise", "title": "Exercise", "body": [], "notes": {"aim": "Transition to exercise", "time_min": 1, "instructions": ["Pause."], "reflective_question": "Ready?", "debrief": "Move to active work."}},
+    {"role": "exercise_brief", "block": "exercise", "title": "Try cloning yourself", "body": ["Open the generated deck", "Edit a title", "Save and reopen"], "notes": {"aim": "Confirm editability", "time_min": 15, "instructions": ["Each learner edits one slide"], "reflective_question": "Did the edit stick?", "debrief": "Editability validated."}},
+    {"role": "debrief", "block": "exercise", "title": "Debrief", "body": ["What worked", "What broke"], "notes": {"aim": "Collect findings", "time_min": 5, "instructions": ["Round-robin"], "reflective_question": "Anything surprising?", "debrief": "Capture issues for follow-up."}},
+    {"role": "section_divider_wrapup", "block": "wrapup", "title": "Wrap-up", "body": [], "notes": {"aim": "Transition", "time_min": 1, "instructions": ["Pause."], "reflective_question": "Key insight?", "debrief": "Move to closure."}},
+    {"role": "wrapup_takeaways", "block": "wrapup", "title": "Key takeaways", "body": ["Cloning works", "Notes are populated", "Footer preserved"], "notes": {"aim": "Lock in lessons", "time_min": 5, "instructions": ["Read out the three points"], "reflective_question": "Which lands hardest?", "debrief": "Three core takeaways."}},
+    {"role": "closer", "block": "wrapup", "title": "Thanks!", "body": ["See you next session"], "notes": {"aim": "Close warmly", "time_min": 4, "instructions": ["Thank the room"], "reflective_question": "One word for today?", "debrief": "End on a high note."}}
+  ]
+}

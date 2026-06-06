@@ -1,0 +1,97 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Track plan (Tier 3)",
+  "type": "object",
+  "required": ["track_slug", "track_title", "backbone", "case", "sessions"],
+  "properties": {
+    "track_slug": { "type": "string", "pattern": "^[a-z0-9-]+$" },
+    "track_title": { "type": "string" },
+    "backbone": { "type": "string" },
+    "language": { "type": "string", "enum": ["EN", "NL"], "default": "EN" },
+    "case": {
+      "type": "object",
+      "required": ["company", "problem_statement", "dataset_spec", "protagonists"],
+      "properties": {
+        "company": {
+          "type": "object",
+          "required": ["name", "sector", "size", "geography"],
+          "properties": {
+            "name": { "type": "string" },
+            "sector": { "type": "string" },
+            "size": { "type": "string" },
+            "geography": { "type": "string" }
+          }
+        },
+        "problem_statement": { "type": "string" },
+        "dataset_spec": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["table", "columns"],
+            "properties": {
+              "table": { "type": "string" },
+              "columns": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "required": ["name", "type"],
+                  "properties": {
+                    "name": { "type": "string" },
+                    "type": { "type": "string" },
+                    "range": { "type": "string" }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "protagonists": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 5,
+          "items": {
+            "type": "object",
+            "required": ["name", "role"],
+            "properties": {
+              "name": { "type": "string" },
+              "role": { "type": "string" }
+            }
+          }
+        }
+      }
+    },
+    "sessions": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "n",
+          "title",
+          "backbone_phase",
+          "objective",
+          "case_advance",
+          "post_bite_artefact",
+          "next_session_pre_bite_expects_from_prior"
+        ],
+        "properties": {
+          "n": { "type": "integer", "minimum": 1 },
+          "title": { "type": "string" },
+          "backbone_phase": { "type": "string" },
+          "level": {
+            "type": "string",
+            "enum": ["essentials", "advanced", "expert", "uniform"]
+          },
+          "objective": { "type": "string" },
+          "depends_on": { "type": "array", "items": { "type": "integer" } },
+          "case_advance": { "type": "string" },
+          "post_bite_artefact": { "type": "string" },
+          "next_session_pre_bite_expects_from_prior": {
+            "type": "string",
+            "description": "For session N this names the artefact produced by session N-1. For N=1 use 'none'."
+          }
+        }
+      }
+    }
+  }
+}

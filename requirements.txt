@@ -1,5 +1,9 @@
 openai          # openrouter is openai-compatible
 python-pptx
+python-docx
+requests
+jsonschema
+lxml
 pydantic
 pyyaml
 python-dotenv

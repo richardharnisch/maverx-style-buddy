@@ -1,0 +1,62 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Slide",
+  "type": "object",
+  "required": ["role", "block", "title", "body", "notes"],
+  "properties": {
+    "role": {
+      "type": "string",
+      "enum": [
+        "cover", "agenda", "about_session", "timetable",
+        "section_divider_kickoff", "section_divider_theory",
+        "section_divider_exercise", "section_divider_wrapup",
+        "theory_text", "theory_two_column", "theory_bullets", "theory_visual",
+        "example",
+        "exercise_brief", "exercise_steps", "debrief",
+        "wrapup_takeaways", "wrapup_next", "resources", "closer",
+        "break", "mentimeter_recap", "asset_template", "default_text"
+      ]
+    },
+    "block": {
+      "type": "string",
+      "enum": ["kickoff", "theory", "example", "exercise", "wrapup"]
+    },
+    "title": { "type": "string", "maxLength": 120 },
+    "subtitle": { "type": "string", "maxLength": 200 },
+    "body": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Bullet/paragraph lines. First line is body header (no • prefix); subsequent indented lines may use bullet style."
+    },
+    "table": {
+      "type": "object",
+      "description": "Optional table.",
+      "properties": {
+        "headers": { "type": "array", "items": { "type": "string" } },
+        "rows": {
+          "type": "array",
+          "items": { "type": "array", "items": { "type": "string" } }
+        }
+      }
+    },
+    "exercise_target": {
+      "type": "string",
+      "description": "Required on theory slides — names the exercise concept this slide unlocks."
+    },
+    "notes": {
+      "type": "object",
+      "required": ["aim", "time_min", "instructions", "reflective_question", "debrief"],
+      "properties": {
+        "aim": { "type": "string" },
+        "time_min": { "type": "integer", "minimum": 1 },
+        "instructions": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "string" }
+        },
+        "reflective_question": { "type": "string" },
+        "debrief": { "type": "string" }
+      }
+    }
+  }
+}
