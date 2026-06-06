@@ -2,3 +2,12 @@ interface:
   display_name: "Maverx Presentation Builder"
   short_description: "Build Maverx decks and docs."
   default_prompt: "Create Maverx presentation artifacts from this lesson_plan.json."
+
+model:
+  name: "${MODEL:-qwen/qwen3.6-35b-a3b}"
+  base_url: "${OPENROUTER_BASE_URL:-https://openrouter.ai/api/v1}"
+  api_key_env: OPENROUTER_API_KEY
+
+runner:
+  skill: presentation-builder
+  entrypoint: "uv run python -m src.main --skill presentation-builder"

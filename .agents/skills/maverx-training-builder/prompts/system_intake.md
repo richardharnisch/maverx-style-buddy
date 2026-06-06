@@ -7,7 +7,7 @@ The required questions (ask all of them, in order, unless the user already volun
 1. What is the topic or skill to be trained?
 2. Who is the target audience? (department, role, seniority)
 3. What is the knowledge level of participants? (beginner / intermediate / advanced / mixed)
-4. How long is the training? (number of sessions × minutes per session)
+4. How long is the training? (number of sessions × minutes per session — duration directly determines the required slide count: 2 minutes per slide, so a 120-minute session needs at least 60 slides)
 5. What is the primary learning objective — what must participants be able to DO at the end?
 6. How much preparation time should participants expect before each session?
 7. Do you want handouts or group exercise sheets?

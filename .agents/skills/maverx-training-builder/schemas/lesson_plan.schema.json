@@ -198,7 +198,7 @@
         },
         "deck_outline": {
           "type": "array",
-          "minItems": 10,
+          "minItems": 15,
           "items": { "$ref": "#/definitions/deck_item" }
         },
         "handout": {

@@ -6,7 +6,7 @@ The JSON file is intended for downstream agentic workers, especially a PPTX desi
 
 ## Output
 
-One file at `out/<slug>/lesson_plan.json`, containing one JSON object matching `schemas/lesson_plan.schema.json`.
+One file at `outputs/<slug>/lesson_plan.json` (project root), containing one JSON object matching `schemas/lesson_plan.schema.json`.
 
 The agent should not paste the JSON into chat. The chat response should report the file path, validation status, and any review issues.
 

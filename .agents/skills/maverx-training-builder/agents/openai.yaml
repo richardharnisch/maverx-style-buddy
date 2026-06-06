@@ -2,3 +2,12 @@ interface:
   display_name: "Maverx Training Builder"
   short_description: "Build schema-validated didactic lesson plan JSON"
   default_prompt: "Use $maverx-training-builder to build a Maverx didactic lesson plan JSON from this brief."
+
+model:
+  name: "${MODEL:-qwen/qwen3.6-35b-a3b}"
+  base_url: "${OPENROUTER_BASE_URL:-https://openrouter.ai/api/v1}"
+  api_key_env: OPENROUTER_API_KEY
+
+runner:
+  skill: training-builder
+  entrypoint: "uv run python -m src.main --skill training-builder"

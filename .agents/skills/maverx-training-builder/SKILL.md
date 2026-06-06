@@ -55,7 +55,7 @@ Record concise research evidence in `research_evidence`. Do not overfit the less
 
 ### 3. Generate The Master JSON File
 
-Produce exactly one JSON object matching `schemas/lesson_plan.schema.json`, then write it to disk as `out/<slug>/lesson_plan.json` inside this skill directory. The training can be any length: one 30-minute session, several 60-minute modules, or a full multi-session certification.
+Produce exactly one JSON object matching `schemas/lesson_plan.schema.json`, then write it to disk as `outputs/<slug>/lesson_plan.json` in the project root (use the `write_lesson_plan` tool). The training can be any length: one 30-minute session, several 60-minute modules, or a full multi-session certification.
 
 Do not paste the JSON into chat. The chat response should only summarize the created file path, validation status, and any issues that require trainer review.
 

@@ -6,6 +6,8 @@ from __future__ import annotations
 import argparse
 import copy
 import json
+import logging
+import os
 import re
 import shutil
 import zipfile
@@ -14,6 +16,74 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 from xml.sax.saxutils import escape
+
+log = logging.getLogger(__name__)
+
+# ---------------------------------------------------------------------------
+# Resource enrichment via OpenRouter
+# ---------------------------------------------------------------------------
+
+_enrichment_cache: dict[str, str] = {}
+
+
+def enrich_resource(resource: dict) -> str:
+    """Return a 2-3 sentence summary of what a participant learns from this resource.
+
+    Calls the OpenRouter API (model openai/gpt-4.1-mini) when:
+    - OPENROUTER_API_KEY is set in the environment, AND
+    - url_or_reference looks like a real HTTP(S) URL.
+
+    Falls back to returning why_it_is_included (or empty string) silently.
+    Results are cached within a single run to avoid duplicate API calls.
+    """
+    url = resource.get("url_or_reference", "")
+    why = resource.get("why_it_is_included", "")
+    title = resource.get("title", "")
+
+    if not (url.startswith("http://") or url.startswith("https://")):
+        log.debug("enrich_resource: skipping non-URL reference '%s'", url)
+        return why
+
+    api_key = os.environ.get("OPENROUTER_API_KEY", "")
+    if not api_key:
+        log.debug("enrich_resource: OPENROUTER_API_KEY not set, skipping enrichment")
+        return why
+
+    cache_key = url
+    if cache_key in _enrichment_cache:
+        log.debug("enrich_resource: cache hit for %s", url)
+        return _enrichment_cache[cache_key]
+
+    base_url = os.environ.get("OPENROUTER_BASE_URL", "https://openrouter.ai/api/v1")
+    log.info("enrich_resource: querying OpenRouter for '%s' (%s)", title, url)
+
+    try:
+        from openai import OpenAI  # local import to keep startup fast
+
+        client = OpenAI(api_key=api_key, base_url=base_url)
+        prompt = (
+            f"A training participant will read/watch this resource before or after a session.\n"
+            f"Title: {title}\n"
+            f"URL: {url}\n"
+            f"Reason it is included: {why}\n\n"
+            "In 2-3 concise sentences, summarise what the participant will learn or gain "
+            "from this resource. Focus on the concrete takeaway, not on the format."
+        )
+        response = client.chat.completions.create(
+            model="openai/gpt-4.1-mini",
+            messages=[{"role": "user", "content": prompt}],
+            max_tokens=200,
+            temperature=0.3,
+        )
+        summary = response.choices[0].message.content.strip()
+        log.debug("enrich_resource: got summary (%d chars) for %s", len(summary), url)
+        _enrichment_cache[cache_key] = summary
+        return summary
+    except Exception as exc:
+        log.warning("enrich_resource: API call failed for %s: %s", url, exc)
+        _enrichment_cache[cache_key] = why
+        return why
+
 
 from pptx import Presentation
 from pptx.dml.color import RGBColor
@@ -308,7 +378,8 @@ def set_notes(slide, item: dict[str, Any], session: dict[str, Any]) -> None:
         f"Instructions: Present the key message, connect it to the session "
         f"purpose, and keep the discussion anchored in participant work.\n\n"
         f"Key discussion points: {format_points(item)}\n\n"
-        f"Link to reality: Relate this slide to {session['brief_for_trainer']['session_purpose']}\n\n"
+        f"Link to reality: Relate this slide to "
+        f"{_session_purpose(session)}\n\n"
         f"Debrief & Summary: {item.get('key_message', title)}\n\n"
         f"Reliability: {reliability.get('score', 'n/a')} "
         f"({reliability.get('review_priority', 'n/a')} review). "
@@ -338,7 +409,8 @@ def choose_templates(deck_outline: list[dict[str, Any]]) -> list[PlannedSlide]:
     planned: list[PlannedSlide] = []
     for item in deck_outline:
         slide_type = item.get("slide_type", "content")
-        if item.get("slide_n") == 1:
+        is_first = item.get("slide_n") == 1 or (not planned and item.get("slide_n") is None)
+        if is_first:
             template_id = "01-deck-title"
         elif slide_type == "break":
             template_id = "22-break-time"
@@ -771,9 +843,20 @@ def fill_generic_content(slide, item: dict[str, Any], template_id: str) -> None:
     shapes = first_text_shapes(slide)
     if not shapes:
         return
-    dark = template_id in {"06-dark-text-slide", "14-dark-section-title-slide"}
-    title_color = OFF_WHITE if dark else PRIMARY_DARK
-    body_color = OFF_WHITE if dark else PRIMARY_DARK
+    # Templates where the entire slide background is dark (both title and body get light text).
+    dark_slide = template_id in {"06-dark-text-slide", "14-dark-section-title-slide"}
+    # Templates where the slide title sits on a light background but the body content
+    # shapes land on dark or strongly coloured card areas (body gets WHITE, title stays dark).
+    dark_body_only = template_id in {"16-three-section-slide", "02-process-slide"}
+    if dark_slide:
+        title_color = OFF_WHITE
+        body_color = OFF_WHITE
+    elif dark_body_only:
+        title_color = PRIMARY_DARK
+        body_color = WHITE
+    else:
+        title_color = PRIMARY_DARK
+        body_color = PRIMARY_DARK
     set_text(shapes[0], item["title"], font="Space Grotesk", size=33, color=title_color, bold=True)
     body = [lead_statement(item), *content_pool(item, limit=4)]
     keep = {0}
@@ -797,6 +880,8 @@ def build_session_deck(
     template_path: Path,
     out_dir: Path,
 ) -> Path:
+    session_n = session["session_n"]
+    log.info("building deck for session %02d: %s", session_n, session["title"])
     planned = choose_templates(session["deck_outline"])
     prs = Presentation(template_path)
     source_slides = list(prs.slides)
@@ -807,45 +892,176 @@ def build_session_deck(
     remove_slides_except(prs, cloned_slides)
     for slide, planned_slide in zip(cloned_slides, planned):
         fill_slide(slide, planned_slide, session)
+    slug = lesson_plan["training"].get("slug") or slugify(lesson_plan["training"].get("title", "maverx"))
     output = out_dir / (
-        f"{lesson_plan['training']['slug']}-session-"
-        f"{session['session_n']:02d}.pptx"
+        f"{slug}-session-"
+        f"{session_n:02d}.pptx"
     )
     prs.save(output)
     Presentation(output)
+    log.info("saved deck: %s", output)
     return output
 
 
-def docx_escape_lines(lines: list[str]) -> str:
-    paragraphs = []
-    for line in lines:
-        safe = escape(line)
-        paragraphs.append(f"<w:p><w:r><w:t>{safe}</w:t></w:r></w:p>")
-    return "".join(paragraphs)
+def _docx_title_para(text: str) -> str:
+    """Return a styled title paragraph XML element (bold, 18pt, space after)."""
+    safe = escape(text)
+    return (
+        "<w:p>"
+        "<w:pPr>"
+        "<w:spacing w:before=\"240\" w:after=\"120\"/>"
+        "</w:pPr>"
+        "<w:r>"
+        "<w:rPr><w:b/><w:sz w:val=\"36\"/><w:szCs w:val=\"36\"/></w:rPr>"
+        f"<w:t>{safe}</w:t>"
+        "</w:r>"
+        "</w:p>"
+    )
 
 
-def write_docx(path: Path, title: str, sections: list[tuple[str, list[str]]]) -> None:
+def _docx_heading_para(text: str) -> str:
+    """Return a section heading paragraph XML element (bold, 14pt, space before)."""
+    safe = escape(text)
+    return (
+        "<w:p>"
+        "<w:pPr>"
+        "<w:spacing w:before=\"240\" w:after=\"80\"/>"
+        "</w:pPr>"
+        "<w:r>"
+        "<w:rPr><w:b/><w:sz w:val=\"28\"/><w:szCs w:val=\"28\"/></w:rPr>"
+        f"<w:t>{safe}</w:t>"
+        "</w:r>"
+        "</w:p>"
+    )
+
+
+def _docx_body_para(text: str, *, indent: bool = True) -> str:
+    """Return a regular body paragraph XML element with optional left indent."""
+    safe = escape(text)
+    ind = "<w:ind w:left=\"360\"/>" if indent else ""
+    return (
+        "<w:p>"
+        "<w:pPr>"
+        f"{ind}"
+        "<w:spacing w:after=\"120\"/>"
+        "</w:pPr>"
+        "<w:r>"
+        "<w:rPr><w:sz w:val=\"24\"/><w:szCs w:val=\"24\"/></w:rPr>"
+        f"<w:t xml:space=\"preserve\">{safe}</w:t>"
+        "</w:r>"
+        "</w:p>"
+    )
+
+
+def _docx_resource_paras(resource_entries: list[dict]) -> str:
+    """Return XML for a formatted resource list.
+
+    Each resource dict must have keys: title, url, summary.
+    Layout: bold title line, URL line, summary/why line.
+    """
+    xml_parts: list[str] = []
+    for entry in resource_entries:
+        title_safe = escape(entry.get("title", ""))
+        url_safe = escape(entry.get("url", ""))
+        summary_safe = escape(entry.get("summary", ""))
+
+        # Bold resource title
+        xml_parts.append(
+            "<w:p>"
+            "<w:pPr>"
+            "<w:ind w:left=\"360\"/>"
+            "<w:spacing w:before=\"160\" w:after=\"40\"/>"
+            "</w:pPr>"
+            "<w:r>"
+            "<w:rPr><w:b/><w:sz w:val=\"24\"/><w:szCs w:val=\"24\"/></w:rPr>"
+            f"<w:t xml:space=\"preserve\">{title_safe}</w:t>"
+            "</w:r>"
+            "</w:p>"
+        )
+        # URL (grey, slightly smaller)
+        if url_safe:
+            xml_parts.append(
+                "<w:p>"
+                "<w:pPr>"
+                "<w:ind w:left=\"720\"/>"
+                "<w:spacing w:after=\"40\"/>"
+                "</w:pPr>"
+                "<w:r>"
+                "<w:rPr>"
+                "<w:color w:val=\"4472C4\"/>"
+                "<w:sz w:val=\"22\"/><w:szCs w:val=\"22\"/>"
+                "</w:rPr>"
+                f"<w:t xml:space=\"preserve\">{url_safe}</w:t>"
+                "</w:r>"
+                "</w:p>"
+            )
+        # Summary / why
+        if summary_safe:
+            xml_parts.append(
+                "<w:p>"
+                "<w:pPr>"
+                "<w:ind w:left=\"720\"/>"
+                "<w:spacing w:after=\"120\"/>"
+                "</w:pPr>"
+                "<w:r>"
+                "<w:rPr><w:sz w:val=\"22\"/><w:szCs w:val=\"22\"/></w:rPr>"
+                f"<w:t xml:space=\"preserve\">{summary_safe}</w:t>"
+                "</w:r>"
+                "</w:p>"
+            )
+    return "".join(xml_parts)
+
+
+def write_docx(
+    path: Path,
+    title: str,
+    sections: list[tuple[str, list[str]]],
+    resource_sections: dict[str, list[dict]] | None = None,
+) -> None:
+    """Write a DOCX file with proper heading and body formatting.
+
+    Args:
+        path: Destination file path.
+        title: Document title (rendered large and bold).
+        sections: List of (heading, lines) tuples for plain text sections.
+        resource_sections: Optional mapping of section heading to list of
+            resource dicts with keys title/url/summary.  When provided the
+            matching section's lines are replaced with the richer resource
+            block instead.
+    """
+    resource_sections = resource_sections or {}
+
     content_types = (
         '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>'
         '<Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types">'
         '<Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/>'
         '<Default Extension="xml" ContentType="application/xml"/>'
-        '<Override PartName="/word/document.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.document.main+xml"/>'
+        '<Override PartName="/word/document.xml"'
+        ' ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.document.main+xml"/>'
         "</Types>"
     )
     rels = (
         '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>'
         '<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">'
-        '<Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument" Target="word/document.xml"/>'
+        '<Relationship Id="rId1"'
+        ' Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument"'
+        ' Target="word/document.xml"/>'
         "</Relationships>"
     )
-    body_lines = [title, ""]
+
+    body_xml = _docx_title_para(title)
     for heading, lines in sections:
-        body_lines.extend([heading, *lines, ""])
+        body_xml += _docx_heading_para(heading)
+        if heading in resource_sections:
+            body_xml += _docx_resource_paras(resource_sections[heading])
+        else:
+            for line in lines:
+                body_xml += _docx_body_para(line)
+
     document = (
         '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>'
         '<w:document xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main">'
-        f"<w:body>{docx_escape_lines(body_lines)}"
+        f"<w:body>{body_xml}"
         '<w:sectPr><w:pgSz w:w="11906" w:h="16838"/>'
         '<w:pgMar w:top="1440" w:right="1440" w:bottom="1440" w:left="1440"/>'
         "</w:sectPr></w:body></w:document>"
@@ -856,48 +1072,64 @@ def write_docx(path: Path, title: str, sections: list[tuple[str, list[str]]]) ->
         package.writestr("word/document.xml", document)
 
 
+def _enrich_resources(raw_resources: list[dict]) -> list[dict]:
+    """Return enriched resource dicts with a 'summary' key added."""
+    enriched: list[dict] = []
+    for resource in raw_resources:
+        summary = enrich_resource(resource)
+        enriched.append(
+            {
+                "title": resource.get("title", ""),
+                "url": resource.get("url_or_reference", ""),
+                "summary": summary,
+            }
+        )
+    return enriched
+
+
 def build_docs(lesson_plan: dict[str, Any], session: dict[str, Any], out_dir: Path) -> list[Path]:
-    slug = lesson_plan["training"]["slug"]
-    session_prefix = f"{slug}-session-{session['session_n']:02d}"
+    session_n = session["session_n"]
+    log.info("building docs for session %02d", session_n)
+    slug = lesson_plan["training"].get("slug") or slugify(lesson_plan["training"].get("title", "maverx"))
+    session_prefix = f"{slug}-session-{session_n:02d}"
     outputs: list[Path] = []
+
     pre = session["pre_bite"]
     pre_path = out_dir / f"{session_prefix}-pre-bite.docx"
+    log.info("enriching pre-bite resources for session %02d", session_n)
+    pre_resources = _enrich_resources(pre.get("resources", []))
     write_docx(
         pre_path,
         f"Pre-bite: {session['title']}",
-        [
-            ("Purpose", [pre["purpose"]]),
-            ("Time", [f"{pre['time_min']} minutes"]),
-            ("Participant task", [pre["participant_task"]]),
-            (
-                "Resources",
-                [
-                    f"{resource['title']} - {resource['url_or_reference']} ({resource['why_it_is_included']})"
-                    for resource in pre.get("resources", [])
-                ],
-            ),
+        sections=[
+            ("Purpose", [pre.get("purpose", pre.get("task", ""))]),
+            ("Time", [f"{pre.get('time_min', pre.get('time_minutes', ''))} minutes"]),
+            ("Participant task", [pre.get("participant_task", pre.get("task", ""))]),
+            ("Resources", []),
         ],
+        resource_sections={"Resources": pre_resources},
     )
+    log.debug("saved pre-bite doc: %s", pre_path)
     outputs.append(pre_path)
+
     post = session["post_bite"]
     post_path = out_dir / f"{session_prefix}-post-bite.docx"
+    log.info("enriching post-bite resources for session %02d", session_n)
+    post_resources = _enrich_resources(post.get("resources", []))
     write_docx(
         post_path,
         f"Post-bite: {session['title']}",
-        [
-            ("Purpose", [post["purpose"]]),
-            ("Time", [f"{post['time_min']} minutes"]),
-            ("Participant task", [post["participant_task"]]),
-            (
-                "Resources",
-                [
-                    f"{resource['title']} - {resource['url_or_reference']} ({resource['why_it_is_included']})"
-                    for resource in post.get("resources", [])
-                ],
-            ),
+        sections=[
+            ("Purpose", [post.get("purpose", post.get("task", ""))]),
+            ("Time", [f"{post.get('time_min', post.get('time_minutes', ''))} minutes"]),
+            ("Participant task", [post.get("participant_task", post.get("task", ""))]),
+            ("Resources", []),
         ],
+        resource_sections={"Resources": post_resources},
     )
+    log.debug("saved post-bite doc: %s", post_path)
     outputs.append(post_path)
+
     handout = session.get("handout")
     if handout:
         handout_path = out_dir / f"{session_prefix}-handout.docx"
@@ -906,12 +1138,15 @@ def build_docs(lesson_plan: dict[str, Any], session: dict[str, Any], out_dir: Pa
             lines.append(activity["activity_title"])
             lines.extend(activity["instructions"])
             lines.append(f"Participant output: {activity['participant_output']}")
-        write_docx(handout_path, f"Handout: {session['title']}", [("Activity", lines)])
+        write_docx(handout_path, f"Handout: {session['title']}", sections=[("Activity", lines)])
+        log.debug("saved handout doc: %s", handout_path)
         outputs.append(handout_path)
+
     return outputs
 
 
 def validate_lesson_plan(plan: dict[str, Any]) -> None:
+    log.debug("validating lesson plan")
     for key in ["training", "sessions"]:
         if key not in plan:
             raise ValueError(f"lesson_plan.json is missing required key: {key}")
@@ -921,6 +1156,7 @@ def validate_lesson_plan(plan: dict[str, Any]) -> None:
                 raise ValueError(f"session is missing required key: {key}")
         if not session["deck_outline"]:
             raise ValueError(f"session {session['session_n']} has no deck_outline")
+    log.debug("lesson plan valid: %d sessions", len(plan["sessions"]))
 
 
 def parse_args() -> argparse.Namespace:
@@ -934,12 +1170,20 @@ def parse_args() -> argparse.Namespace:
 
 def main() -> None:
     args = parse_args()
+    logging.basicConfig(
+        level=logging.DEBUG,
+        format="%(asctime)s %(levelname)-8s %(message)s",
+        datefmt="%H:%M:%S",
+    )
+    log.info("lesson plan: %s", args.lesson_plan)
     plan = json.loads(args.lesson_plan.read_text(encoding="utf-8"))
     validate_lesson_plan(plan)
     out_dir = args.out_dir or args.lesson_plan.parent / "presentation_artifacts"
     if args.clean and out_dir.exists():
+        log.info("cleaning output dir: %s", out_dir)
         shutil.rmtree(out_dir)
     out_dir.mkdir(parents=True, exist_ok=True)
+    log.info("output dir: %s", out_dir)
     manifest: dict[str, Any] = {
         "created_at": datetime.now(timezone.utc).isoformat(),
         "lesson_plan": str(args.lesson_plan),
@@ -957,6 +1201,7 @@ def main() -> None:
         )
     manifest_path = out_dir / "manifest.json"
     manifest_path.write_text(json.dumps(manifest, indent=2), encoding="utf-8")
+    log.info("manifest written: %s", manifest_path)
     print(manifest_path)
 
 
