@@ -8,6 +8,8 @@
 - [ ] Preparation time expectation is captured.
 - [ ] Handout preference is captured.
 - [ ] If handouts are requested, handout time budget is captured.
+- [ ] Break preference is captured.
+- [ ] If breaks are requested, break time budget is captured.
 
 ## Research
 
@@ -27,7 +29,8 @@
 ## Didactic Arc
 
 - [ ] Every session contains the five blocks in exact order: kick-off, theory, example, exercise, wrap-up.
-- [ ] Block time budgets sum to the session duration.
+- [ ] If breaks are not included, didactic block time budgets sum to the session duration.
+- [ ] If breaks are included, didactic block time plus break slide time sums to the session duration.
 - [ ] Theory is reinforced by the example and exercise.
 - [ ] Exercise creates active application and a clear participant output.
 - [ ] Wrap-up connects to post-bite and, where relevant, the next session.
@@ -39,6 +42,8 @@
 - [ ] Every session has a post-bite.
 - [ ] Every session has a trainer brief with intended skills and learning outcomes.
 - [ ] Optional handouts match the user's preference and time budget.
+- [ ] If handouts are included, the deck outline includes a `slide_type: "handout"` item with a participant-facing message and time budget inside the exercise block.
+- [ ] If breaks are included, the deck outline includes a `slide_type: "break"` item with break duration.
 
 ## Reliability
 

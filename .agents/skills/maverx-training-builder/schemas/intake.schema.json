@@ -9,7 +9,8 @@
     "duration",
     "primary_objective",
     "prep_time_minutes_per_session",
-    "include_handouts"
+    "include_handouts",
+    "include_breaks"
   ],
   "properties": {
     "topic": {
@@ -65,6 +66,16 @@
       "maximum": 240,
       "description": "Time to budget inside each session for handout-based work. Required when include_handouts is true."
     },
+    "include_breaks": {
+      "type": "boolean",
+      "description": "Whether the lesson plan should include break slides in the deck outline."
+    },
+    "break_time_minutes_per_session": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 120,
+      "description": "Break time to budget inside each session. Required when include_breaks is true."
+    },
     "follow_ups_asked": {
       "type": "array",
       "items": { "type": "string" },
@@ -90,6 +101,17 @@
       },
       "then": {
         "required": ["handout_time_minutes_per_session"]
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "include_breaks": { "const": true }
+        },
+        "required": ["include_breaks"]
+      },
+      "then": {
+        "required": ["break_time_minutes_per_session"]
       }
     }
   ]

@@ -20,6 +20,7 @@ The master JSON contains:
 - a didactic deck outline for each session
 - pre-bite and post-bite plans
 - optional handout plans
+- optional break slides
 - trainer-facing skills and learning outcomes
 - per-slide reliability indicators
 

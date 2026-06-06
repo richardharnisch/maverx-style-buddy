@@ -38,7 +38,8 @@
         "duration",
         "primary_objective",
         "prep_time_minutes_per_session",
-        "include_handouts"
+        "include_handouts",
+        "include_breaks"
       ],
       "additionalProperties": false,
       "properties": {
@@ -63,7 +64,9 @@
         },
         "prep_time_minutes_per_session": { "type": "integer", "minimum": 0, "maximum": 240 },
         "include_handouts": { "type": "boolean" },
-        "handout_time_minutes_per_session": { "type": "integer", "minimum": 0, "maximum": 240 }
+        "handout_time_minutes_per_session": { "type": "integer", "minimum": 0, "maximum": 240 },
+        "include_breaks": { "type": "boolean" },
+        "break_time_minutes_per_session": { "type": "integer", "minimum": 0, "maximum": 120 }
       },
       "allOf": [
         {
@@ -75,6 +78,17 @@
           },
           "then": {
             "required": ["handout_time_minutes_per_session"]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "include_breaks": { "const": true }
+            },
+            "required": ["include_breaks"]
+          },
+          "then": {
+            "required": ["break_time_minutes_per_session"]
           }
         }
       ]
@@ -259,9 +273,17 @@
       ]
     },
     "deck_item": {
+      "oneOf": [
+        { "$ref": "#/definitions/content_slide" },
+        { "$ref": "#/definitions/break_slide" },
+        { "$ref": "#/definitions/handout_slide" }
+      ]
+    },
+    "content_slide": {
       "type": "object",
       "required": [
         "slide_n",
+        "slide_type",
         "didactic_block",
         "title",
         "learning_purpose",
@@ -272,6 +294,7 @@
       "additionalProperties": false,
       "properties": {
         "slide_n": { "type": "integer", "minimum": 1 },
+        "slide_type": { "type": "string", "const": "content" },
         "didactic_block": { "type": "string", "enum": ["kick-off", "theory", "example", "exercise", "wrap-up"] },
         "title": { "type": "string", "minLength": 3, "maxLength": 120 },
         "learning_purpose": { "type": "string", "minLength": 10 },
@@ -281,6 +304,44 @@
           "minItems": 1,
           "items": { "type": "string", "minLength": 3 }
         },
+        "reliability": { "$ref": "#/definitions/reliability" }
+      }
+    },
+    "break_slide": {
+      "type": "object",
+      "required": [
+        "slide_n",
+        "slide_type",
+        "message",
+        "duration_min",
+        "reliability"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "slide_n": { "type": "integer", "minimum": 1 },
+        "slide_type": { "type": "string", "const": "break" },
+        "message": { "type": "string", "minLength": 5 },
+        "duration_min": { "type": "integer", "minimum": 1, "maximum": 120 },
+        "reliability": { "$ref": "#/definitions/reliability" }
+      }
+    },
+    "handout_slide": {
+      "type": "object",
+      "required": [
+        "slide_n",
+        "slide_type",
+        "didactic_block",
+        "message",
+        "time_budget_min",
+        "reliability"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "slide_n": { "type": "integer", "minimum": 1 },
+        "slide_type": { "type": "string", "const": "handout" },
+        "didactic_block": { "type": "string", "const": "exercise" },
+        "message": { "type": "string", "minLength": 5 },
+        "time_budget_min": { "type": "integer", "minimum": 1, "maximum": 240 },
         "reliability": { "$ref": "#/definitions/reliability" }
       }
     },

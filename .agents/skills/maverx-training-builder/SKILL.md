@@ -36,6 +36,8 @@ Ask the required intake questions unless the user already provided a concrete an
 6. Expected participant preparation time before each session
 7. Whether handouts or group exercise sheets are wanted
 8. If handouts are wanted, the time budget for handout-based work
+9. Whether breaks should be included
+10. If breaks are wanted, the break time budget per session
 
 For multi-session certification programmes, also gather: certification name, case sector or running context, and tools or tool-agnostic constraints.
 
@@ -75,7 +77,9 @@ Each session must include:
 - a trainer brief listing intended skills and learning outcomes
 - per-slide reliability scoring so the trainer can review weak or uncertain content
 
-Each session may include a handout plan with brainstorm questions or exercise prompts, but only if the user requested handouts.
+Each session may include a handout plan with brainstorm questions or exercise prompts, but only if the user requested handouts. When handouts are included, the deck outline must include a `slide_type: "handout"` item during the exercise block. This slide is a placeholder for the predefined handout-work layout; include only the message to show participants and the time budget. The handout slide time budget is part of the exercise block, not extra time outside the didactic arc.
+
+If breaks are included, the deck outline must include one or more `slide_type: "break"` items. A break slide is not a didactic block. It should only state that it is a break and how long the break lasts.
 
 ### 4. Verify Before Responding
 
@@ -84,17 +88,18 @@ Validate the final JSON against `schemas/lesson_plan.schema.json` using a JSON S
 Also verify:
 
 - every session has the five didactic blocks in the exact required order
-- block time budgets sum to session duration
+- didactic block time budgets plus any break slide durations sum to session duration
 - each theory block is reinforced by the example and exercise blocks
 - pre-bite time matches the intake expectation
 - handout presence matches the intake preference
+- break slide presence matches the intake preference
 - every deck outline item has a reliability score and rationale
 
 ## Critical Rules
 
 1. The output is a didactic JSON file only.
 2. The didactic arc is mandatory: kick-off -> theory -> example -> exercise -> wrap-up.
-3. Keep slide-level content conceptual, not visual. Allowed: slide title, learning purpose, key message, suggested content, reliability. Forbidden: layout, template, master slide, colours, fonts, shapes, image placement.
+3. Keep slide-level content conceptual, not visual. Allowed: content slide title, learning purpose, key message, suggested content, break duration, handout message, handout time budget, reliability. Forbidden: layout, template, master slide, colours, fonts, shapes, image placement.
 4. Do not use external model service configuration in the skill workflow or output.
 5. Refuse vague intake. If the user gave "some people, a few hours, make it good", ask one precise follow-up before generating.
 6. The final output must be normalized JSON verified against the schema.

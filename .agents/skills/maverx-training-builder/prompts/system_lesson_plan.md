@@ -25,7 +25,9 @@ For each session include:
 
 Slide outline rules:
 - Keep slide entries conceptual and didactic.
-- Allowed fields: slide number, title, didactic block, learning purpose, key message, suggested content, reliability.
+- Content slides use `slide_type: "content"` and include slide number, didactic block, title, learning purpose, key message, suggested content, and reliability.
+- Break slides use `slide_type: "break"` and include slide number, message, duration in minutes, and reliability. The message should state that this is a break and how long the break lasts.
+- Handout slides use `slide_type: "handout"` and include slide number, `didactic_block: "exercise"`, message, time budget in minutes, and reliability. The message is shown while participants work on the handout. The handout slide time budget is part of the exercise block, not extra time outside the didactic arc.
 - Forbidden fields: layout, template, master, visual placement, colours, fonts, shapes, speaker note formatting.
 
 Reliability scoring:
@@ -40,5 +42,7 @@ Before returning:
 - verify the five didactic blocks are present in exact order for every session
 - verify every theory block is reinforced by example and exercise
 - verify every slide has a reliability score and rationale
+- verify break slides are present when `include_breaks` is true
+- verify handout slides are present when `include_handouts` is true
 
 The final JSON must be written to a file by the agent host. Do not paste the JSON into chat unless the user explicitly asks for inline JSON.

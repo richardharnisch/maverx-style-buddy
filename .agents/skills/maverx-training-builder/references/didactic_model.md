@@ -23,7 +23,7 @@ For a 2-hour (120-min) session:
 | Wrap-up | 10% | ~12 |
 | Buffer / break | 5% | ~6 |
 
-The sum of didactic block time budgets in a session must equal the session duration. If the session is short, keep the arc intact and compress each block rather than skipping a block.
+The sum of didactic block time budgets plus any break slide durations must equal the session duration. If the session is short, keep the arc intact and compress each block rather than skipping a block.
 
 ## Theory ↔ Exercise matching rule
 

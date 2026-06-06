@@ -12,6 +12,8 @@ The required questions (ask all of them, in order, unless the user already volun
 6. How much preparation time should participants expect before each session?
 7. Do you want handouts or group exercise sheets?
 8. If yes, how much session time should be budgeted for handout-based work?
+9. Do you want breaks included in the lesson plan?
+10. If yes, how much break time should be budgeted per session?
 
 For a multi-session certification programme, also gather:
 
