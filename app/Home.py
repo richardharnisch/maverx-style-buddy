@@ -97,11 +97,22 @@ with preview_col:
     )
     if deck_artifact:
         st.success(f"{deck_artifact['filename']} · {deck_artifact['slide_count']} slides")
-        st.button("⬇️ Download .pptx", disabled=True, help="Available once generation is wired up")
+        try:
+            data = api.download_file(active, deck_artifact["filename"])
+            st.download_button(
+                "⬇️ Download .pptx",
+                data=data,
+                file_name=deck_artifact["filename"],
+                mime="application/vnd.openxmlformats-officedocument.presentationml.presentation",
+                use_container_width=True,
+            )
+        except api.APIError as exc:
+            st.error(str(exc))
     else:
         st.container(border=True).markdown(
             "🖼️ *Your generated deck will appear here.*\n\n"
-            "Deck generation is not wired up yet — the chat returns a stub reply."
+            "Describe the training you need in the chat — Decker will ask a few "
+            "intake questions, then build the deck."
         )
 
 

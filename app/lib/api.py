@@ -87,6 +87,15 @@ def upload_template(filename: str, data: bytes, content_type: str) -> dict:
     ).json()
 
 
+# --- files --------------------------------------------------------------
+
+def download_file(session_id: str, filename: str) -> bytes:
+    """Fetch a generated artifact's raw bytes for a Streamlit download button."""
+    return _request(
+        "GET", f"/sessions/{session_id}/files/{filename}"
+    ).content
+
+
 # --- images -------------------------------------------------------------
 
 def generate_image(prompt: str, size: str = "1024x1024") -> dict:

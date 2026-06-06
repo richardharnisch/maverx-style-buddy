@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import argparse
+import copy
 import json
 import re
 import shutil
@@ -16,8 +17,16 @@ from xml.sax.saxutils import escape
 
 from pptx import Presentation
 from pptx.dml.color import RGBColor
-from pptx.enum.text import PP_ALIGN
+from pptx.enum.text import MSO_AUTO_SIZE, PP_ALIGN
+from pptx.oxml.ns import qn
 from pptx.util import Pt
+
+# Relationships namespace used by r:embed / r:link references on copied shapes.
+_R_NS = "http://schemas.openxmlformats.org/officeDocument/2006/relationships"
+# Shape element tags that make up a slide's drawing tree.
+_SHAPE_TAGS = frozenset(
+    qn(t) for t in ("p:sp", "p:pic", "p:graphicFrame", "p:grpSp", "p:cxnSp")
+)
 
 
 PRIMARY_DARK = RGBColor(0x0D, 0x00, 0x6A)
@@ -203,9 +212,74 @@ def format_points(item: dict[str, Any]) -> str:
     return ""
 
 
+def clean_points(item: dict[str, Any]) -> list[str]:
+    return [p.strip() for p in item.get("suggested_content", []) if p and str(p).strip()]
+
+
+def truncate(text: str, max_len: int) -> str:
+    """Collapse whitespace and ellipsize at a *word* boundary (never mid-word)."""
+    text = re.sub(r"\s+", " ", str(text)).strip()
+    if len(text) <= max_len:
+        return text
+    clipped = text[:max_len].rsplit(" ", 1)[0].rstrip(",.;:")
+    return f"{clipped}…"
+
+
+def shape_area_in2(shape) -> float:
+    try:
+        return (shape.width / 914400) * (shape.height / 914400)
+    except (TypeError, ZeroDivisionError):
+        return 0.0
+
+
+def fillable_bodies(shapes: list[Any], min_area_in2: float = 1.6) -> list[Any]:
+    """Body text shapes big enough to hold content (skips tiny label/number boxes)."""
+    return [s for s in shapes if shape_area_in2(s) >= min_area_in2]
+
+
+def write_body(
+    shape,
+    lines: list[tuple[str, bool]],
+    *,
+    color: RGBColor = DARK_GREY,
+    base_size: float = 14,
+) -> None:
+    """Write (text, is_bullet) lines into a text frame: bold lead, bulleted rest."""
+    text_frame = shape.text_frame
+    text_frame.clear()
+    text_frame.word_wrap = True
+    try:
+        text_frame.auto_size = MSO_AUTO_SIZE.NONE
+    except (AttributeError, ValueError):
+        pass
+    for index, (text, is_bullet) in enumerate(lines):
+        paragraph = (
+            text_frame.paragraphs[0] if index == 0 else text_frame.add_paragraph()
+        )
+        is_lead = index == 0 and not is_bullet
+        paragraph.text = (f"•  {text}" if is_bullet else text)
+        size = base_size + 2 if is_lead else base_size
+        paragraph.font.name = "Raleway"
+        paragraph.font.size = Pt(size)
+        paragraph.font.bold = is_lead
+        paragraph.font.color.rgb = color
+        paragraph.space_after = Pt(6)
+        for run in paragraph.runs:
+            run.font.name = "Raleway"
+            run.font.size = Pt(size)
+            run.font.bold = is_lead
+            run.font.color.rgb = color
+
+
 def choose_templates(deck_outline: list[dict[str, Any]]) -> list[PlannedSlide]:
-    used: set[str] = set()
+    """Assign a Maverx template to each deck item.
+
+    Content slides round-robin through their block's candidate list, so a deck
+    can be any length: templates are reused (and later cloned) once a block's
+    options are exhausted, while still varying layout within the block.
+    """
     planned: list[PlannedSlide] = []
+    block_cursor: dict[str, int] = {}
     for item in deck_outline:
         slide_type = item.get("slide_type", "content")
         if item.get("slide_n") == 1:
@@ -217,16 +291,11 @@ def choose_templates(deck_outline: list[dict[str, Any]]) -> list[PlannedSlide]:
         elif "debrief" in item.get("title", "").lower():
             template_id = "23-debrief"
         else:
-            candidates = CONTENT_CANDIDATES.get(
-                item.get("didactic_block", ""), ["05-text-slide"]
-            )
-            template_id = next(
-                (candidate for candidate in candidates if candidate not in used),
-                candidates[-1],
-            )
-        if template_id in used:
-            template_id = choose_unused_fallback(used, template_id)
-        used.add(template_id)
+            block = item.get("didactic_block", "")
+            candidates = CONTENT_CANDIDATES.get(block, ["05-text-slide"])
+            cursor = block_cursor.get(block, 0)
+            template_id = candidates[cursor % len(candidates)]
+            block_cursor[block] = cursor + 1
         planned.append(
             PlannedSlide(
                 template_id=template_id,
@@ -237,33 +306,54 @@ def choose_templates(deck_outline: list[dict[str, Any]]) -> list[PlannedSlide]:
     return planned
 
 
-def choose_unused_fallback(used: set[str], preferred: str) -> str:
-    fallback_order = [
-        preferred,
-        "05-text-slide",
-        "03-unstructured-three-section-slide",
-        "16-three-section-slide",
-        "06-dark-text-slide",
-        "18-section-title",
-        "14-dark-section-title-slide",
-        "02-process-slide",
-    ]
-    for candidate in fallback_order:
-        if candidate not in used:
-            return candidate
-    raise ValueError("This session needs more unique template slides than available.")
+def clone_slide(prs: Presentation, source):
+    """Append a deep copy of `source` (a slide in `prs`) and return it.
+
+    Lets a template slide appear any number of times in the output deck. The
+    new slide reuses the source's layout (so master/layout graphics, logos and
+    footers are inherited), then copies the source's own shapes and re-links any
+    images or other slide-relative parts they reference.
+    """
+    new_slide = prs.slides.add_slide(source.slide_layout)
+    sp_tree = new_slide.shapes._spTree
+    # Drop the placeholder shapes add_slide() created from the layout.
+    for shape in list(sp_tree):
+        if shape.tag in _SHAPE_TAGS:
+            sp_tree.remove(shape)
+    # Copy the source slide's drawing shapes verbatim.
+    for shape in source.shapes._spTree:
+        if shape.tag in _SHAPE_TAGS:
+            sp_tree.append(copy.deepcopy(shape))
+    _relink_parts(source.part, new_slide.part, sp_tree)
+    return new_slide
 
 
-def keep_and_order_slides(prs: Presentation, source_slide_numbers: list[int]) -> None:
-    all_sld_ids = list(prs.slides._sldIdLst)
-    keep_indexes = [number - 1 for number in source_slide_numbers]
-    keep_sld_ids = [all_sld_ids[index] for index in keep_indexes]
-    for sld_id in all_sld_ids:
-        prs.slides._sldIdLst.remove(sld_id)
-        if sld_id not in keep_sld_ids:
-            prs.part.drop_rel(sld_id.rId)
-    for sld_id in keep_sld_ids:
-        prs.slides._sldIdLst.append(sld_id)
+def _relink_parts(src_part, dst_part, sp_tree) -> None:
+    """Rewrite r:embed/r:link rIds on copied shapes to point at parts the new
+    slide owns, copying image/media parts across as needed."""
+    for element in sp_tree.iter():
+        for attr_name in list(element.attrib):
+            if not attr_name.startswith(f"{{{_R_NS}}}"):
+                continue
+            old_rid = element.get(attr_name)
+            if not old_rid or old_rid not in src_part.rels:
+                continue
+            rel = src_part.rels[old_rid]
+            if rel.is_external:
+                new_rid = dst_part.relate_to(
+                    rel.target_ref, rel.reltype, is_external=True
+                )
+            else:
+                new_rid = dst_part.relate_to(rel.target_part, rel.reltype)
+            element.set(attr_name, new_rid)
+
+
+def remove_slides(prs: Presentation, sld_ids) -> None:
+    """Remove the given slide-id elements (and their part rels) from `prs`."""
+    sld_id_lst = prs.slides._sldIdLst
+    for sld_id in sld_ids:
+        sld_id_lst.remove(sld_id)
+        prs.part.drop_rel(sld_id.rId)
 
 
 def fill_slide(slide, planned: PlannedSlide, session: dict[str, Any]) -> None:
@@ -317,14 +407,31 @@ def fill_agenda(slide, session: dict[str, Any]) -> None:
 
 
 def fill_theory_opener(slide, item: dict[str, Any]) -> None:
-    set_text(
-        first_text_shapes(slide)[0],
-        item["title"],
-        font="Space Grotesk",
-        size=32,
-        color=PRIMARY_DARK,
-        bold=True,
-    )
+    # Template 17 is an image slide with a single title box. Use it as a section
+    # opener: bold title + the key message beneath, so it isn't a bare heading.
+    shape = first_text_shapes(slide)[0]
+    text_frame = shape.text_frame
+    text_frame.clear()
+    text_frame.word_wrap = True
+    lines = [(truncate(item["title"], 70), 30, True)]
+    key_message = truncate(item.get("key_message", ""), 150)
+    if key_message:
+        lines.append((key_message, 16, False))
+    for index, (text, size, bold) in enumerate(lines):
+        paragraph = (
+            text_frame.paragraphs[0] if index == 0 else text_frame.add_paragraph()
+        )
+        paragraph.text = text
+        paragraph.font.name = "Space Grotesk"
+        paragraph.font.size = Pt(size)
+        paragraph.font.bold = bold
+        paragraph.font.color.rgb = PRIMARY_DARK
+        paragraph.space_after = Pt(8)
+        for run in paragraph.runs:
+            run.font.name = "Space Grotesk"
+            run.font.size = Pt(size)
+            run.font.bold = bold
+            run.font.color.rgb = PRIMARY_DARK
 
 
 def fill_timeline(slide, item: dict[str, Any]) -> None:
@@ -416,13 +523,38 @@ def fill_generic_content(slide, item: dict[str, Any], template_id: str) -> None:
         return
     dark = template_id in {"06-dark-text-slide", "14-dark-section-title-slide"}
     title_color = OFF_WHITE if dark else PRIMARY_DARK
-    body_color = OFF_WHITE if dark else PRIMARY_DARK
-    set_text(shapes[0], item["title"], font="Space Grotesk", size=33, color=title_color, bold=True)
-    body = [item["key_message"], *item.get("suggested_content", [])[:4]]
+    body_color = OFF_WHITE if dark else DARK_GREY
+    set_text(
+        shapes[0], truncate(item["title"], 90),
+        font="Space Grotesk", size=30, color=title_color, bold=True,
+    )
+
+    bodies = fillable_bodies(shapes[1:])
     keep = {0}
-    for index, (shape, text) in enumerate(zip(shapes[1:], body), start=1):
-        set_text(shape, text, font="Raleway", size=15, color=body_color)
-        keep.add(index)
+    if not bodies:
+        clear_unused_text_shapes(slide, keep)
+        return
+
+    lead = truncate(item.get("key_message", ""), 180)
+    bullets = [truncate(point, 150) for point in clean_points(item)]
+
+    if len(bodies) == 1:
+        # Single body frame (e.g. 05/03/10): lead + every bullet in one place.
+        lines = ([(lead, False)] if lead else []) + [(b, True) for b in bullets[:6]]
+        if lines:
+            write_body(bodies[0], lines, color=body_color)
+        keep.add(shapes.index(bodies[0]))
+    else:
+        # Multi-section template: spread content so no section is left empty.
+        items = ([lead] if lead else []) + bullets
+        per_section = max(1, -(-len(items) // len(bodies)))  # ceil divide
+        for section_index, body in enumerate(bodies):
+            chunk = items[section_index * per_section : (section_index + 1) * per_section]
+            if not chunk:
+                break
+            lines = [(chunk[0], False)] + [(c, True) for c in chunk[1:]]
+            write_body(body, lines, color=body_color, base_size=13)
+            keep.add(shapes.index(body))
     clear_unused_text_shapes(slide, keep)
 
 
@@ -441,11 +573,15 @@ def build_session_deck(
     out_dir: Path,
 ) -> Path:
     planned = choose_templates(session["deck_outline"])
-    source_numbers = [slide.source_slide_number for slide in planned]
     prs = Presentation(template_path)
-    keep_and_order_slides(prs, source_numbers)
-    for slide, planned_slide in zip(prs.slides, planned):
-        fill_slide(slide, planned_slide, session)
+    original_sld_ids = list(prs.slides._sldIdLst)
+    template_slides = list(prs.slides)
+    for planned_slide in planned:
+        source = template_slides[planned_slide.source_slide_number - 1]
+        new_slide = clone_slide(prs, source)
+        fill_slide(new_slide, planned_slide, session)
+    # Drop the original template slides; only the cloned, filled slides remain.
+    remove_slides(prs, original_sld_ids)
     output = out_dir / (
         f"{lesson_plan['training']['slug']}-session-"
         f"{session['session_n']:02d}.pptx"
@@ -455,15 +591,48 @@ def build_session_deck(
     return output
 
 
-def docx_escape_lines(lines: list[str]) -> str:
-    paragraphs = []
-    for line in lines:
-        safe = escape(line)
-        paragraphs.append(f"<w:p><w:r><w:t>{safe}</w:t></w:r></w:p>")
-    return "".join(paragraphs)
+# Maverx brand colours as DOCX hex (no leading #).
+_DOCX_PRIMARY = "0D006A"
+_DOCX_BODY = "262626"
+_DOCX_FONT = "Calibri"
 
 
-def write_docx(path: Path, title: str, sections: list[tuple[str, list[str]]]) -> None:
+def _docx_paragraph(
+    text: str,
+    *,
+    size_pt: float,
+    bold: bool = False,
+    color: str = _DOCX_BODY,
+    bullet: bool = False,
+    space_after: int = 120,
+    space_before: int = 0,
+) -> str:
+    half_pts = int(size_pt * 2)  # Word sizes are in half-points.
+    run_props = (
+        f'<w:rPr><w:rFonts w:ascii="{_DOCX_FONT}" w:hAnsi="{_DOCX_FONT}"/>'
+        f'{"<w:b/>" if bold else ""}'
+        f'<w:color w:val="{color}"/>'
+        f'<w:sz w:val="{half_pts}"/><w:szCs w:val="{half_pts}"/></w:rPr>'
+    )
+    indent = '<w:ind w:left="360" w:hanging="360"/>' if bullet else ""
+    para_props = (
+        f'<w:pPr><w:spacing w:before="{space_before}" w:after="{space_after}"/>'
+        f"{indent}</w:pPr>"
+    )
+    display = f"•  {text}" if bullet else text
+    return (
+        f"<w:p>{para_props}<w:r>{run_props}"
+        f'<w:t xml:space="preserve">{escape(display)}</w:t></w:r></w:p>'
+    )
+
+
+def write_docx(
+    path: Path,
+    title: str,
+    sections: list[tuple[str, list[str]]],
+    *,
+    subtitle: str | None = None,
+) -> None:
     content_types = (
         '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>'
         '<Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types">'
@@ -478,13 +647,26 @@ def write_docx(path: Path, title: str, sections: list[tuple[str, list[str]]]) ->
         '<Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument" Target="word/document.xml"/>'
         "</Relationships>"
     )
-    body_lines = [title, ""]
+    parts = [
+        _docx_paragraph(title, size_pt=22, bold=True, color=_DOCX_PRIMARY, space_after=40)
+    ]
+    if subtitle:
+        parts.append(
+            _docx_paragraph(subtitle, size_pt=11, color="6E6E6E", space_after=240)
+        )
     for heading, lines in sections:
-        body_lines.extend([heading, *lines, ""])
+        parts.append(
+            _docx_paragraph(
+                heading, size_pt=13.5, bold=True, color=_DOCX_PRIMARY,
+                space_before=160, space_after=60,
+            )
+        )
+        for line in lines:
+            parts.append(_docx_paragraph(line, size_pt=11, bullet=True))
     document = (
         '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>'
         '<w:document xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main">'
-        f"<w:body>{docx_escape_lines(body_lines)}"
+        f"<w:body>{''.join(parts)}"
         '<w:sectPr><w:pgSz w:w="11906" w:h="16838"/>'
         '<w:pgMar w:top="1440" w:right="1440" w:bottom="1440" w:left="1440"/>'
         "</w:sectPr></w:body></w:document>"
@@ -499,42 +681,45 @@ def build_docs(lesson_plan: dict[str, Any], session: dict[str, Any], out_dir: Pa
     slug = lesson_plan["training"]["slug"]
     session_prefix = f"{slug}-session-{session['session_n']:02d}"
     outputs: list[Path] = []
+    training_title = lesson_plan["training"]["title"]
     pre = session["pre_bite"]
     pre_path = out_dir / f"{session_prefix}-pre-bite.docx"
     write_docx(
         pre_path,
-        f"Pre-bite: {session['title']}",
+        f"Pre-bite — {session['title']}",
         [
             ("Purpose", [pre["purpose"]]),
-            ("Time", [f"{pre['time_min']} minutes"]),
-            ("Participant task", [pre["participant_task"]]),
+            ("Time to set aside", [f"{pre['time_min']} minutes"]),
+            ("Your task before the session", [pre["participant_task"]]),
             (
                 "Resources",
                 [
-                    f"{resource['title']} - {resource['url_or_reference']} ({resource['why_it_is_included']})"
+                    f"{resource['title']} — {resource['url_or_reference']} ({resource['why_it_is_included']})"
                     for resource in pre.get("resources", [])
                 ],
             ),
         ],
+        subtitle=f"Maverx training · {training_title}",
     )
     outputs.append(pre_path)
     post = session["post_bite"]
     post_path = out_dir / f"{session_prefix}-post-bite.docx"
     write_docx(
         post_path,
-        f"Post-bite: {session['title']}",
+        f"Post-bite — {session['title']}",
         [
             ("Purpose", [post["purpose"]]),
-            ("Time", [f"{post['time_min']} minutes"]),
-            ("Participant task", [post["participant_task"]]),
+            ("Time to set aside", [f"{post['time_min']} minutes"]),
+            ("Your follow-up task", [post["participant_task"]]),
             (
                 "Resources",
                 [
-                    f"{resource['title']} - {resource['url_or_reference']} ({resource['why_it_is_included']})"
+                    f"{resource['title']} — {resource['url_or_reference']} ({resource['why_it_is_included']})"
                     for resource in post.get("resources", [])
                 ],
             ),
         ],
+        subtitle=f"Maverx training · {training_title}",
     )
     outputs.append(post_path)
     handout = session.get("handout")
@@ -548,6 +733,51 @@ def build_docs(lesson_plan: dict[str, Any], session: dict[str, Any], out_dir: Pa
         write_docx(handout_path, f"Handout: {session['title']}", [("Activity", lines)])
         outputs.append(handout_path)
     return outputs
+
+
+def build_overview(lesson_plan: dict[str, Any], out_dir: Path) -> Path:
+    """Track-level overview: the red thread, timing and outcomes per session.
+
+    Required for multi-session tracks (Tier 3) and useful for Tier 2 modules.
+    """
+    training = lesson_plan["training"]
+    slug = training["slug"]
+    sections: list[tuple[str, list[str]]] = []
+
+    outcomes = lesson_plan.get("programme_learning_outcomes", [])
+    if outcomes:
+        sections.append(("Programme learning outcomes", list(outcomes)))
+
+    summary = lesson_plan.get("intake_summary", {})
+    meta = [
+        f"Scope: {training.get('scope', 'multi_session')}",
+        f"Sessions: {training.get('total_sessions', len(lesson_plan['sessions']))}",
+        f"Total duration: {training.get('total_minutes', 0)} minutes",
+    ]
+    if summary.get("certification_name"):
+        meta.append(f"Certification: {summary['certification_name']}")
+    sections.append(("At a glance", meta))
+
+    for session in lesson_plan["sessions"]:
+        brief = session.get("brief_for_trainer", {})
+        lines = [
+            f"Duration: {session.get('duration_min', 0)} minutes",
+            f"Purpose: {brief.get('session_purpose', '')}",
+        ]
+        for outcome in brief.get("learning_outcomes", [])[:4]:
+            lines.append(f"Outcome: {outcome}")
+        sections.append(
+            (f"Session {session['session_n']}: {session['title']}", lines)
+        )
+
+    overview_path = out_dir / f"{slug}-overview.docx"
+    write_docx(
+        overview_path,
+        f"Programme overview — {training['title']}",
+        sections,
+        subtitle="Red thread, timing and learning objectives per session",
+    )
+    return overview_path
 
 
 def validate_lesson_plan(plan: dict[str, Any]) -> None:
@@ -594,6 +824,9 @@ def main() -> None:
                 "docx": [str(path) for path in docs],
             }
         )
+    # Track-level overview document for multi-session programmes.
+    if len(plan["sessions"]) > 1:
+        manifest["track_docs"] = [str(build_overview(plan, out_dir))]
     manifest_path = out_dir / "manifest.json"
     manifest_path.write_text(json.dumps(manifest, indent=2), encoding="utf-8")
     print(manifest_path)

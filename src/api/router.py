@@ -12,15 +12,10 @@ from src.constants import (
     PORT,
 )
 from .routers import (
-    assets,
     chat,
-    chunks,
     files,
     health,
     images,
-    intake,
-    outline,
-    refine,
     session,
     style_guides,
     templates,
@@ -38,12 +33,7 @@ app.include_router(session.router)
 app.include_router(chat.router)
 app.include_router(templates.router)
 app.include_router(images.router)
-app.include_router(intake.router)
-app.include_router(outline.router)
-app.include_router(chunks.router)
-app.include_router(assets.router)
 app.include_router(files.router)
-app.include_router(refine.router)
 app.include_router(track.router)
 app.include_router(style_guides.router)
 

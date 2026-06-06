@@ -3,7 +3,9 @@ from datetime import datetime, timezone
 
 from fastapi import APIRouter
 
+from src.agent.pipeline import handle_turn
 from ..schemas.chat import (
+    DeckArtifact,
     Message,
     MessageRole,
     MessagesResponse,
@@ -52,19 +54,15 @@ def list_messages(session_id: str) -> MessagesResponse:
 def send_message(
     session_id: str, body: SendMessageRequest
 ) -> MessagesResponse:
-    get_session_or_404(session_id)
+    session = get_session_or_404(session_id)
     history = _messages.setdefault(session_id, [])
     history.append(_new_message(MessageRole.user, body.content))
 
-    # TODO: wire the real presentation-builder pipeline here. For now we return
-    # a canned assistant reply so the chat UI is fully exercisable end-to-end.
-    reply = _new_message(
-        MessageRole.assistant,
-        (
-            "🛠️ Decker is not wired to the deck-generation pipeline yet "
-            f"(requested model: `{body.model}`). Once routing lands, this turn "
-            "will produce a Maverx-branded deck from your prompt."
-        ),
+    # Drive the hybrid pipeline: conversational intake on OpenRouter, then
+    # lesson-plan generation + deck build once intake is complete.
+    result = handle_turn(session, body.content, body.model)
+    deck = DeckArtifact(**result.deck) if result.deck else None
+    history.append(
+        _new_message(MessageRole.assistant, result.reply, deck=deck)
     )
-    history.append(reply)
     return MessagesResponse(session_id=session_id, messages=history)
