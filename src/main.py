@@ -1,6 +1,6 @@
-"""Entry point — parses user input and kicks off the agent loop."""
+"""Entry point — launches the Decker FastAPI backend."""
 
-from src.interface.cli import run_cli
+from src.api.router import main
 
 if __name__ == "__main__":
-    run_cli()
+    main()

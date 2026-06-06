@@ -1,17 +1,29 @@
 import uvicorn
 from fastapi import FastAPI
+from pydantic import BaseModel
 
-from src.constants import APP_DESCRIPTION, APP_TITLE, APP_VERSION, HOST, PORT
+from src.constants import (
+    APP_DESCRIPTION,
+    APP_TITLE,
+    APP_VERSION,
+    AVAILABLE_MODELS,
+    DEFAULT_MODEL,
+    HOST,
+    PORT,
+)
 from .routers import (
     assets,
+    chat,
     chunks,
     files,
     health,
+    images,
     intake,
     outline,
     refine,
     session,
     style_guides,
+    templates,
     track,
 )
 
@@ -23,6 +35,9 @@ app = FastAPI(
 
 app.include_router(health.router)
 app.include_router(session.router)
+app.include_router(chat.router)
+app.include_router(templates.router)
+app.include_router(images.router)
 app.include_router(intake.router)
 app.include_router(outline.router)
 app.include_router(chunks.router)
@@ -31,6 +46,17 @@ app.include_router(files.router)
 app.include_router(refine.router)
 app.include_router(track.router)
 app.include_router(style_guides.router)
+
+
+class ModelsResponse(BaseModel):
+    models: list[str]
+    default: str
+
+
+@app.get("/models", response_model=ModelsResponse, tags=["meta"])
+def list_models() -> ModelsResponse:
+    """Hardcoded model list surfaced in the Settings page."""
+    return ModelsResponse(models=AVAILABLE_MODELS, default=DEFAULT_MODEL)
 
 
 def main() -> None:

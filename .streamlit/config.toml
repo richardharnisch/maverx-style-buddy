@@ -1,0 +1,14 @@
+# Decker — Maverx-branded Streamlit theme.
+# Palette sourced from the Maverx slide dictionary / style guide.
+[theme]
+primaryColor = "#F48A28"            # Maverx orange — CTA / accents
+backgroundColor = "#FFFFFF"
+secondaryBackgroundColor = "#EDE9FF" # BG Lavender — sidebar / cards
+textColor = "#0D006A"                # Primary Dark — titles and body
+font = "sans serif"
+
+[server]
+headless = true
+
+[browser]
+gatherUsageStats = false

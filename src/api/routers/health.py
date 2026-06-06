@@ -4,7 +4,7 @@ import time
 from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel
 
-from src.constants import APP_VERSION, DEFAULT_STYLE_GUIDE
+from src.constants import APP_VERSION
 
 router = APIRouter(tags=["health"])
 
@@ -27,7 +27,7 @@ def health() -> HealthResponse:
 
 @router.get(
     "/ready",
-    summary="Readiness check — verifies AI client credentials and style guide loader",
+    summary="Readiness check — verifies AI client credentials",
 )
 def ready() -> dict:
     errors: list[str] = []
@@ -35,16 +35,8 @@ def ready() -> dict:
     if not os.getenv("OPENROUTER_API_KEY"):
         errors.append("OPENROUTER_API_KEY is not set")
 
-    try:
-        from src.style_guides.loader import load
-
-        load(DEFAULT_STYLE_GUIDE)
-    except FileNotFoundError:
-        errors.append(
-            f"'{DEFAULT_STYLE_GUIDE}' style guide not found in style_guides/ — upload {DEFAULT_STYLE_GUIDE}.pptx"
-        )
-    except Exception as exc:
-        errors.append(f"Style guide load error: {exc}")
+    # TODO: add a style guide / template catalog readiness check once the
+    # deck-generation pipeline lands.
 
     if errors:
         raise HTTPException(

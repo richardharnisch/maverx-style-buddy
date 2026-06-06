@@ -1,7 +1,7 @@
 [project]
-name = "maverx-style-buddy"
+name = "decker"
 version = "0.1.0"
-description = "Add your description here"
+description = "Decker — AI-powered slide deck builder in Maverx house style"
 requires-python = ">=3.12"
 dependencies = [
     "fastapi[standard]>=0.136.3",
@@ -14,6 +14,9 @@ dependencies = [
     "ruff>=0.15.16",
     "uvicorn[standard]>=0.34",
     "python-multipart>=0.0.20",
+    "streamlit>=1.58.0",
+    "httpx>=0.28.1",
+    "requests>=2.34.2",
 ]
 
 [tool.ruff]

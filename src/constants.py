@@ -1,14 +1,23 @@
 import os
 from pathlib import Path
 
-APP_TITLE = "Maverx Style Buddy"
-APP_DESCRIPTION = "AI-powered training builder: intake → outline → .pptx in Maverx house style"
+APP_TITLE = "Decker"
+APP_DESCRIPTION = "Decker — AI-powered slide deck builder in Maverx house style"
 APP_VERSION = "0.1.0"
 
 HOST = os.getenv("HOST", "0.0.0.0")
 PORT = int(os.getenv("PORT", "8000"))
 
 OUTPUT_DIR = Path(os.getenv("OUTPUT_DIR", "outputs"))
+
+# Hardcoded model list surfaced in the Settings page (GET /models).
+# TODO: source this from the provider once routing is wired up.
+AVAILABLE_MODELS: list[str] = [
+    "anthropic/claude-opus-4-8",
+    "anthropic/claude-sonnet-4-6",
+    "openai/gpt-5.5",
+]
+DEFAULT_MODEL = os.getenv("MODEL", AVAILABLE_MODELS[0])
 
 ORDERED_BLOCKS: list[str] = [
     "kick-off",
