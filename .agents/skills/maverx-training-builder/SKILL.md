@@ -77,7 +77,7 @@ Each session must include:
 - a trainer brief listing intended skills and learning outcomes
 - per-slide reliability scoring so the trainer can review weak or uncertain content
 
-Deck outlines must scale with session duration. For each session, compute `minimum_teach_work_slides = ceil(duration_min / 3)`. The session's `deck_outline` must contain at least that many non-break items. Count `slide_type: "content"` items and `slide_type: "handout"` items toward this minimum; do not count `slide_type: "break"` items. A 60-minute session therefore needs at least 20 non-break deck outline items. Do not reuse a generic 8-slide skeleton for longer sessions.
+Deck outlines must scale with session duration. For each session, compute `minimum_teach_work_slides = ceil(duration_min / 3)`. The session's `deck_outline` must contain at least that many non-break items. Count `slide_type: "content"` items and `slide_type: "handout"` items toward this minimum; do not count `slide_type: "break"` items. A 60-minute session therefore needs at least 20 non-break deck outline items. Do not reuse a generic 8-slide skeleton for longer sessions. Remember that this is a hard minimum, not a target. Longer sessions can and should have more than `ceil(duration_min / 3)` non-break slides to ensure sufficient depth and variety.
 
 Distribute the deck outline across the five didactic blocks according to their time budgets. A longer theory, example, or exercise block should be split into several focused slide items with distinct learning purposes, not one broad slide. Avoid repeating the same slide pattern in every session; vary titles, examples, checks, misconceptions, prompts, and exercise steps to match the session objective and research evidence.
 
