@@ -2,13 +2,13 @@
 
 Every training, every session, every block follows this arc. No exceptions.
 
-| Block | Purpose | Typical slides |
-|-------|---------|----------------|
-| **Kick-off** | Set learning goals, introduce agenda, set tone | Cover, About this session, Agenda, Timetable, (Mentimeter recap for session ≥ 2) |
-| **Theory** | Core concepts explained for the audience | 3–6 theory slides per topic; use Theory/Topic templates |
-| **Example** | Concrete, recognizable illustration of the theory | 1–2 example slides per major theory block |
-| **Exercise** | Active application — individual, pair, or group work | Exercise brief slide + step/handout slide + Debrief slide |
-| **Wrap-up** | Key takeaways, link to practice, next steps | "What stays", "What's next", Resources, Closer |
+| Block | Purpose | Lesson-plan focus |
+|-------|---------|-------------------|
+| **Kick-off** | Set learning goals, introduce agenda, create relevance | Why this matters, what participants will be able to do, how the session works |
+| **Theory** | Explain the core concepts at the right level for the audience | Concepts, models, vocabulary, misconceptions, decision rules |
+| **Example** | Make the theory concrete and recognizable | Worked example, realistic scenario, comparison of weak and strong practice |
+| **Exercise** | Create active application | Individual, pair, or group task with clear output and debrief |
+| **Wrap-up** | Link learning to practice and continuation | Takeaways, transfer to work, post-bite, next session handoff |
 
 ## Timing distribution (default heuristic — LLM may adjust)
 
@@ -23,18 +23,18 @@ For a 2-hour (120-min) session:
 | Wrap-up | 10% | ~12 |
 | Buffer / break | 5% | ~6 |
 
-Sum of `notes.time` across all slides in a session **must** equal session duration (±5 min). QA checks this.
+The sum of didactic block time budgets in a session must equal the session duration. If the session is short, keep the arc intact and compress each block rather than skipping a block.
 
 ## Theory ↔ Exercise matching rule
 
-Every Theory block must be followed (within the same session) by at least one Example slide and at least one Exercise slide that drills the same concept. The session planner is prompted to emit an `exercise_target` field on every Theory slide and verify the Exercise block references it.
+Every theory block must be reinforced by an example and an exercise in the same session. The exercise must require participants to apply the theory, not merely discuss it.
 
-## Mentimeter recap (sessions ≥ 2)
+## Recap For Multi-Session Trainings
 
-First slide after the cover is a Mentimeter recap of the previous session's post-bite. Generated as a styled slide + companion `mentimeter_questions.md` file.
+Sessions after the first should briefly use the prior post-bite or previous output as a bridge into the new learning objective.
 
 ## Pre-bite / Post-bite
 
 - **Pre-bite** ships before the session: reading, install instructions, or one reflection question.
 - **Post-bite** ships after the session: reflection questions, an assignment, or further reading.
-- For Tier 3, **post-bite of session N must reference the artefact pre-bite of session N+1 expects**. The track planner emits this handshake explicitly.
+- Keep both proportional to the participant time budget gathered during intake.

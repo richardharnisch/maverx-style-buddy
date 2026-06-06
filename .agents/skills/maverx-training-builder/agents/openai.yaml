@@ -1,5 +1,4 @@
 interface:
   display_name: "Maverx Training Builder"
-  short_description: "Build Maverx training bundles"
-  brand_color: "#3F0576"
-  default_prompt: "Use $maverx-training-builder to build a Maverx training programme from this brief."
+  short_description: "Build schema-validated didactic lesson plan JSON"
+  default_prompt: "Use $maverx-training-builder to build a Maverx didactic lesson plan JSON from this brief."

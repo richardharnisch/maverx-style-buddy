@@ -8,13 +8,15 @@
     "knowledge_level",
     "duration",
     "primary_objective",
-    "tier"
+    "tier",
+    "prep_time_minutes_per_session",
+    "include_handouts"
   ],
   "properties": {
     "tier": {
       "type": "integer",
       "enum": [1, 2, 3],
-      "description": "Tier 1 = single training; Tier 2 = essentials/advanced/expert track; Tier 3 = certification programme."
+      "description": "1 = single training; 2 = multi-session track; 3 = certification programme."
     },
     "topic": {
       "type": "string",
@@ -44,24 +46,31 @@
       "description": "What participants must be able to do at the end."
     },
     "language": { "type": "string", "enum": ["EN", "NL"], "default": "EN" },
-    "backbone": {
-      "type": "string",
-      "description": "Methodology backbone (e.g. DMAIC, PDCA). Optional; planner picks if absent.",
-      "default": "DMAIC"
-    },
     "certification_name": { "type": "string" },
     "case_sector": {
       "type": "string",
-      "description": "Sector/industry the fictional case should live in (e.g. retail, banking, manufacturing)."
+      "description": "Sector, industry, or running context for examples and exercises."
     },
     "tools": {
       "type": "array",
       "items": { "type": "string" },
-      "description": "Software/tools learners will use (Power BI, Excel, etc.)."
+      "description": "Software/tools learners will use, or tool-agnostic constraints."
     },
-    "branding_overrides": {
-      "type": "object",
-      "description": "Optional overrides — leave empty to use the supplied Maverx master."
+    "prep_time_minutes_per_session": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 240,
+      "description": "Expected participant preparation time before each session."
+    },
+    "include_handouts": {
+      "type": "boolean",
+      "description": "Whether the user wants handouts, brainstorm sheets, or exercise worksheets."
+    },
+    "handout_time_minutes_per_session": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 240,
+      "description": "Time to budget inside each session for handout-based work. Required when include_handouts is true."
     },
     "follow_ups_asked": {
       "type": "array",
@@ -77,5 +86,18 @@
       "type": "array",
       "items": { "type": "string" }
     }
-  }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "include_handouts": { "const": true }
+        },
+        "required": ["include_handouts"]
+      },
+      "then": {
+        "required": ["handout_time_minutes_per_session"]
+      }
+    }
+  ]
 }

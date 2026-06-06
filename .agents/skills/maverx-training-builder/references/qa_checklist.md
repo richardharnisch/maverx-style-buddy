@@ -1,43 +1,46 @@
-# Submission Checklist
-
-The QA script (`qa_deck.py`) checks each item below automatically where possible. Items marked **human** require a trainer to glance at the rendered PDFs.
-
-## Editability
-
-- [ ] Every `.pptx` opens cleanly in desktop PowerPoint (no repair prompt). *(human)*
-- [ ] All slide content is real text or real tables, never images of text. *(auto: scans for text in placeholders, flags slides with zero text frames)*
-- [ ] Titles, bullets, and tables can be edited. *(auto: every slide has ≥1 editable text frame; tables are `pptx.Table`)*
-
-## House style compliance
-
-- [ ] Master layouts are referenced — not redrawn. *(auto: every emitted slide's XML originated from cloning a master slide; no programmatically-added shapes)*
-- [ ] Footer (`maverx.nl` + social icons) present on every content slide. *(auto: searches for `maverx.nl` text run in each slide)*
-- [ ] Fonts used are Space Grotesk / Raleway / Calibri (master fallback). *(auto: scans run fonts; flags any other font)*
-- [ ] Colours fall within the approved palette (see `house_style.md`). *(auto: scans solid fills/run colours; flags hexes that aren't in the palette ±tint range)*
-
-## Didactic arc
-
-- [ ] Each session contains, in order: Kick-off → Theory → Example → Exercise → Wrap-up. *(auto: scans slide `role`s in session_plan.json)*
-- [ ] Every Theory slide has at least one matching Exercise slide in the same session. *(auto: `exercise_target` linkage)*
-- [ ] Session timing (sum of `notes.time`) equals planned session duration ±5 min. *(auto)*
-
-## Speaker notes
-
-- [ ] All 5 fields present on every slide: Aim, Time, Instructions, Reflective question, Debrief. *(auto: regex on notes text)*
-
-## Companion documents
-
-- [ ] `pre_bite.docx` exists per session.
-- [ ] `post_bite.docx` exists per session.
-- [ ] `case_handout.docx` exists per session.
-- [ ] `track_overview.docx` exists at track level.
-
-## Track narrative (Tier 3)
-
-- [ ] For every consecutive session pair: `post_bite_artefact[N] == next_session_pre_bite_expects_from_prior[N+1]`. *(auto)*
-- [ ] Every session's `case_advance` references the same `case.company` and `case.protagonists`. *(auto)*
+# QA Checklist
 
 ## Intake
 
-- [ ] All 5 required questions answered.
-- [ ] Vague answers triggered at least one follow-up before generation. *(auto: intake log contains ≥1 follow-up if completeness_score < 0.8)*
+- [ ] Intake validates against `schemas/intake.schema.json`.
+- [ ] Completeness score is at least 0.8.
+- [ ] `vague_fields` is empty.
+- [ ] Preparation time expectation is captured.
+- [ ] Handout preference is captured.
+- [ ] If handouts are requested, handout time budget is captured.
+
+## Research
+
+- [ ] Topic-specific research was performed when useful.
+- [ ] Sources are relevant to learning outcomes.
+- [ ] Sources are summarized rather than copied.
+- [ ] Research is used to improve sequencing, misconceptions, examples, exercises, or reliability scoring.
+
+## Lesson Plan JSON
+
+- [ ] Output validates against `schemas/lesson_plan.schema.json`.
+- [ ] There is exactly one master JSON object for the training.
+- [ ] No PPTX, DOCX, visual asset, slide master, template, layout, colour, font, or external service instruction appears in the output.
+
+## Didactic Arc
+
+- [ ] Every session contains the five blocks in exact order: kick-off, theory, example, exercise, wrap-up.
+- [ ] Block time budgets sum to the session duration.
+- [ ] Theory is reinforced by the example and exercise.
+- [ ] Exercise creates active application and a clear participant output.
+- [ ] Wrap-up connects to post-bite and, where relevant, the next session.
+
+## Session Requirements
+
+- [ ] Every session has a didactic deck outline.
+- [ ] Every session has a pre-bite.
+- [ ] Every session has a post-bite.
+- [ ] Every session has a trainer brief with intended skills and learning outcomes.
+- [ ] Optional handouts match the user's preference and time budget.
+
+## Reliability
+
+- [ ] Every deck outline item has a reliability score from 0 to 1.
+- [ ] Every reliability score has a rationale.
+- [ ] Review priority is one of low, medium, or high.
+- [ ] Scores below 0.75 are easy for the trainer to identify and review.

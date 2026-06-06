@@ -1,106 +1,99 @@
 ---
 name: maverx-training-builder
-description: Build a complete Maverx training programme (Tier 1 single training, Tier 2 essentials/advanced/expert track, or Tier 3 multi-session certification programme) from a one-sentence brief. Produces editable .pptx decks in Maverx house style, pre-bites, post-bites, case handouts, and a track overview. Use whenever the user asks to design, build, generate, or scaffold a Maverx training, workshop, module, or certification track.
+description: Build a schema-validated Maverx didactic lesson plan JSON from a training brief. Produces one normalized master JSON for a single session or multi-session programme, including intake, research-informed didactic arc, deck outline, pre-bites, post-bites, optional handouts, trainer briefs, and per-slide reliability scores. Does not create PPTX, DOCX, visuals, or call external model services.
 ---
 
 # Maverx Training Builder
 
-This skill takes a trainer from one sentence ("I need a Lean Black Belt") to a full bundle: editable PowerPoint decks in Maverx house style, pre-bites, post-bites, case handouts, and a track overview -- with speaker notes containing all 5 mandatory fields on every slide.
+This skill turns a training brief into one normalized, schema-validated didactic lesson plan JSON. The JSON is the handoff contract for downstream workers such as a PPTX design agent.
 
-## When to trigger
+The skill focuses exclusively on learning design. It does not generate PowerPoint files, Word documents, visual assets, speaker notes files, or other presentation artifacts. It also does not require external model service configuration.
 
-User says any of:
-- "build a Maverx training"
-- "design a training programme"
-- "generate a certification track"
-- "create a Lean / Six Sigma / Power BI / [...] training"
-- "Tier 1 / Tier 2 / Tier 3 training"
+## When To Trigger
 
-## Workflow (the agent host follows this)
+Use this skill when the user asks to:
 
-### 1. Intake (HARD GATE)
+- build a Maverx training
+- design a training programme
+- generate a certification track
+- create a Lean, Six Sigma, Power BI, AI literacy, or similar training
+- create a lesson plan
+- make a didactic training plan
 
-Load `prompts/system_intake.md` and run the intake conversation. Ask the 5 required questions:
+## Workflow
+
+### 1. Intake
+
+Load `prompts/system_intake.md` and run the intake conversation.
+
+Ask the required intake questions unless the user already provided a concrete answer:
 
 1. Topic or skill
 2. Audience
 3. Knowledge level
-4. Duration (sessions × minutes)
+4. Duration as sessions x minutes per session
 5. Primary learning objective
+6. Expected participant preparation time before each session
+7. Whether handouts or group exercise sheets are wanted
+8. If handouts are wanted, the time budget for handout-based work
 
-For Tier 3, also gather: backbone (default DMAIC), certification name, case sector, language, tools.
+For multi-session certification programmes, also gather: certification name, case sector or running context, language, and tools or tool-agnostic constraints.
 
-Refuse to generate until `intake.schema.json` validates AND `completeness_score >= 0.8` AND `vague_fields == []`. If vague, ask ONE precise follow-up at a time and log it in `follow_ups_asked`.
+Refuse to generate until the intake would validate against `schemas/intake.schema.json`, `completeness_score >= 0.8`, and `vague_fields == []`. If vague, ask one precise follow-up at a time and log it in `follow_ups_asked`.
 
-Save the final answer to `out/<slug>/intake.json`.
+### 2. Research Autonomously
 
-### 2. Generate
+Before drafting the lesson plan, research autonomously on the internet when current or topic-specific evidence would improve learning outcomes. Prefer authoritative and practical sources:
 
-Run the orchestrator:
+- primary or official documentation for tools and methods
+- reputable educational, professional, government, or academic sources
+- recent practitioner guidance when the training topic changes quickly
 
-```bash
-cd .agents/skills/maverx-training-builder
-uv run python scripts/run_tier3.py --intake out/<slug>/intake.json --out out/<slug>
-```
+Record concise research evidence in `research_evidence`. Do not overfit the lesson plan to one article. Use research to improve sequencing, misconceptions, examples, exercises, prerequisites, and reliability scoring.
 
-This will:
+### 3. Generate The Master JSON
 
-1. Plan the track (`track_plan.json`) — DMAIC backbone + fictional case + N→N+1 handshake.
-2. Build `track_overview.docx`.
-3. For each session: plan slides → build deck (cloned from master) → write pre/post-bites → write case handout → run QA.
-4. Emit `README_for_trainer.md`.
+Produce exactly one JSON object matching `schemas/lesson_plan.schema.json`. The training can be any length: one 30-minute session, several 60-minute modules, or a full multi-session certification.
 
-### 3. Review
+Every session must follow the Maverx didactic model in this exact order:
 
-Surface every `sessions/N/qa_report.md` to the user. Common issues + fixes:
+1. kick-off
+2. theory
+3. example
+4. exercise
+5. wrap-up
 
-- "notes missing **Aim:**" → regenerate that slide's notes (call `plan_session.py` again or hand-edit `session_plan.json` and rerun `build_deck.py`).
-- "handshake break" → edit `track_plan.json` (rename either `post_bite_artefact` or `next_session_pre_bite_expects_from_prior`) and rebuild affected sessions.
-- "didactic arc missing X" → regenerate the session plan.
+No exceptions.
 
-The user can edit `track_plan.json` or any `session_plan.json` between stages — human-in-the-loop quality control is part of the design.
+Each session must include:
 
-## Tier selection
+- a didactic deck outline for a downstream PPTX agent
+- a pre-bite with prep time and participant task
+- a post-bite with follow-up task or reflection
+- a trainer brief listing intended skills and learning outcomes
+- per-slide reliability scoring so the trainer can review weak or uncertain content
 
-| Tier | Trigger | Orchestrator |
-|------|---------|--------------|
-| 3 (certification programme) | `intake.tier == 3` | `uv run python scripts/run_tier3.py` |
-| 1 / 2 | not yet implemented in v1 | use Tier 3 with `sessions: 1` or `sessions: 3` as a workaround |
+Each session may include a handout plan with brainstorm questions or exercise prompts, but only if the user requested handouts.
 
-## Files
+### 4. Verify Before Responding
 
-- `references/` — house style, didactic model, speaker notes contract, Tier 3 contract, authoring guide, QA checklist
-- `schemas/` — JSON schemas for intake, track plan, session plan, slide
-- `assets/maverx_master.pptx` — the canonical Maverx style/master file
-- `assets/template_catalog.json` — semantic role → master slide index mapping
-- `assets/master_index.json` — generated by `inspect_master.py`
-- `scripts/inspect_master.py` — inspect a master `.pptx` into `assets/master_index.json`
-- `scripts/run_tier3.py` — end-to-end Tier 3 orchestrator
-- `scripts/plan_track.py` and `scripts/plan_session.py` — LLM planners with schema validation
-- `scripts/build_deck.py`, `scripts/build_bites.py`, `scripts/build_case_handout.py`, and `scripts/build_track_overview.py` — deterministic artifact builders
-- `scripts/qa_deck.py` — content QA for generated decks
+Validate the final JSON against `schemas/lesson_plan.schema.json` using a JSON Schema validator available in the environment. If a validator is not available, perform a manual field-by-field check against the schema and say that validation was manual.
 
-## Environment
+Also verify:
 
-- Run commands from the skill directory, `.agents/skills/maverx-training-builder`, unless a command explicitly says otherwise.
-- Python dependencies are managed by the repo root `pyproject.toml`; use `uv sync` at the repo root, then `uv run ...` for all Python commands.
-- `OPENROUTER_API_KEY` — required. Used by every LLM call.
-- `MAVERX_PLANNER_MODEL` — optional (default `anthropic/claude-sonnet-4.5`).
-- `MAVERX_WRITER_MODEL` — optional (default `openai/gpt-4.1-mini`).
+- every session has the five didactic blocks in the exact required order
+- block time budgets sum to session duration
+- each theory block is reinforced by the example and exercise blocks
+- pre-bite time matches the intake expectation
+- handout presence matches the intake preference
+- every deck outline item has a reliability score and rationale
+- no slide visual, layout, master, PPTX, DOCX, or external service instructions are present
 
-## Critical rules
+## Critical Rules
 
-1. **Never redraw shapes.** The builder clones existing master slides and replaces text only — this is what guarantees house-style compliance.
-2. **Speaker notes have all 5 fields, always.** QA fails the build if any field is missing.
-3. **N→N+1 handshake.** Post-bite of session N must equal the artefact session N+1's pre-bite expects.
-4. **Refuse vague intake.** If the user gave "some people, a few hours, make it good", ask follow-ups before calling the orchestrator.
-
-## Swapping the style guide
-
-Drop a new master into `assets/maverx_master.pptx`, then:
-
-```bash
-cd .agents/skills/maverx-training-builder
-uv run python scripts/inspect_master.py assets/maverx_master.pptx assets/
-# inspect assets/master_index.json, update assets/template_catalog.json so role→idx still aligns
-```
+1. The output is didactic JSON only.
+2. The didactic arc is mandatory: kick-off -> theory -> example -> exercise -> wrap-up.
+3. Keep slide-level content conceptual, not visual. Allowed: slide title, learning purpose, key message, suggested content, interaction, reliability. Forbidden: layout, template, master slide, colours, fonts, shapes, image placement.
+4. Do not use external model service configuration in the skill workflow or output.
+5. Refuse vague intake. If the user gave "some people, a few hours, make it good", ask one precise follow-up before generating.
+6. The final output must be normalized JSON verified against the schema.
