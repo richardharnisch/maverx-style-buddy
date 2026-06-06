@@ -99,6 +99,35 @@ outputs/
         └── manifest.json
 ```
 
+## Architecture
+
+```
+src/
+├── main.py              # Entry point — parses CLI args, delegates to interface
+├── interface/cli.py     # One-shot and interactive REPL loop
+├── agent/
+│   ├── loop.py          # Core agent loop: sends messages, handles tool calls
+│   └── client.py        # OpenRouter API client wrapper
+└── skills/
+    └── registry.py      # Tool definitions (OpenAI function-calling format) and dispatch
+.agents/skills/
+└── maverx-presentation-builder/
+    ├── scripts/build_maverx_artifacts.py   # Renders lesson_plan.json → PPTX + DOCX
+    └── assets/slides/templates.pptx        # Maverx branded slide master
+```
+
+**Request flow:**
+
+1. CLI (`interface/cli.py`) receives a prompt and resolves the `--skill` flag.
+2. `SkillRegistry` selects the tool set to expose — training tools, presentation tools, or both.
+3. The agent loop (`agent/loop.py`) sends the conversation to OpenRouter; the model issues tool calls.
+4. Tool calls are dispatched back through `SkillRegistry`:
+   - **training-builder** tools write and validate `lesson_plan.json`.
+   - **presentation-builder** tools invoke `build_maverx_artifacts.py` as a subprocess, which renders the branded PPTX/DOCX files from the lesson plan.
+5. Results are fed back to the model until it produces a final text response.
+
+The `lesson_plan.json` is the handoff contract between the two skills: training-builder produces it, presentation-builder consumes it.
+
 ## Optional API server
 
 A FastAPI server is included for programmatic access:
