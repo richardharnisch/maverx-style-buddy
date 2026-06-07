@@ -1,9 +1,12 @@
-# Maverx Style Buddy
+# Maverx Style Buddy: 1st Place at 2026 Digilize AI Hackathon!
+![digilize](https://digilize.agency/static/Hackthon_poster-c16685.png)
+
+Winning submission for the 2026 Digilize AI Hackathon, made by Teun Boersma, Marcus Persson, and Richard Harnisch. Thanks to everyone who helped make the day possible!
 
 AI-powered CLI for building Maverx-branded training programmes and presentation artifacts. Runs an agent loop against any OpenRouter-compatible model to guide you through intake, generate schema-validated lesson plans, and produce ready-to-deliver PPTX decks and DOCX documents.
 
 ## Usage in Codex
-To use in Codex, install [Codex](github.com/openai/codex) (free) and get a ChatGPT account (free). Then you can call $maverx-training-builder and $maverx-presentation-builder through the Codex-native skill selector. If you don't want to use Codex, you can try the more involved setup below:
+To use in Codex, install [Codex](github.com/openai/codex) (free) and get a ChatGPT account (free). Then you can call $maverx-training-builder and $maverx-presentation-builder through the Codex-native skill selector. If you don't want to use Codex or want the FastAPI-Streamlit GUI, you can try the more involved setup below:
 
 ## Prerequisites
 
