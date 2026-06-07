@@ -2,8 +2,8 @@
 
 AI-powered CLI for building Maverx-branded training programmes and presentation artifacts. Runs an agent loop against any OpenRouter-compatible model to guide you through intake, generate schema-validated lesson plans, and produce ready-to-deliver PPTX decks and DOCX documents.
 
-<img width="1600" height="1000" alt="image" src="https://github.com/user-attachments/assets/576817ea-e894-44e7-b029-a70e756ac1cd" />
-
+## Usage in Codex
+To use in Codex, install [Codex](github.com/openai/codex) (free) and get a ChatGPT account (free). Then you can call $maverx-training-builder and $maverx-presentation-builder through the Codex-native skill selector. If you don't want to use Codex, you can try the more involved setup below:
 
 ## Prerequisites
 
